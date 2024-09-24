@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Represents a Peer that only acts as a Server 
@@ -58,14 +59,7 @@ public class Peer {
 		 * ou versao que utiliza apenas um terminal
 		 */
 		
-		//multipleTerminalVersion(args, peer);
 		oneTerminalVersion(args,peer);
-
-	}
-
-	private static void multipleTerminalVersion(String [] args, Peer peer) throws Exception{
-		new Thread(new Server(args[0], Integer.parseInt(args[1]), peer.logger)).start();
-		new Thread(new RequestGenerator(args[0], Integer.parseInt(args[2]), peer.logger )).start();;
 
 	}
 	
@@ -75,10 +69,11 @@ public class Peer {
 			new Thread(new Server(args[0], Integer.parseInt(args[i+1]), peer.logger)).start();
 		}
 
+		String [] availablePorts = Arrays.copyOfRange(args,1,args.length);
 		for(int i = 0 ; i < numberPeers ;i++){
-			new Thread(new RequestGenerator(args[0], Integer.parseInt(args[i+1]), peer.logger )).start();;
+			new Thread(new RequestGenerator(args[0], availablePorts, peer.logger )).start();;
+			//System.out.println(chooseRandomPort(availablePorts));
 		}
-	
 
 	}
 }

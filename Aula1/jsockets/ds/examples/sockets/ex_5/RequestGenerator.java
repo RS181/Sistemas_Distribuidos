@@ -16,16 +16,15 @@ import java.io.InputStreamReader;
 public class RequestGenerator implements Runnable{
 
     private final String host;
-    private final int destinationPort;
     private final Logger logger;
     private PoissonProcess poissonProcess = null;
-    private String[] presentPeersPoort;
+    private String[] destinationPorts;
 
 
    
-    public RequestGenerator (String host, int port, Logger logger){
+    public RequestGenerator (String host, String[] destinationPorts, Logger logger){
         this.host = host;
-        this.destinationPort = port;
+        this.destinationPorts = destinationPorts;
         this.logger = logger;
 
         //Intialize PoissonProcess
@@ -42,8 +41,9 @@ public class RequestGenerator implements Runnable{
 
             try {
                 Thread.sleep((long)intervalTime);
-                String request = generateRandomRequest();
-                sendRequestToServer(request,destinationPort);
+                int randomPort = chooseRandomPort();
+                String request = generateRandomRequest(randomPort);
+                sendRequestToServer(request,randomPort);
 
             }catch (Exception e){
                 e.printStackTrace(); 
@@ -51,6 +51,12 @@ public class RequestGenerator implements Runnable{
 
         }
     }
+
+    private  int chooseRandomPort(){
+		Random random = new Random();
+		int port = Integer.parseInt(destinationPorts[random.nextInt(destinationPorts.length)]);
+		return port;
+	}
 
 
     /**
@@ -91,11 +97,11 @@ public class RequestGenerator implements Runnable{
              * close connection
              */
 
-            //socket.close();
+            socket.close();
 
         } catch (Exception e){
             //e.printStackTrace();
-            logger.info("Server: error ocured while sending request to localhost " + destinationPort);
+            logger.info("Server: error ocured while sending request ");
         }
     }
 
@@ -108,7 +114,7 @@ public class RequestGenerator implements Runnable{
      * where x and y are double'sse
      * 
      */
-    private String generateRandomRequest() {
+    private String generateRandomRequest(int destinationPort) {
 
         String[] operations = {"add" , "sub" , "mul" , "div"};
 
