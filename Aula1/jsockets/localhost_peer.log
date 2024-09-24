@@ -1,0 +1,1257 @@
+Sep 20, 2024 6:06:19 PM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 4333 ...
+Sep 20, 2024 6:06:19 PM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 20, 2024 6:08:43 PM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 20, 2024 6:08:43 PM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 43333 ...
+Sep 20, 2024 6:09:56 PM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 20, 2024 6:09:56 PM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 45555 ...
+Sep 20, 2024 6:10:43 PM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 20, 2024 6:10:51 PM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command = add:1:3]
+Sep 20, 2024 6:15:39 PM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 20, 2024 6:15:39 PM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 45555 ...
+Sep 20, 2024 6:15:42 PM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 20, 2024 6:15:46 PM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command = add:1:3]
+Sep 20, 2024 6:18:57 PM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 45555 ...
+Sep 20, 2024 6:18:57 PM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 20, 2024 6:20:03 PM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 20, 2024 6:20:03 PM ds.examples.sockets.peer.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 45555]
+Sep 20, 2024 6:20:03 PM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command =  add 1 2]
+Sep 20, 2024 6:20:23 PM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 20, 2024 6:20:41 PM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 45555 add 4 5]
+Sep 20, 2024 6:21:53 PM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 20, 2024 6:21:53 PM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 12345 ...
+Sep 20, 2024 6:22:16 PM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 20, 2024 6:22:16 PM ds.examples.sockets.peer.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 12345]
+Sep 20, 2024 6:22:16 PM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command =  add 4 5]
+Sep 20, 2024 6:23:36 PM ds.examples.sockets.peer.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 12345]
+Sep 20, 2024 6:23:36 PM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 20, 2024 6:23:36 PM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command =  mul 1 2]
+Sep 20, 2024 6:33:34 PM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 20, 2024 6:33:34 PM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 12345 ...
+Sep 20, 2024 6:34:08 PM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 12345 ...
+Sep 20, 2024 6:34:08 PM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:39:57 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:39:57 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 12345 ...
+Sep 21, 2024 10:41:58 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:41:59 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 12345 ...
+Sep 21, 2024 10:42:11 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:42:11 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 12345 ...
+Sep 21, 2024 10:42:22 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:42:22 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 12345 ...
+Sep 21, 2024 10:42:47 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:42:47 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 12345 ...
+Sep 21, 2024 10:43:14 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:43:14 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 12345 ...
+Sep 21, 2024 10:43:27 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:43:27 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 12345 ...
+Sep 21, 2024 10:43:59 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:43:59 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 45555 ...
+Sep 21, 2024 10:44:07 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:44:07 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 45555 ...
+Sep 21, 2024 10:44:13 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:44:13 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 45555 ...
+Sep 21, 2024 10:44:41 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:44:41 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 45555 ...
+Sep 21, 2024 10:48:33 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:48:33 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 45555 ...
+Sep 21, 2024 10:48:40 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 21, 2024 10:48:41 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 45555 ...
+Sep 21, 2024 10:49:48 AM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 21, 2024 10:49:48 AM ds.examples.sockets.peer.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 45555]
+Sep 21, 2024 10:49:48 AM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command =  add 2 3]
+Sep 21, 2024 10:50:30 AM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 21, 2024 10:51:33 AM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 45555 add 2 3]
+Sep 21, 2024 10:52:12 AM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 21, 2024 10:52:16 AM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command = add:1:2]
+Sep 22, 2024 10:29:55 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 12345 ...
+Sep 22, 2024 10:29:55 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 22, 2024 10:31:13 AM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 10:31:13 AM ds.examples.sockets.peer.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 12345]
+Sep 22, 2024 10:31:13 AM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command =  add 2 3]
+Sep 22, 2024 10:31:51 AM ds.examples.sockets.peer.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 12345]
+Sep 22, 2024 10:31:51 AM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 10:31:51 AM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command =  sub 5 3]
+Sep 22, 2024 10:32:35 AM ds.examples.sockets.peer.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 12345]
+Sep 22, 2024 10:32:35 AM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 10:32:35 AM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command =  add 3 4]
+Sep 22, 2024 10:33:54 AM ds.examples.sockets.peer.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 12345]
+Sep 22, 2024 10:33:54 AM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 10:33:54 AM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command =  add 2 3]
+Sep 22, 2024 10:34:38 AM ds.examples.sockets.peer.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 10:34:38 AM ds.examples.sockets.peer.Connection run
+INFO: server: message from host 127.0.0.1[command =  add 5 5]
+Sep 22, 2024 11:33:46 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 22, 2024 11:33:46 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 12345 ...
+Sep 22, 2024 11:35:56 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 22, 2024 11:35:56 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 30001 ...
+Sep 22, 2024 11:36:29 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 22, 2024 11:36:29 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 11:37:15 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 22, 2024 11:37:15 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 20000 ...
+Sep 22, 2024 11:37:20 AM ds.examples.sockets.peer.Client run
+INFO: client: endpoint running ...
+
+Sep 22, 2024 11:37:20 AM ds.examples.sockets.peer.Server run
+INFO: server: endpoint running at port 20000 ...
+Sep 22, 2024 3:21:36 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 3:21:36 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:21:36 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost20001mul 0.5274805627580336 0.5357023020685711]
+Sep 22, 2024 3:21:40 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:21:40 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost20001add 0.9513269604915748 0.8194239495202338]
+Sep 22, 2024 3:21:56 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:21:56 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost20001div 0.9571124300824034 0.5966538857595017]
+Sep 22, 2024 3:22:08 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:22:08 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost20001sub 0.6682242309579225 0.12946844030248128]
+Sep 22, 2024 3:22:12 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:22:12 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost20001add 0.9437403181995344 8.585597161238079E-4]
+Sep 22, 2024 3:27:11 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 3:27:41 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:27:41 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001sub 69.43600060141881 7.737620287781766]
+Sep 22, 2024 3:27:42 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:27:42 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001div 9.417099509622851 27.66997768175541]
+Sep 22, 2024 3:27:45 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:27:45 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001mul 3.139284701863132 41.454010752668914]
+Sep 22, 2024 3:28:37 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 3:28:41 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:28:41 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001mul 5.466505574498459 74.12452757652424]
+Sep 22, 2024 3:28:45 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:28:45 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001sub 76.56456163690734 73.6566725166998]
+Sep 22, 2024 3:28:53 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 3:29:04 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:29:04 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001mul 14.558386328576422 32.047518348084395]
+Sep 22, 2024 3:30:41 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 3:31:18 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:31:18 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 mul 75.44483011755695 61.85720431439186]
+Sep 22, 2024 3:31:21 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:31:21 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 mul 55.78529066134242 55.70794270785847]
+Sep 22, 2024 3:31:23 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:31:23 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 add 68.43318688685395 63.34857590891163]
+Sep 22, 2024 3:35:03 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 3:35:13 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:36:03 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:36:08 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:36:41 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:36:47 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:36:53 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:36:53 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:36:56 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:37:03 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:37:26 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:37:37 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:37:42 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:37:55 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:38:06 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:38:20 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:38:26 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:39:16 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:39:18 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:39:53 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:39:53 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:39:59 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:40:01 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:40:11 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:40:22 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:40:22 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:40:23 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:40:47 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:41:05 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:47:44 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 3:47:46 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:47:46 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 mul 66.65435871614625 77.04063786741663]
+Sep 22, 2024 3:51:22 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 3:51:23 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:51:23 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [Ljava.lang.String;@6931f22c]
+Sep 22, 2024 3:51:26 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:51:26 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [Ljava.lang.String;@6469e7e8]
+Sep 22, 2024 3:51:28 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:51:28 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [Ljava.lang.String;@7ab948ab]
+Sep 22, 2024 3:51:34 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:51:34 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [Ljava.lang.String;@51ca6cb3]
+Sep 22, 2024 3:54:13 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 3:54:20 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:54:20 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [Ljava.lang.String;@1632883b]
+Sep 22, 2024 3:54:23 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:54:23 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [Ljava.lang.String;@7b9a9ab8]
+Sep 22, 2024 3:54:33 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:54:33 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [Ljava.lang.String;@7cbd8f86]
+Sep 22, 2024 3:54:36 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 3:54:36 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [Ljava.lang.String;@4d4f9da4]
+Sep 22, 2024 4:04:23 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 4:04:39 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:04:39 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost, 20001, mul, 57.05019620018955, 23.054762486218305]]
+Sep 22, 2024 4:04:41 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:04:41 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost, 20001, add, 19.101163981921697, 33.93405929829603]]
+Sep 22, 2024 4:10:48 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 4:11:24 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:11:25 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 7.666795452077779 21.740469693930255]]
+Sep 22, 2024 4:11:33 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:11:33 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 7.463204321289274 39.0088104863911]]
+Sep 22, 2024 4:12:00 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:12:00 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 53.1650844141352 78.67497556499384]]
+Sep 22, 2024 4:12:01 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:12:01 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 9.298784993393816 16.941178998672]]
+Sep 22, 2024 4:12:12 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:12:12 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 74.53715170742792 1.984258179439513]]
+Sep 22, 2024 4:12:28 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:12:28 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 26.83665425225703 61.44224476577265]]
+Sep 22, 2024 4:12:43 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:12:43 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 4.966221014091888 56.27086250027643]]
+Sep 22, 2024 4:12:46 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:12:46 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 63.36323550449537 71.5269012406916]]
+Sep 22, 2024 4:13:15 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:13:15 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 67.8736895416237 51.25351606910602]]
+Sep 22, 2024 4:13:18 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:13:18 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 5.024990252169115 47.29352993211739]]
+Sep 22, 2024 4:13:20 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:13:20 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 36.995013402149226 38.53086597701761]]
+Sep 22, 2024 4:13:28 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:13:28 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 18.41045883357858 98.96641274964513]]
+Sep 22, 2024 4:13:30 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:13:30 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 51.1689099037823 5.398175294431895]]
+Sep 22, 2024 4:13:41 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:13:41 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 57.07405127827299 56.362670832866065]]
+Sep 22, 2024 4:13:45 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:13:46 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 80.35761789786604 32.646334303452754]]
+Sep 22, 2024 4:13:50 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:13:50 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 53.24178840629116 45.91831850342548]]
+Sep 22, 2024 4:14:11 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:14:11 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 8.533256703715232 22.672907711377434]]
+Sep 22, 2024 4:14:21 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:14:21 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 58.62641808809105 83.73973151414114]]
+Sep 22, 2024 4:14:23 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:14:23 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 5.93353919766707 79.33958757861285]]
+Sep 22, 2024 4:14:32 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:14:32 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 14.321795845472707 74.33369596724297]]
+Sep 22, 2024 4:14:36 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:14:36 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 27.142223979906642 82.99076730303454]]
+Sep 22, 2024 4:14:39 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:14:39 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 53.58062237332489 77.96399101322802]]
+Sep 22, 2024 4:14:43 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:14:43 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 93.72806078352002 14.888054797039473]]
+Sep 22, 2024 4:15:08 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:15:08 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 11.316460159952424 76.03528045628596]]
+Sep 22, 2024 4:15:26 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:15:26 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 14.275740616728061 50.25511078183187]]
+Sep 22, 2024 4:15:32 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:15:32 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 1.1208219489884708 61.474897149305754]]
+Sep 22, 2024 4:15:40 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:15:40 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 16.38383008830089 46.080842727865544]]
+Sep 22, 2024 4:15:55 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:15:55 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 50.523199468888144 78.38941053234532]]
+Sep 22, 2024 4:16:00 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:16:00 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 22.056504609634175 35.38858348549924]]
+Sep 22, 2024 4:16:10 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:16:10 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 66.4084357035748 46.958623560999214]]
+Sep 22, 2024 4:16:12 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:16:12 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 32.632851910089855 14.05257392107796]]
+Sep 22, 2024 4:16:18 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:16:18 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 75.6479736337486 27.942697828497774]]
+Sep 22, 2024 4:16:36 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:16:36 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 25.80580680517994 50.81277191884932]]
+Sep 22, 2024 4:16:53 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:16:53 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 70.0571461166678 71.50122466859531]]
+Sep 22, 2024 4:17:37 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:17:37 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 66.42735633997845 23.26819413799971]]
+Sep 22, 2024 4:17:43 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:17:43 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 62.333460861879395 42.376517929216696]]
+Sep 22, 2024 4:17:49 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:17:49 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 49.67490658301583 87.76138299794027]]
+Sep 22, 2024 4:17:54 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:17:54 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 15.288510626030904 57.66912534931264]]
+Sep 22, 2024 4:18:51 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 4:19:18 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:19:19 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 46.05306791223275 12.780976211098471]]
+Sep 22, 2024 4:19:19 PM ds.examples.sockets.ex_4.Connection run
+INFO: 33.27209170113428
+Sep 22, 2024 4:19:28 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:19:28 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 47.41017498508222 49.622597325841646]]
+Sep 22, 2024 4:19:28 PM ds.examples.sockets.ex_4.Connection run
+INFO: 0.9554150233968653
+Sep 22, 2024 4:19:35 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:19:35 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 52.50294244201367 74.80355935407454]]
+Sep 22, 2024 4:19:35 PM ds.examples.sockets.ex_4.Connection run
+INFO: 0.7018775964054957
+Sep 22, 2024 4:19:45 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:19:45 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 79.68869018787976 72.06655606911157]]
+Sep 22, 2024 4:19:45 PM ds.examples.sockets.ex_4.Connection run
+INFO: 7.622134118768187
+Sep 22, 2024 4:22:20 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 4:22:26 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:22:26 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 9.130905357040453 29.628362397575124]]
+Sep 22, 2024 4:22:28 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:22:28 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 30.783079375739476 18.093018911497495]]
+Sep 22, 2024 4:22:59 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:22:59 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 71.81444964712527 2.7249174492159356]]
+Sep 22, 2024 4:23:01 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:23:01 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 90.35315153987753 15.506266914042776]]
+Sep 22, 2024 4:23:20 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:23:20 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 49.262674513394266 12.108007767588013]]
+Sep 22, 2024 4:23:24 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:23:24 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 77.03123350597949 22.671240632384283]]
+Sep 22, 2024 4:23:27 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:23:27 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 61.16181575318049 62.03973174840238]]
+Sep 22, 2024 4:23:29 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:23:29 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 47.73140117599623 8.970915038456063]]
+Sep 22, 2024 4:23:30 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:23:30 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 48.79426819810227 0.5931724021898899]]
+Sep 22, 2024 4:23:56 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:23:56 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 59.02388561571964 15.496593014232129]]
+Sep 22, 2024 4:24:01 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:24:01 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 67.03186336805645 28.30978248016649]]
+Sep 22, 2024 4:24:30 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:24:30 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 62.57040384558896 25.32990402022103]]
+Sep 22, 2024 4:24:37 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:24:37 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 67.81750878991252 11.183486408220954]]
+Sep 22, 2024 4:24:48 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:24:48 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 2.699827154243528 95.14768249507544]]
+Sep 22, 2024 4:24:49 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:24:49 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 60.6475522870214 72.97745933635427]]
+Sep 22, 2024 4:25:08 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:25:08 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 25.08069765437365 31.595201183768918]]
+Sep 22, 2024 4:25:09 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:25:09 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 54.699298266615195 92.27211315546384]]
+Sep 22, 2024 4:25:18 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:25:18 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 83.41108518730297 16.884188734514048]]
+Sep 22, 2024 4:25:20 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:25:20 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 87.08500451398676 17.101573908851343]]
+Sep 22, 2024 4:25:20 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:25:20 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 32.938042289409076 35.21413721906498]]
+Sep 22, 2024 4:25:40 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:25:40 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 9.091414225880868 62.64793870906461]]
+Sep 22, 2024 4:25:44 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:25:44 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 68.58824200061153 55.3849522116561]]
+Sep 22, 2024 4:25:56 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:25:56 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 94.4207946079524 54.60815514092523]]
+Sep 22, 2024 4:26:47 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:26:47 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 85.01628827531582 26.418282902948885]]
+Sep 22, 2024 4:26:47 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:26:47 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 45.67707018237773 65.8194806170968]]
+Sep 22, 2024 4:26:51 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:26:51 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 67.81743675804476 28.199140594821337]]
+Sep 22, 2024 4:26:52 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:26:52 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 82.30293870713591 39.651625672936106]]
+Sep 22, 2024 4:27:00 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:27:00 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 1.4342251437101883 24.871162905030218]]
+Sep 22, 2024 4:27:01 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:27:01 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 46.08883974930779 9.401525627113273]]
+Sep 22, 2024 4:27:07 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:27:07 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 5.865507059254204 89.44021101457851]]
+Sep 22, 2024 4:27:12 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:27:12 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 13.306496034026782 57.0740565434913]]
+Sep 22, 2024 4:28:53 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 4:28:56 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:28:56 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 6.718419156814792 10.868399394654116]]
+Sep 22, 2024 4:29:00 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:29:00 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 61.127013818590484 56.174057276385135]]
+Sep 22, 2024 4:29:03 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 4:29:03 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 95.16238486260893 86.32556538449701]]
+Sep 22, 2024 5:46:06 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 5:47:03 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 5:54:15 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 5:54:24 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:54:48 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:54:55 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:54:58 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:55:12 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:55:30 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:55:38 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:55:48 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:56:16 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:56:21 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:56:27 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:57:01 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:57:12 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:57:24 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 5:58:03 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:58:26 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 5:58:26 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 59.22084271226504 12.469223718445422]]
+Sep 22, 2024 5:58:36 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 5:58:36 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 51.74430845583077 97.08609304114837]]
+Sep 22, 2024 5:58:41 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 5:58:41 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 91.10610019689636 93.29778020257132]]
+Sep 22, 2024 5:58:44 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 5:58:44 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 72.20710558233975 77.77138599010418]]
+Sep 22, 2024 5:58:52 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 5:58:52 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 2.295314585670871 80.24011429667239]]
+Sep 22, 2024 5:58:54 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 5:58:54 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 70.58282544193864 38.00832508439023]]
+Sep 22, 2024 5:58:54 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 5:58:54 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 33.4667069885764 4.829311430557226]]
+Sep 22, 2024 5:58:56 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 5:58:56 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 28.11874014151846 47.2985226183691]]
+Sep 22, 2024 5:58:58 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 5:58:58 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 41.88693482332743 87.88540462244426]]
+Sep 22, 2024 5:59:37 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 5:59:38 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 5:59:47 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 5:59:47 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 99.37714244221387 70.10251144014717]]
+Sep 22, 2024 6:05:47 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20002 ...
+Sep 22, 2024 6:06:03 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 6:06:18 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:06:18 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 28.945099301950616 28.499285711956055]]
+Sep 22, 2024 6:06:22 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:06:22 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 78.62681023644792 57.135571306095876]]
+Sep 22, 2024 6:06:42 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:06:42 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 73.41431569149773 74.19821134863354]]
+Sep 22, 2024 6:07:03 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:07:03 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 33.335075725055916 3.7596488477787293]]
+Sep 22, 2024 6:07:08 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:07:08 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 14.352668601843776 97.06157129909381]]
+Sep 22, 2024 6:07:28 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:07:28 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 11.822794130893865 87.88521085370434]]
+Sep 22, 2024 6:07:36 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:07:36 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 22.050827080260827 19.196973902597836]]
+Sep 22, 2024 6:07:39 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:07:39 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 94.64603144488544 48.11270812592351]]
+Sep 22, 2024 6:07:41 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:07:41 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 8.859461736217366 70.71492673266559]]
+Sep 22, 2024 6:07:58 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:07:58 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 65.76571464683502 6.865655704175899]]
+Sep 22, 2024 6:08:15 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:08:15 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 53.36174435634745 38.986205143906524]]
+Sep 22, 2024 6:08:17 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:08:17 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 66.34709022235624 22.79461802052133]]
+Sep 22, 2024 6:08:33 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:08:33 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 23.462827302847554 21.04290066358644]]
+Sep 22, 2024 6:08:40 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:08:40 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 58.03302832902353 6.9878793004725654]]
+Sep 22, 2024 6:08:44 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:08:44 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 81.2575857423982 37.98293877818293]]
+Sep 22, 2024 6:08:47 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:08:47 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 22.11556455479392 10.51817813931798]]
+Sep 22, 2024 6:08:54 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:08:54 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 15.309767455588485 47.81291803536878]]
+Sep 22, 2024 6:09:08 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:09:08 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 94.41662397007585 68.80691046401314]]
+Sep 22, 2024 6:09:28 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:09:28 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 36.47584364403631 37.97475135218187]]
+Sep 22, 2024 6:09:40 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:09:40 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 28.96313511193387 45.678212663695696]]
+Sep 22, 2024 6:09:44 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:09:44 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 32.01222471756642 71.36136809583495]]
+Sep 22, 2024 6:09:48 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:09:49 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 87.28478719651066 60.127250100836925]]
+Sep 22, 2024 6:10:14 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:10:14 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 6.695081358806654 83.05260234571412]]
+Sep 22, 2024 6:10:27 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:10:27 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 43.20122298658359 68.95453167829196]]
+Sep 22, 2024 6:10:38 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:10:38 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 8.12659135021655 76.91263116063715]]
+Sep 22, 2024 6:10:42 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:10:42 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 79.27399958901364 16.46570548345052]]
+Sep 22, 2024 6:10:47 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:10:47 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 19.967671226051554 37.15556203459309]]
+Sep 22, 2024 6:10:51 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:10:51 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 61.73805691126566 77.88912650243687]]
+Sep 22, 2024 6:10:55 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:10:55 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 90.49395854540275 55.71338757983098]]
+Sep 22, 2024 6:10:58 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:10:58 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 61.63413620830966 78.7153872895551]]
+Sep 22, 2024 6:11:17 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:11:17 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 78.39919124749348 12.245636758977207]]
+Sep 22, 2024 6:11:30 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:11:30 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 48.15380071581592 9.658961819456236]]
+Sep 22, 2024 6:11:40 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:11:40 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 21.033349454233054 41.932061271670776]]
+Sep 22, 2024 6:11:48 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:11:48 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 49.387108211521635 6.356063702151282]]
+Sep 22, 2024 6:11:53 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:11:53 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 19.316207064613423 14.880377619856745]]
+Sep 22, 2024 6:12:10 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:12:10 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 19.93666467631725 61.664850323441414]]
+Sep 22, 2024 6:12:30 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:12:30 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 97.97852309370681 40.37031797490515]]
+Sep 22, 2024 6:12:36 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:12:36 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 15.650976235379787 69.24122038167168]]
+Sep 22, 2024 6:12:36 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:12:36 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 17.642748097029227 56.445941789444866]]
+Sep 22, 2024 6:12:43 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:12:43 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 div 81.76861749951104 47.16068757694004]]
+Sep 22, 2024 6:13:02 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:13:02 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 17.136138052714557 80.53322073112429]]
+Sep 22, 2024 6:13:09 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:13:09 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 38.68932467984947 46.2527343441551]]
+Sep 22, 2024 6:13:22 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:13:22 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 45.247228810541195 52.55287247237964]]
+Sep 22, 2024 6:13:43 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:13:43 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 92.49984387575573 58.657113545001984]]
+Sep 22, 2024 6:13:59 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:13:59 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 38.29350691080419 93.65278711667503]]
+Sep 22, 2024 6:14:12 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:14:12 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 41.64493446825289 2.430160345615706]]
+Sep 22, 2024 6:14:12 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:14:12 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 91.8178480916253 85.29836274061813]]
+Sep 22, 2024 6:14:17 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:14:17 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 mul 54.54075022034872 88.20990531597627]]
+Sep 22, 2024 6:14:18 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:14:18 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 add 15.746707290458362 38.09411640220173]]
+Sep 22, 2024 6:14:20 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:14:20 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = [localhost 20001 sub 84.52522243419548 70.66786353439466]]
+Sep 22, 2024 6:18:22 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 6:18:24 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 6:18:25 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 6:18:31 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 6:18:33 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 6:18:35 PM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20002
+Sep 22, 2024 6:18:40 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:18:40 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 mul 69.05499325642488 86.32246560679029 ]
+Sep 22, 2024 6:18:44 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:18:44 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 add 54.34275735404949 2.8164607505205885 ]
+Sep 22, 2024 6:22:39 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 22, 2024 6:23:09 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:23:09 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 sub 93.90922353905424 32.480399908849 ]
+Sep 22, 2024 6:23:18 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:23:18 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 mul 84.43930639448146 57.35189866961476 ]
+Sep 22, 2024 6:23:21 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:23:21 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 mul 89.16833489012491 98.1656992647596 ]
+Sep 22, 2024 6:23:28 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:23:28 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 mul 82.11719142483533 84.06483653713434 ]
+Sep 22, 2024 6:23:44 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 22, 2024 6:23:44 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 add 13.96153416490642 69.79967762381409 ]
+Sep 23, 2024 11:02:00 AM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20002 ...
+Sep 23, 2024 11:02:38 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:02:38 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 sub 61.62324182553112 12.958400716747743 ]
+Sep 23, 2024 11:02:51 AM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20001
+Sep 23, 2024 11:02:51 AM ds.examples.sockets.ex_4.RequestGenerator sendRequestToServer
+INFO: Server: error ocured while sending request to localhost 20001
+Sep 23, 2024 11:21:13 AM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 23, 2024 11:51:35 AM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20002 ...
+Sep 23, 2024 11:51:35 AM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 23, 2024 11:51:59 AM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 23, 2024 11:51:59 AM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20002 ...
+Sep 23, 2024 11:52:08 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:52:08 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 mul 2.7491288092468924 49.75388884388467 ]
+Sep 23, 2024 11:52:23 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:52:23 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 add 40.46282213713517 16.374728756447233 ]
+Sep 23, 2024 11:52:35 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:52:35 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 div 99.10746830153026 89.44684353364873 ]
+Sep 23, 2024 11:52:36 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:52:36 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 add 18.484646831152595 5.038959835088807 ]
+Sep 23, 2024 11:52:56 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:52:56 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 mul 25.229875963867563 32.18064446491975 ]
+Sep 23, 2024 11:53:12 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:53:12 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 sub 97.3395663468131 75.84326778271672 ]
+Sep 23, 2024 11:53:19 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:53:19 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 mul 22.05705089702833 25.474970381225383 ]
+Sep 23, 2024 11:53:22 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:53:22 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 mul 16.691120999086962 62.97180074731733 ]
+Sep 23, 2024 11:58:37 AM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20002 ...
+Sep 23, 2024 11:58:37 AM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 23, 2024 11:58:48 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:58:48 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 div 57.50534222429607 54.765341104927025 ]
+Sep 23, 2024 11:59:03 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:59:03 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 mul 32.33605073050219 35.81801768872238 ]
+Sep 23, 2024 11:59:07 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:59:07 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 add 81.95097404360314 84.33780855716964 ]
+Sep 23, 2024 11:59:19 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:59:19 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 add 77.15102923664507 67.82198177655656 ]
+Sep 23, 2024 11:59:27 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:59:27 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 div 88.21857016071726 98.20764779025389 ]
+Sep 23, 2024 11:59:36 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:59:36 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 div 92.50396861680531 85.89321002573908 ]
+Sep 23, 2024 11:59:41 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:59:41 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 sub 62.86948844301439 76.1456406400823 ]
+Sep 23, 2024 11:59:48 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:59:48 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 div 40.172142727854485 30.945726084775217 ]
+Sep 23, 2024 11:59:51 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:59:51 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 sub 47.08249301039026 84.13066370340209 ]
+Sep 23, 2024 11:59:59 AM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 11:59:59 AM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 sub 54.78506433394876 97.18869109103147 ]
+Sep 23, 2024 12:00:08 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 23, 2024 12:00:08 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20002 ...
+Sep 23, 2024 12:00:13 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:00:13 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 add 88.19946364456631 58.85504884318963 ]
+Sep 23, 2024 12:00:13 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:00:13 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 add 93.7965626894077 6.932453215710166 ]
+Sep 23, 2024 12:00:16 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:00:16 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 add 47.37357352345472 8.028623048421235 ]
+Sep 23, 2024 12:00:37 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:00:37 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 div 99.69703099065865 1.659801639872771 ]
+Sep 23, 2024 12:00:39 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:00:39 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 sub 59.40986649584057 37.684087956655596 ]
+Sep 23, 2024 12:00:39 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:00:39 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 sub 88.33755842906582 85.21723498755478 ]
+Sep 23, 2024 12:00:55 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:00:55 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 sub 4.030768380613492 72.92973099843927 ]
+Sep 23, 2024 12:01:00 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:01:00 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 div 55.10638690859403 13.794561725368604 ]
+Sep 23, 2024 12:01:15 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20002 ...
+Sep 23, 2024 12:01:15 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 23, 2024 12:02:06 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20001 ...
+Sep 23, 2024 12:02:06 PM ds.examples.sockets.ex_4.Server run
+INFO: server: endpoint running at port 20002 ...
+Sep 23, 2024 12:02:08 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:02:08 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 mul 20.844846287381667 24.917752749628786 ]
+Sep 23, 2024 12:02:24 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:02:24 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 sub 51.137065035878614 45.172570859493355 ]
+Sep 23, 2024 12:02:29 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:02:29 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 sub 52.84423412348489 27.587646448090698 ]
+Sep 23, 2024 12:02:34 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:02:34 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 sub 49.73555689304424 62.53122637689752 ]
+Sep 23, 2024 12:02:36 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:02:36 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 div 84.6801277675453 4.589534028090492 ]
+Sep 23, 2024 12:02:37 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:02:37 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 sub 9.882569445589251 66.19905188538944 ]
+Sep 23, 2024 12:02:40 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:02:40 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 mul 6.829600308275808 43.88876856948025 ]
+Sep 23, 2024 12:02:55 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:02:55 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 mul 68.26378884756924 75.14684500374337 ]
+Sep 23, 2024 12:02:58 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:02:58 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 div 86.95503236595833 38.52008911211142 ]
+Sep 23, 2024 12:02:58 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:02:58 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 add 64.2920527025715 27.66413342240882 ]
+Sep 23, 2024 12:03:04 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:03:04 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 add 35.63495007452728 73.11996993790561 ]
+Sep 23, 2024 12:03:11 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:03:11 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 div 90.4751077097211 22.53519037256354 ]
+Sep 23, 2024 12:03:14 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:03:14 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 mul 57.05054836267097 92.12935639762982 ]
+Sep 23, 2024 12:03:24 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:03:24 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 sub 96.48132453952549 68.9671891194633 ]
+Sep 23, 2024 12:03:33 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:03:33 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 sub 69.44474372541306 29.074291287604236 ]
+Sep 23, 2024 12:03:33 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:03:33 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 div 89.38657129229357 68.8555255778691 ]
+Sep 23, 2024 12:03:39 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:03:39 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 sub 76.77953862281709 35.843264033692236 ]
+Sep 23, 2024 12:03:41 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:03:41 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 add 74.88216648409829 93.14770392619049 ]
+Sep 23, 2024 12:03:42 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:03:42 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 div 51.27722437375532 37.08821157032373 ]
+Sep 23, 2024 12:03:43 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:03:43 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20002 mul 45.03000591376133 34.032496354773166 ]
+Sep 23, 2024 12:03:44 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:03:44 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 sub 30.54885494169004 57.04189858902981 ]
+Sep 23, 2024 12:03:45 PM ds.examples.sockets.ex_4.Server run
+INFO: server: new connection from 127.0.0.1
+Sep 23, 2024 12:03:45 PM ds.examples.sockets.ex_4.Connection run
+INFO: server: message from host 127.0.0.1[command = localhost 20001 sub 64.56050501217076 73.29421907205725 ]
