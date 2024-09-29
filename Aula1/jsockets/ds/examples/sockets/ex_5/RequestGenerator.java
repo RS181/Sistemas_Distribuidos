@@ -29,7 +29,7 @@ public class RequestGenerator implements Runnable{
 
         //Intialize PoissonProcess
         Random rng = new Random();
-        double lambda = 5.0;    
+        double lambda = 5.0;    // 5 events per minute
         poissonProcess = new PoissonProcess(lambda, rng);
     }
 

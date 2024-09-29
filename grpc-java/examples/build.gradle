@@ -122,3 +122,9 @@ createStartScripts('io.grpc.examples.retrying.RetryingHelloWorldServer')
 createStartScripts('io.grpc.examples.routeguide.RouteGuideClient')
 createStartScripts('io.grpc.examples.routeguide.RouteGuideServer')
 createStartScripts('io.grpc.examples.waitforready.WaitForReadyClient')
+
+//New stuff
+//These entries allow the gradle tool used by gRPC to build the client and server applications
+//automatically.
+createStartScripts('io.grpc.examples.calculator.CalculatorServer')
+createStartScripts('io.grpc.examples.calculator.CalculatorClient')
