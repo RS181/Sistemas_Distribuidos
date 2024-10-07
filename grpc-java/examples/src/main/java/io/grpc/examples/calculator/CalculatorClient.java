@@ -28,85 +28,119 @@ import java.util.logging.Logger;
  * A simple client that makes requests to the {@link CalculatorServer}.
  */
 public class CalculatorClient {
-  private static final Logger logger = Logger.getLogger(CalculatorClient.class.getName());
+	private static final Logger logger = Logger.getLogger(CalculatorClient.class.getName());
 
-  private final CalculatorGrpc.CalculatorBlockingStub blockingStub;
+	private final CalculatorGrpc.CalculatorBlockingStub blockingStub;
 
-  /** Construct client for accessing Calculator server using the existing channel. */
-  public CalculatorClient(Channel channel) {
-    // 'channel' here is a Channel, not a ManagedChannel, so it is not this code's responsibility to
-    // shut it down.
+	/**
+	 * Construct client for accessing Calculator server using the existing channel.
+	 */
+	public CalculatorClient(Channel channel) {
+		// 'channel' here is a Channel, not a ManagedChannel, so it is not this code's
+		// responsibility to
+		// shut it down.
 
-    // Passing Channels to code makes code easier to test and makes it easier to reuse Channels.
-    blockingStub = CalculatorGrpc.newBlockingStub(channel);
-  }
+		// Passing Channels to code makes code easier to test and makes it easier to
+		// reuse Channels.
+		blockingStub = CalculatorGrpc.newBlockingStub(channel);
+	}
 
-  /** interact with server */
-  public void doIt() {
-    double v1 = 2.5333296;
-    double v2 = -1.772591;
-    CalculatorRequest request1 = CalculatorRequest.newBuilder().setValue1(v1).setValue2(v2).build();
+	/** interact with server */
+	public void doIt() {
+		double v1 = 2.5333296;
+		double v2 = -1.772591;
+		CalculatorRequest request1 = CalculatorRequest.newBuilder().setValue1(v1).setValue2(v2).build();
 
-    logger.info("Asking for a computation: " + v1 + " + " + v2);
-    logger.info("Asking for a computation: " + v1 + " - " + v2);
-    logger.info("Asking for a computation: " + v1 + " * " + v2);	           logger.info("Asking for a computation: " + v1 + " / " + v2);
-    
-    CalculatorReply reply1, reply2, reply3, reply4;
-    try {
-      reply1 = blockingStub.add(request1);
-      reply2 = blockingStub.sub(request1);
-      reply3 = blockingStub.mul(request1);
-      reply4 = blockingStub.div(request1);     
-    } catch (StatusRuntimeException e) {
-      logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
-      return;
-    }
-    logger.info("add result received: " + reply1.getValue());
-    logger.info("sub result received: " + reply2.getValue());
-    logger.info("mul result received: " + reply3.getValue());
-    logger.info("div result received: " + reply4.getValue());
+		logger.info("Asking for a computation: " + v1 + " + " + v2);
+		logger.info("Asking for a computation: " + v1 + " - " + v2);
+		logger.info("Asking for a computation: " + v1 + " * " + v2);
+		logger.info("Asking for a computation: " + v1 + " / " + v2);
 
-    double v3 = 2.5333296;
-    double v4 = 0.0;
-    logger.info("Asking for a computation: " + v3 + " / " + v4);
-    CalculatorRequest request2 = CalculatorRequest.newBuilder().setValue1(v3).setValue2(v4).build();
-    CalculatorReply reply5;
-    try {
-      reply5 = blockingStub.div(request2);
-    } catch (StatusRuntimeException e) {
-      logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
-      return;
-    }
-    logger.info("div by zero result: " + reply5.getValue());
-  }
+		CalculatorReply reply1, reply2, reply3, reply4;
+		try {
+			reply1 = blockingStub.add(request1);
+			reply2 = blockingStub.sub(request1);
+			reply3 = blockingStub.mul(request1);
+			reply4 = blockingStub.div(request1);
+		} catch (StatusRuntimeException e) {
+			logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
+			return;
+		}
+		logger.info("add result received: " + reply1.getValue());
+		logger.info("sub result received: " + reply2.getValue());
+		logger.info("mul result received: " + reply3.getValue());
+		logger.info("div result received: " + reply4.getValue());
 
-  /**
-   * Start the client
-   */
-  public static void main(String[] args) throws Exception {
-    // default target given as host:port
-    String target = "localhost:50051";
+		double v3 = 2.5333296;
+		double v4 = 0.0;
+		logger.info("Asking for a computation: " + v3 + " / " + v4);
+		CalculatorRequest request2 = CalculatorRequest.newBuilder().setValue1(v3).setValue2(v4).build();
+		CalculatorReply reply5;
+		try {
+			reply5 = blockingStub.div(request2);
+		} catch (StatusRuntimeException e) {
+			logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
+			return;
+		}
+		logger.info("div by zero result: " + reply5.getValue());
 
-    if (args.length == 1) {
-      target = args[0];
-    }
 
-    // Create a communication channel to the server, known as a Channel. Channels are thread-safe
-    // and reusable. It is common to create channels at the beginning of your application and reuse
-    // them until the application shuts down.
-    ManagedChannel channel = ManagedChannelBuilder.forTarget(target)
-        // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
-        // needing certificates.
-        .usePlaintext()
-        .build();
-    try {
-      CalculatorClient client = new CalculatorClient(channel);
-      client.doIt();
-    } finally {
-      // ManagedChannels use resources like threads and TCP connections. To prevent leaking these
-      // resources the channel should be shut down when it will no longer be used. If it may be used
-      // again leave it running.
-      channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
-    }
-  }
+		//New stuff
+		String str = "batatas";
+		String otherStr = "batatas";
+		NewCalculatorRequest request3 = NewCalculatorRequest.newBuilder().setValue(str).setValue2(otherStr).build();
+		NewCalculatorReply reply6;
+		BoolCalculatorReply reply7;
+
+		try{
+			reply6 = blockingStub.length(request3);
+			reply7 = blockingStub.equals(request3);
+
+		}catch(StatusRuntimeException e) {
+			logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
+			return;
+		}
+		
+		logger.info("length of \""+ str + "\" result received: " + reply6.getValue());
+		logger.info("equal of \""+str +"\" and \"" + otherStr + "\" result received: " + reply7.getValue());
+
+	}
+
+
+		
+
+	/**
+	 * Start the client
+	 */
+	public static void main(String[] args) throws Exception {
+		// default target given as host:port
+		String target = "localhost:50051";
+
+		if (args.length == 1) {
+			target = args[0];
+		}
+
+		// Create a communication channel to the server, known as a Channel. Channels
+		// are thread-safe
+		// and reusable. It is common to create channels at the beginning of your
+		// application and reuse
+		// them until the application shuts down.
+		ManagedChannel channel = ManagedChannelBuilder.forTarget(target)
+				// Channels are secure by default (via SSL/TLS). For the example we disable TLS
+				// to avoid
+				// needing certificates.
+				.usePlaintext()
+				.build();
+		try {
+			CalculatorClient client = new CalculatorClient(channel);
+			client.doIt();
+		} finally {
+			// ManagedChannels use resources like threads and TCP connections. To prevent
+			// leaking these
+			// resources the channel should be shut down when it will no longer be used. If
+			// it may be used
+			// again leave it running.
+			channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
+		}
+	}
 }

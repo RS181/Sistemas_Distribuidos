@@ -27,6 +27,11 @@ service Calculator {
   rpc sub (CalculatorRequest) returns (CalculatorReply) {}
   rpc mul (CalculatorRequest) returns (CalculatorReply) {}
   rpc div (CalculatorRequest) returns (CalculatorReply) {}
+
+  // Adding new stuff 
+  rpc length (NewCalculatorRequest) returns (NewCalculatorReply) {}
+  rpc equals (NewCalculatorRequest) returns (BoolCalculatorReply) {}
+  // falta adicion cat e break
 }
 
 // The request message containing the operands
@@ -35,7 +40,23 @@ message CalculatorRequest {
   double value2 = 2;  
 }
 
+// New stuff 
+message NewCalculatorRequest{
+  string value  = 1;
+  string value2 = 2;
+}
+
+
 // The reply message containing the result
 message CalculatorReply {
   double value = 1;
+}
+
+// New stuff
+message NewCalculatorReply {
+  double value = 1;
+}
+
+message BoolCalculatorReply {
+  bool value = 1;
 }

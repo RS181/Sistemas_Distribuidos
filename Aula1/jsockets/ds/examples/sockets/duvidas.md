@@ -2,6 +2,8 @@
 + O ficheiro Peer.java cada vez que que o execute ele cria uma thread para servidor e cliente utilizando localhost. Se eu quiser criar mais do que um Peer como e que posso fazer? 
 >R: Para criar mais do que um Peer posso utilizar o localhost, apenas precisso de definir diferentes portas 
 
++ Se eu nao fechar uma Socket com Socket.close() o que aconte a essa socket ?
+
 + O exercicio 7 necessita de sincronizacao certo?
 
 # Notas

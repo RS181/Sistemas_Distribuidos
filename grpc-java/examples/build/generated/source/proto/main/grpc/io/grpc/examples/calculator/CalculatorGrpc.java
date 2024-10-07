@@ -142,6 +142,68 @@ public final class CalculatorGrpc {
     return getDivMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<io.grpc.examples.calculator.NewCalculatorRequest,
+      io.grpc.examples.calculator.NewCalculatorReply> getLengthMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "length",
+      requestType = io.grpc.examples.calculator.NewCalculatorRequest.class,
+      responseType = io.grpc.examples.calculator.NewCalculatorReply.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<io.grpc.examples.calculator.NewCalculatorRequest,
+      io.grpc.examples.calculator.NewCalculatorReply> getLengthMethod() {
+    io.grpc.MethodDescriptor<io.grpc.examples.calculator.NewCalculatorRequest, io.grpc.examples.calculator.NewCalculatorReply> getLengthMethod;
+    if ((getLengthMethod = CalculatorGrpc.getLengthMethod) == null) {
+      synchronized (CalculatorGrpc.class) {
+        if ((getLengthMethod = CalculatorGrpc.getLengthMethod) == null) {
+          CalculatorGrpc.getLengthMethod = getLengthMethod =
+              io.grpc.MethodDescriptor.<io.grpc.examples.calculator.NewCalculatorRequest, io.grpc.examples.calculator.NewCalculatorReply>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "length"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  io.grpc.examples.calculator.NewCalculatorRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  io.grpc.examples.calculator.NewCalculatorReply.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculatorMethodDescriptorSupplier("length"))
+              .build();
+        }
+      }
+    }
+    return getLengthMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<io.grpc.examples.calculator.NewCalculatorRequest,
+      io.grpc.examples.calculator.BoolCalculatorReply> getEqualsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "equals",
+      requestType = io.grpc.examples.calculator.NewCalculatorRequest.class,
+      responseType = io.grpc.examples.calculator.BoolCalculatorReply.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<io.grpc.examples.calculator.NewCalculatorRequest,
+      io.grpc.examples.calculator.BoolCalculatorReply> getEqualsMethod() {
+    io.grpc.MethodDescriptor<io.grpc.examples.calculator.NewCalculatorRequest, io.grpc.examples.calculator.BoolCalculatorReply> getEqualsMethod;
+    if ((getEqualsMethod = CalculatorGrpc.getEqualsMethod) == null) {
+      synchronized (CalculatorGrpc.class) {
+        if ((getEqualsMethod = CalculatorGrpc.getEqualsMethod) == null) {
+          CalculatorGrpc.getEqualsMethod = getEqualsMethod =
+              io.grpc.MethodDescriptor.<io.grpc.examples.calculator.NewCalculatorRequest, io.grpc.examples.calculator.BoolCalculatorReply>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "equals"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  io.grpc.examples.calculator.NewCalculatorRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  io.grpc.examples.calculator.BoolCalculatorReply.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculatorMethodDescriptorSupplier("equals"))
+              .build();
+        }
+      }
+    }
+    return getEqualsMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -223,6 +285,23 @@ public final class CalculatorGrpc {
         io.grpc.stub.StreamObserver<io.grpc.examples.calculator.CalculatorReply> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDivMethod(), responseObserver);
     }
+
+    /**
+     * <pre>
+     * Adding new stuff 
+     * </pre>
+     */
+    default void length(io.grpc.examples.calculator.NewCalculatorRequest request,
+        io.grpc.stub.StreamObserver<io.grpc.examples.calculator.NewCalculatorReply> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getLengthMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void equals(io.grpc.examples.calculator.NewCalculatorRequest request,
+        io.grpc.stub.StreamObserver<io.grpc.examples.calculator.BoolCalculatorReply> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getEqualsMethod(), responseObserver);
+    }
   }
 
   /**
@@ -292,6 +371,25 @@ public final class CalculatorGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDivMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * Adding new stuff 
+     * </pre>
+     */
+    public void length(io.grpc.examples.calculator.NewCalculatorRequest request,
+        io.grpc.stub.StreamObserver<io.grpc.examples.calculator.NewCalculatorReply> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getLengthMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void equals(io.grpc.examples.calculator.NewCalculatorRequest request,
+        io.grpc.stub.StreamObserver<io.grpc.examples.calculator.BoolCalculatorReply> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getEqualsMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -342,6 +440,23 @@ public final class CalculatorGrpc {
     public io.grpc.examples.calculator.CalculatorReply div(io.grpc.examples.calculator.CalculatorRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDivMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Adding new stuff 
+     * </pre>
+     */
+    public io.grpc.examples.calculator.NewCalculatorReply length(io.grpc.examples.calculator.NewCalculatorRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getLengthMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public io.grpc.examples.calculator.BoolCalculatorReply equals(io.grpc.examples.calculator.NewCalculatorRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getEqualsMethod(), getCallOptions(), request);
     }
   }
 
@@ -398,12 +513,33 @@ public final class CalculatorGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDivMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * Adding new stuff 
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<io.grpc.examples.calculator.NewCalculatorReply> length(
+        io.grpc.examples.calculator.NewCalculatorRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getLengthMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<io.grpc.examples.calculator.BoolCalculatorReply> equals(
+        io.grpc.examples.calculator.NewCalculatorRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getEqualsMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_ADD = 0;
   private static final int METHODID_SUB = 1;
   private static final int METHODID_MUL = 2;
   private static final int METHODID_DIV = 3;
+  private static final int METHODID_LENGTH = 4;
+  private static final int METHODID_EQUALS = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -437,6 +573,14 @@ public final class CalculatorGrpc {
         case METHODID_DIV:
           serviceImpl.div((io.grpc.examples.calculator.CalculatorRequest) request,
               (io.grpc.stub.StreamObserver<io.grpc.examples.calculator.CalculatorReply>) responseObserver);
+          break;
+        case METHODID_LENGTH:
+          serviceImpl.length((io.grpc.examples.calculator.NewCalculatorRequest) request,
+              (io.grpc.stub.StreamObserver<io.grpc.examples.calculator.NewCalculatorReply>) responseObserver);
+          break;
+        case METHODID_EQUALS:
+          serviceImpl.equals((io.grpc.examples.calculator.NewCalculatorRequest) request,
+              (io.grpc.stub.StreamObserver<io.grpc.examples.calculator.BoolCalculatorReply>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -484,6 +628,20 @@ public final class CalculatorGrpc {
               io.grpc.examples.calculator.CalculatorRequest,
               io.grpc.examples.calculator.CalculatorReply>(
                 service, METHODID_DIV)))
+        .addMethod(
+          getLengthMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              io.grpc.examples.calculator.NewCalculatorRequest,
+              io.grpc.examples.calculator.NewCalculatorReply>(
+                service, METHODID_LENGTH)))
+        .addMethod(
+          getEqualsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              io.grpc.examples.calculator.NewCalculatorRequest,
+              io.grpc.examples.calculator.BoolCalculatorReply>(
+                service, METHODID_EQUALS)))
         .build();
   }
 
@@ -536,6 +694,8 @@ public final class CalculatorGrpc {
               .addMethod(getSubMethod())
               .addMethod(getMulMethod())
               .addMethod(getDivMethod())
+              .addMethod(getLengthMethod())
+              .addMethod(getEqualsMethod())
               .build();
         }
       }

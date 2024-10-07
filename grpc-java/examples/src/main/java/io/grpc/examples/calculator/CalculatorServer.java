@@ -42,7 +42,8 @@ public class CalculatorServer {
     Runtime.getRuntime().addShutdownHook(new Thread() {
       @Override
       public void run() {
-        // Use stderr here since the logger may have been reset by its JVM shutdown hook.
+        // Use stderr here since the logger may have been reset by its JVM shutdown
+        // hook.
         System.err.println("*** shutting down gRPC server since JVM is shutting down");
         try {
           CalculatorServer.this.stop();
@@ -61,7 +62,8 @@ public class CalculatorServer {
   }
 
   /**
-   * Await termination on the main thread since the grpc library uses daemon threads.
+   * Await termination on the main thread since the grpc library uses daemon
+   * threads.
    */
   private void blockUntilShutdown() throws InterruptedException {
     if (server != null) {
@@ -79,32 +81,50 @@ public class CalculatorServer {
   }
 
   static class CalculatorImpl extends CalculatorGrpc.CalculatorImplBase {
-      @Override
-      public void add(CalculatorRequest req, StreamObserver<CalculatorReply> replyObserver) {
-	  CalculatorReply reply = CalculatorReply.newBuilder().setValue(req.getValue1() + req.getValue2()).build();
-	  replyObserver.onNext(reply);
-	  replyObserver.onCompleted();
-      }
+    @Override
+    public void add(CalculatorRequest req, StreamObserver<CalculatorReply> replyObserver) {
+      CalculatorReply reply = CalculatorReply.newBuilder().setValue(req.getValue1() + req.getValue2()).build();
+      replyObserver.onNext(reply);
+      replyObserver.onCompleted();
+    }
 
-      @Override
-      public void sub(CalculatorRequest req, StreamObserver<CalculatorReply> replyObserver) {
-	  CalculatorReply reply = CalculatorReply.newBuilder().setValue(req.getValue1() - req.getValue2()).build();
-	  replyObserver.onNext(reply);
-	  replyObserver.onCompleted();
-      }
+    @Override
+    public void sub(CalculatorRequest req, StreamObserver<CalculatorReply> replyObserver) {
+      CalculatorReply reply = CalculatorReply.newBuilder().setValue(req.getValue1() - req.getValue2()).build();
+      replyObserver.onNext(reply);
+      replyObserver.onCompleted();
+    }
 
-      @Override
-      public void mul(CalculatorRequest req, StreamObserver<CalculatorReply> replyObserver) {
-	  CalculatorReply reply = CalculatorReply.newBuilder().setValue(req.getValue1() * req.getValue2()).build();
-	  replyObserver.onNext(reply);
-	  replyObserver.onCompleted();
-      }
-      
-      @Override
-      public void div(CalculatorRequest req, StreamObserver<CalculatorReply> replyObserver) {
-	  CalculatorReply reply = CalculatorReply.newBuilder().setValue(req.getValue1() / req.getValue2()).build();
-	  replyObserver.onNext(reply);
-	  replyObserver.onCompleted();
-      }
+    @Override
+    public void mul(CalculatorRequest req, StreamObserver<CalculatorReply> replyObserver) {
+      CalculatorReply reply = CalculatorReply.newBuilder().setValue(req.getValue1() * req.getValue2()).build();
+      replyObserver.onNext(reply);
+      replyObserver.onCompleted();
+    }
+
+    @Override
+    public void div(CalculatorRequest req, StreamObserver<CalculatorReply> replyObserver) {
+      CalculatorReply reply = CalculatorReply.newBuilder().setValue(req.getValue1() / req.getValue2()).build();
+      replyObserver.onNext(reply);
+      replyObserver.onCompleted();
+    }
+
+    @Override
+    public void length(NewCalculatorRequest req, StreamObserver<NewCalculatorReply> replyObserver) {
+      NewCalculatorReply reply = NewCalculatorReply.newBuilder().setValue(req.getValue().length()).build();
+      replyObserver.onNext(reply);
+      replyObserver.onCompleted();
+
+    }
+
+    @Override
+    public void equals(NewCalculatorRequest req, StreamObserver<BoolCalculatorReply> replyObserver) {
+      BoolCalculatorReply reply = BoolCalculatorReply.newBuilder().setValue(req.getValue().equals(req.getValue2())).build();
+      replyObserver.onNext(reply);
+      replyObserver.onCompleted();
+    }
+
+
+    // Falta fazer cat e o break
   }
 }

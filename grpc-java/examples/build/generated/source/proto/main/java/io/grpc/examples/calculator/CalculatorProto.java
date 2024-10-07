@@ -21,10 +21,25 @@ public final class CalculatorProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_calculator_CalculatorRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_calculator_NewCalculatorRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_calculator_NewCalculatorRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_calculator_CalculatorReply_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_calculator_CalculatorReply_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_calculator_NewCalculatorReply_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_calculator_NewCalculatorReply_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_calculator_BoolCalculatorReply_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_calculator_BoolCalculatorReply_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -36,16 +51,23 @@ public final class CalculatorProto {
     java.lang.String[] descriptorData = {
       "\n\020calculator.proto\022\ncalculator\"3\n\021Calcul" +
       "atorRequest\022\016\n\006value1\030\001 \001(\001\022\016\n\006value2\030\002 " +
-      "\001(\001\" \n\017CalculatorReply\022\r\n\005value\030\001 \001(\0012\240\002" +
-      "\n\nCalculator\022C\n\003add\022\035.calculator.Calcula" +
-      "torRequest\032\033.calculator.CalculatorReply\"" +
-      "\000\022C\n\003sub\022\035.calculator.CalculatorRequest\032" +
-      "\033.calculator.CalculatorReply\"\000\022C\n\003mul\022\035." +
-      "calculator.CalculatorRequest\032\033.calculato" +
-      "r.CalculatorReply\"\000\022C\n\003div\022\035.calculator." +
-      "CalculatorRequest\032\033.calculator.Calculato" +
-      "rReply\"\000B6\n\033io.grpc.examples.calculatorB" +
-      "\017CalculatorProtoP\001\242\002\003HLWb\006proto3"
+      "\001(\001\"5\n\024NewCalculatorRequest\022\r\n\005value\030\001 \001" +
+      "(\t\022\016\n\006value2\030\002 \001(\t\" \n\017CalculatorReply\022\r\n" +
+      "\005value\030\001 \001(\001\"#\n\022NewCalculatorReply\022\r\n\005va" +
+      "lue\030\001 \001(\001\"$\n\023BoolCalculatorReply\022\r\n\005valu" +
+      "e\030\001 \001(\0102\275\003\n\nCalculator\022C\n\003add\022\035.calculat" +
+      "or.CalculatorRequest\032\033.calculator.Calcul" +
+      "atorReply\"\000\022C\n\003sub\022\035.calculator.Calculat" +
+      "orRequest\032\033.calculator.CalculatorReply\"\000" +
+      "\022C\n\003mul\022\035.calculator.CalculatorRequest\032\033" +
+      ".calculator.CalculatorReply\"\000\022C\n\003div\022\035.c" +
+      "alculator.CalculatorRequest\032\033.calculator" +
+      ".CalculatorReply\"\000\022L\n\006length\022 .calculato" +
+      "r.NewCalculatorRequest\032\036.calculator.NewC" +
+      "alculatorReply\"\000\022M\n\006equals\022 .calculator." +
+      "NewCalculatorRequest\032\037.calculator.BoolCa" +
+      "lculatorReply\"\000B6\n\033io.grpc.examples.calc" +
+      "ulatorB\017CalculatorProtoP\001\242\002\003HLWb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -57,11 +79,29 @@ public final class CalculatorProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_calculator_CalculatorRequest_descriptor,
         new java.lang.String[] { "Value1", "Value2", });
-    internal_static_calculator_CalculatorReply_descriptor =
+    internal_static_calculator_NewCalculatorRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_calculator_NewCalculatorRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_calculator_NewCalculatorRequest_descriptor,
+        new java.lang.String[] { "Value", "Value2", });
+    internal_static_calculator_CalculatorReply_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_calculator_CalculatorReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_calculator_CalculatorReply_descriptor,
+        new java.lang.String[] { "Value", });
+    internal_static_calculator_NewCalculatorReply_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_calculator_NewCalculatorReply_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_calculator_NewCalculatorReply_descriptor,
+        new java.lang.String[] { "Value", });
+    internal_static_calculator_BoolCalculatorReply_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_calculator_BoolCalculatorReply_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_calculator_BoolCalculatorReply_descriptor,
         new java.lang.String[] { "Value", });
   }
 

@@ -141,7 +141,7 @@ class Connection implements Runnable {
 			
 			String [] command = in.readLine().split(" ");
 
-			logger.info("server: message from host " + clientAddress + "[command = " + displayCommand(command) + "]");
+			logger.info("server: message from host " + clientAddress + " [command = " + displayCommand(command) + "]");
 			/*
 			 * parse command
 			 */
