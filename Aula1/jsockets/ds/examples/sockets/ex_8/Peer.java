@@ -11,6 +11,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * exemplo:
@@ -96,6 +97,13 @@ class Server implements Runnable {
 	}
 }
 
+/**
+ * Basically receives a message from a client (token), if that
+ * message is equal to :
+ * -> "" (Connection send's "Token" to client)
+ * -> "Token" (Connection send's "" to client)
+ * 
+ */
 class Connection implements Runnable {
 	String clientAddress;
 	Socket clientSocket;
@@ -116,16 +124,20 @@ class Connection implements Runnable {
 			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
 
-			// String command = "";
-			// command = in.readLine();
-			// Comentei para nao ter muito texto no stdout
-			// logger.info("server: message from host " + clientAddress + "[command = " +
-			// command + "]");
+			/**
+			 * checks if user sent "Token" meaning he has the token
+			 */
+			String token = in.readLine();
+			//logger.info("Server: received this cmd = [" + token + "]");
 
 			/*
-			 * send token
+			 * send token if only if client did not
+			 * send "Token"
 			 */
-			out.println(String.valueOf("Token"));
+			if (token.equals("Token"))
+				out.println("");
+			else
+				out.println("Token");
 			out.flush();
 
 			/*
@@ -152,11 +164,14 @@ class Client implements Runnable {
 	String port;
 	String otherPeerPort;
 	String otherPeerHost = "localhost";
-	String token = ""; // "" -> no token; "token" ->client has token
+	String token; // "" -> no token; "token" ->client has token
 	Logger logger;
 	Scanner scanner;
 	Boolean errorFlag = false;
-	Boolean firstConnection = true;
+
+	// Basicamente permite atualizar automaticamente etse valor em
+	// outras threads do Client
+	AtomicBoolean firstConnection = new AtomicBoolean(true);
 
 	public Client(String host, String port, Logger logger, String otherPeerPort, String token) throws Exception {
 		this.host = host;
@@ -169,65 +184,92 @@ class Client implements Runnable {
 
 	@Override
 	public void run() {
+		Object lock = new Object(); // for debugging
+
 		try {
 			logger.info("client: endpoint running ...\n");
-			while (true) {
-				try {
-					// Verificar se e a primeira conexao e se o Peer comecou com o token (para nao
-					// fazer reset ao token)
-					if (firstConnection && token.equals("Token")) {
-						logger.info("First connection of client with TOKEN at @" + port);
-						firstConnection = false;
-					} else
-						token = ""; // reseting token
+			int numberOfIterations = 5;
+			while (true && numberOfIterations != 0) {
 
-					Thread.sleep(5000);
+				synchronized (lock) {
+					lock.wait(8000);	// wait 8 secconds for each token switch
+					logger.info(System.lineSeparator());
+					try {
 
-					/*
-					 * make connection
-					 */
-					Socket socket = new Socket(InetAddress.getByName(otherPeerHost), Integer.parseInt(otherPeerPort));
-					// logger.info("client at @"+ port + " : token == " + token.equals("Token"));
+						// Verificar se e a primeira conexao e se o Peer comecou com o token
+						if (firstConnection.compareAndSet(true, false) && token.equals("Token")) {
+							logger.info("First connection of client with TOKEN at @" + port);
+						}
 
-					// Comentei para nao ter muito texto no stdout
-					// logger.info("client: connected to server " + socket.getInetAddress() + "[port
-					// = " + socket.getPort()+ "]");
+						/*
+						 * make connection
+						 */
+						Socket socket = new Socket(InetAddress.getByName(otherPeerHost),
+								Integer.parseInt(otherPeerPort));
 
-					/*
-					 * prepare socket I/O channels
-					 */
-					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-					BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-					/*
-					 * send command
-					 */
-					// out.println("Token");
-					// out.flush();
-					/*
-					 * receive result
-					 */
-					token = in.readLine();
-					// System.out.printf("= %f\n", Double.parseDouble(result));
+						/*
+						 * prepare socket I/O channels
+						 */
 
-					/*
-					 * close connection
-					 */
-					socket.close();
+						PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+						BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-					logger.info("client at @" + port + " is holding " + token);
-					errorFlag = false;
+						/*
+						 * send command
+						 */
+						out.println(token);
+						out.flush();
 
-				} catch (Exception e) {
-					if (!errorFlag) {
-						errorFlag = true;
-						System.out.println("Peer @" + otherPeerHost + " " + otherPeerPort + " is OFF-LINE");
+						/*
+						 * receive result
+						 */
+						token = in.readLine();
+
+						/*
+						 * close connection
+						 */
+						socket.close();
+
+						if (token.equals("Token"))
+							logger.info("client at @" + port + " IS holding the " + token);
+						else
+							logger.info("client at @" + port + " NOT holding the token ");
+
+						errorFlag = false;
+
+						numberOfIterations--;
+
+					} catch (Exception e) {
+						if (!errorFlag) {
+							errorFlag = true;
+							System.out.println("Peer @" + otherPeerHost + " " + otherPeerPort + " is OFF-LINE");
+						}
+						// e.printStackTrace();
 					}
-					// e.printStackTrace();
 				}
 			}
 		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Method that decides ,based on a coin toss if a
+	 * Peer client is going to send a command to the
+	 * server
+	 * 
+	 * @return true
+	 */
+	static Boolean interactWithServer() {
+		return coinToss() == 1;
+	}
+
+	/**
+	 * 
+	 * @return 0 or 1 (simulating a coin toss)
+	 */
+	static int coinToss() {
+		return (int) Math.round(Math.random());
 	}
 }
