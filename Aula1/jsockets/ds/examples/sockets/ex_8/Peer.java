@@ -21,13 +21,10 @@ import java.util.logging.SimpleFormatter;
  * -> "Token", quer dizer que esse Peer comecou com o token
  */
 
-
-
 public class Peer {
 	String host;
 	Logger logger;
 	public static Boolean printLogMsg = true;
-
 
 	public Peer(String hostname) {
 		host = hostname;
@@ -42,13 +39,13 @@ public class Peer {
 		}
 	}
 
-
 	/**
 	 * @param args
-	 * args[0] -> hostname do Peer
-	 * args[1] -> Porta do Peer atual
-	 * args[2] -> Porta do peer a que vamos conectar
-	 * args[3] -> token de iniciacao ("" -> Peer nao comeca com token, "Token" -> Peer comeca com token)
+	 *             args[0] -> hostname do Peer
+	 *             args[1] -> Porta do Peer atual
+	 *             args[2] -> Porta do peer a que vamos conectar
+	 *             args[3] -> token de iniciacao ("" -> Peer nao comeca com token,
+	 *             "Token" -> Peer comeca com token)
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
@@ -58,7 +55,7 @@ public class Peer {
 		new Thread(new Server(args[0], Integer.parseInt(args[1]), peer.logger)).start();
 
 		String token = args[3];
-		new Thread(new Client(args[0],args[1], peer.logger,args[2],token)).start();
+		new Thread(new Client(args[0], args[1], peer.logger, args[2], token)).start();
 	}
 }
 
@@ -99,8 +96,6 @@ class Server implements Runnable {
 	}
 }
 
-
-
 class Connection implements Runnable {
 	String clientAddress;
 	Socket clientSocket;
@@ -122,16 +117,17 @@ class Connection implements Runnable {
 			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
 
 			// String command = "";
-			//command = in.readLine();
-			//Comentei para nao ter muito texto no stdout
-			//logger.info("server: message from host " + clientAddress + "[command = " + command + "]");
+			// command = in.readLine();
+			// Comentei para nao ter muito texto no stdout
+			// logger.info("server: message from host " + clientAddress + "[command = " +
+			// command + "]");
 
 			/*
 			 * send token
 			 */
 			out.println(String.valueOf("Token"));
 			out.flush();
-			
+
 			/*
 			 * close connection
 			 */
@@ -141,7 +137,6 @@ class Connection implements Runnable {
 		}
 	}
 }
-
 
 /**
  * Peer client que basicamente realiza a conexao
@@ -157,16 +152,13 @@ class Client implements Runnable {
 	String port;
 	String otherPeerPort;
 	String otherPeerHost = "localhost";
-	String token = "";	// "" -> no token;  "token" ->client has token
+	String token = ""; // "" -> no token; "token" ->client has token
 	Logger logger;
 	Scanner scanner;
 	Boolean errorFlag = false;
 	Boolean firstConnection = true;
 
-	
-
-
-	public Client(String host,String port, Logger logger,String otherPeerPort,String token) throws Exception {
+	public Client(String host, String port, Logger logger, String otherPeerPort, String token) throws Exception {
 		this.host = host;
 		this.port = port;
 		this.logger = logger;
@@ -181,26 +173,26 @@ class Client implements Runnable {
 			logger.info("client: endpoint running ...\n");
 			while (true) {
 				try {
-					//Verificar se e a primeira conexao e se o Peer comecou com o token (para nao fazer reset ao token)
-					if(firstConnection && token.equals("Token")){
-						logger.info("First connection of client with TOKEN at @" +port );
+					// Verificar se e a primeira conexao e se o Peer comecou com o token (para nao
+					// fazer reset ao token)
+					if (firstConnection && token.equals("Token")) {
+						logger.info("First connection of client with TOKEN at @" + port);
 						firstConnection = false;
-					}
-					else 
-						token =""; //reseting token
+					} else
+						token = ""; // reseting token
 
-					
 					Thread.sleep(5000);
-					
+
 					/*
 					 * make connection
 					 */
 					Socket socket = new Socket(InetAddress.getByName(otherPeerHost), Integer.parseInt(otherPeerPort));
-					//logger.info("client at @"+ port + " : token == " + token.equals("Token"));
+					// logger.info("client at @"+ port + " : token == " + token.equals("Token"));
 
-					//Comentei para nao ter muito texto no stdout
-					//logger.info("client: connected to server " + socket.getInetAddress() + "[port = " + socket.getPort()+ "]");
-					
+					// Comentei para nao ter muito texto no stdout
+					// logger.info("client: connected to server " + socket.getInetAddress() + "[port
+					// = " + socket.getPort()+ "]");
+
 					/*
 					 * prepare socket I/O channels
 					 */
@@ -209,7 +201,7 @@ class Client implements Runnable {
 					/*
 					 * send command
 					 */
-					//out.println("Token");
+					// out.println("Token");
 					// out.flush();
 					/*
 					 * receive result
@@ -222,13 +214,12 @@ class Client implements Runnable {
 					 */
 					socket.close();
 
-					//logger.info("client at @"+ port + " : token == " + token.equals("Token"));
-					logger.info("client at @"+port+" is holding " + token);
-					errorFlag=false;
+					logger.info("client at @" + port + " is holding " + token);
+					errorFlag = false;
 
 				} catch (Exception e) {
-					if(!errorFlag){
-						errorFlag=true;
+					if (!errorFlag) {
+						errorFlag = true;
 						System.out.println("Peer @" + otherPeerHost + " " + otherPeerPort + " is OFF-LINE");
 					}
 					// e.printStackTrace();
