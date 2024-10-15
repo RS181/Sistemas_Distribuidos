@@ -19,8 +19,12 @@ public class Start {
     
 
     public static void main(String[] args) {
-        String tokenPeer1="";
-        String tokenPeer2="";
+        //Tenho que colocar um valor incial em cada token
+        //(devida a a necessidade de Peer ter esse argumento
+        //diferente de "")
+        String tokenPeer1="empty";
+        String tokenPeer2="empty";
+
         if(coinToss() == 0){ //Peer 1 comeca com o token
             tokenPeer1 = "Token";
             System.out.println("Peer 1 starts with token");
@@ -52,7 +56,7 @@ public class Start {
         // Usando o gnome-terminal para executar o comando
         processBuilder.command("gnome-terminal", "--", "bash", "-c", 
         "cd /home/rui/Desktop/Sistemas_Distribuidos/Aula1/jsockets && java ds.examples.sockets.ex_8.Peer "
-        + host + " " + port + " " + otherPort );
+        + host + " " + port + " " + otherPort + " " + token);
 
         try {
             // Inicia o processo
