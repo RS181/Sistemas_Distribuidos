@@ -20,9 +20,13 @@ import java.util.logging.SimpleFormatter;
  * -> "" , quer dizer que esse Peer nao comecou com o token
  * -> "Token", quer dizer que esse Peer comecou com o token
  */
+
+
+
 public class Peer {
 	String host;
 	Logger logger;
+	public static Boolean printLogMsg = true;
 
 
 	public Peer(String hostname) {
@@ -63,6 +67,7 @@ class Server implements Runnable {
 	int port;
 	ServerSocket server;
 	Logger logger;
+	Boolean printServerConectionLog = false; // colocar a true para disponbilizar Log
 
 	public Server(String host, int port, Logger logger) throws Exception {
 		this.host = host;
@@ -79,7 +84,10 @@ class Server implements Runnable {
 				try {
 					Socket client = server.accept();
 					String clientAddress = client.getInetAddress().getHostAddress();
-					logger.info("server: new connection from " + clientAddress);
+
+					if (printServerConectionLog)
+						logger.info("server: new connection from " + clientAddress);
+
 					new Thread(new Connection(clientAddress, client, logger)).start();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -154,6 +162,7 @@ class Client implements Runnable {
 	Scanner scanner;
 	Boolean errorFlag = false;
 	Boolean firstConnection = true;
+
 	
 
 
