@@ -17,15 +17,17 @@ import java.util.logging.SimpleFormatter;
  */
 public class Peer {
     String host;
+    String port;
     Logger logger;
     String token = ""; // Representa o token, inicialmente vazio
 
-    public Peer(String hostname, boolean hasToken) {
-        host = hostname;
+    public Peer(String host, String port,boolean hasToken) {
+        this.host = host;
+        this.port = port;
         logger = Logger.getLogger("logfile");
         token = hasToken ? "Token" : ""; // O peer inicializa com o token, ou não
         try {
-            FileHandler handler = new FileHandler("./" + hostname + "_peer.log", true);
+            FileHandler handler = new FileHandler("./" + host + "_peer.log", true);
             logger.addHandler(handler);
             SimpleFormatter formatter = new SimpleFormatter();
             handler.setFormatter(formatter);
@@ -48,10 +50,10 @@ public class Peer {
      */
     public static void main(String[] args) throws Exception {
         boolean hasToken = args[2].equals("true"); // Define se o peer inicia com o token
-        Peer peer = new Peer(args[0], hasToken);
+        Peer peer = new Peer(args[0],args[1], hasToken);
         System.out.printf("new peer @ host=%s, hasToken=%s\n", args[0], hasToken);
         new Thread(new Server(args[0], Integer.parseInt(args[1]), peer)).start();
-        new Thread(new Client(args[0], peer, args[3], Integer.parseInt(args[4]))).start(); // Passa a porta e o host do
+        new Thread(new Client(peer, args[3], Integer.parseInt(args[4]))).start(); // Passa a porta e o host do
                                                                                            // outro peer
     }
 }
@@ -97,6 +99,7 @@ class Server implements Runnable {
 
 class Client implements Runnable {
     String host;
+    String port;
     Peer peer;
     String otherPeerHost;
     int otherPeerPort;
@@ -104,9 +107,10 @@ class Client implements Runnable {
 
     Boolean peerNotConnectedWarning = false;
 
-    public Client(String host, Peer peer, String otherPeerHost, int otherPeerPort) {
-        this.host = host;
+    public Client(Peer peer, String otherPeerHost, int otherPeerPort) {
         this.peer = peer;
+        this.host = peer.host;
+        this.port = peer.port;
         this.otherPeerHost = otherPeerHost;
         this.otherPeerPort = otherPeerPort;
         this.logger = peer.logger;
@@ -118,12 +122,21 @@ class Client implements Runnable {
             logger.info("client: endpoint running ...\n");
             while (true) {
                 if ("Token".equals(peer.token)) {
-                    // O peer tem o token, realiza a operação
-                    logger.info("client @" + host + " has the token. Performing operation.");
+                    
+                    if(sendCommandToCalculator()){
+                        // O peer tem o token, realiza a operação
+                        logger.info("client @" + port + " SENT OP TO SERVER");
+                        
+                        // Envia o comando para o calculatorServer
+                        String result = connectToCalculatorMultiServer("localhost", 44444, "add:1:2");
+                        logger.info("client @" + port + " RECEIVED result from server: " + result);
 
-                    // Simula alguma operação
-                    Thread.sleep(5000); // Tempo da operação
-                    logger.info("client @" + host + " completed operation. Sending token to peer.\n");
+                        // Após receber o resultado, continua com a troca de token
+                        logger.info("client @" + host + " COMPLETED OP,  Sending token to peer.\n");
+                    }
+                    
+                    
+                    
 
                     // Envia o token para o outro peer
                     try {
@@ -150,5 +163,65 @@ class Client implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public String connectToCalculatorMultiServer(String serverHost,int serverPort, String command){
+        String result ="";
+
+        try {
+            /*
+             * create comunication Socket 
+             */
+            Socket socket = new Socket(InetAddress.getByName(serverHost),serverPort);
+            logger.info("client @" + port + " connected to calculator server at " + serverHost + ":" + serverPort);
+            
+            /*
+            * prepare socket I/O channels
+            */
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+         
+            /*
+            * send command
+            */
+            out.println(command);
+            out.flush();
+
+            /*
+            * receive result
+            */
+            result = in.readLine();
+            //logger.info("client @" + port + " received result: " + result);
+
+		    /*
+		     * close connection
+		    */
+            socket.close();
+        } catch (Exception e) {
+            logger.info("client @" + port + " failed to connect to calculator server.");
+            e.printStackTrace();
+        
+        }
+
+        return result;
+    }
+
+
+    /**
+     * 
+     * @return boolean value that decides if we are going to 
+     * send a comand to the calculator server
+     */
+    static boolean sendCommandToCalculator(){
+        return coinToss() == 1;
+    }
+
+    /**
+     * 
+     * @return 0 or 1 (simulating a coin toss)
+     */
+    static int coinToss(){
+        return (int)Math.round(Math.random());
     }
 }
