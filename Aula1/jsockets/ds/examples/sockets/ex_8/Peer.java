@@ -10,6 +10,8 @@ import java.net.Socket;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
+import java.util.Random;
+
 
 
 /**
@@ -27,7 +29,7 @@ public class Peer {
         logger = Logger.getLogger("logfile");
         token = hasToken ? "Token" : ""; // O peer inicializa com o token, ou não
         try {
-            FileHandler handler = new FileHandler("./" + host + "_peer.log", true);
+            FileHandler handler = new FileHandler("./" + host + "_peer_"+port+".log", true);
             logger.addHandler(handler);
             SimpleFormatter formatter = new SimpleFormatter();
             handler.setFormatter(formatter);
@@ -53,8 +55,7 @@ public class Peer {
         Peer peer = new Peer(args[0],args[1], hasToken);
         System.out.printf("new peer @ host=%s, hasToken=%s\n", args[0], hasToken);
         new Thread(new Server(args[0], Integer.parseInt(args[1]), peer)).start();
-        new Thread(new Client(peer, args[3], Integer.parseInt(args[4]))).start(); // Passa a porta e o host do
-                                                                                           // outro peer
+        new Thread(new Client(peer, args[3], Integer.parseInt(args[4]))).start(); 
     }
 }
 
@@ -128,11 +129,15 @@ class Client implements Runnable {
                         logger.info("client @" + port + " SENT OP TO SERVER");
                         
                         // Envia o comando para o calculatorServer
-                        String result = connectToCalculatorMultiServer("localhost", 44444, "add:1:2");
+                        String result = connectToCalculatorMultiServer("localhost", 44444, generateRandomRequest());
                         logger.info("client @" + port + " RECEIVED result from server: " + result);
 
                         // Após receber o resultado, continua com a troca de token
                         logger.info("client @" + host + " COMPLETED OP,  Sending token to peer.\n");
+                    
+                        // Simula Tempo da operação (facilita na visualizacao dos logs)
+                        Thread.sleep(5000); 
+                        
                     }
                     
                     
@@ -164,6 +169,7 @@ class Client implements Runnable {
             e.printStackTrace();
         }
     }
+
 
 
     public String connectToCalculatorMultiServer(String serverHost,int serverPort, String command){
@@ -207,6 +213,20 @@ class Client implements Runnable {
         return result;
     }
 
+
+    private String generateRandomRequest() {
+
+        String[] operations = {"add" , "sub" , "mul" , "div"};
+
+        Random random = new Random();
+        String operation = operations[random.nextInt(operations.length)];
+
+        double x = random.nextDouble() * 100;
+        double y = random.nextDouble() * 100;
+
+        return operation + ":" + x + ":" + y;
+    }
+    
 
     /**
      * 

@@ -13,3 +13,7 @@
     $ pwd
     /.../jsockets
     $ java ds.examples.sockets.ex_8.Start
+
+
+TODO: Melhorar os Logs (tornar mais percetiveis e colocar apenas logs necessarios)
+TODO: How would you generalize the solution for a ring with n peers?
