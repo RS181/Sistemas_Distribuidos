@@ -7,269 +7,148 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
-import java.util.concurrent.atomic.AtomicBoolean;
+
 
 /**
- * exemplo:
- * java Peer localhost porta_deste_peer porta_peer_que_vamos_conectar 'token'
  * 
- * No caso do argumento 'token' se ele for igual a:
- * -> "" , quer dizer que esse Peer nao comecou com o token
- * -> "Token", quer dizer que esse Peer comecou com o token
  */
-
 public class Peer {
-	String host;
-	Logger logger;
-	public static Boolean printLogMsg = true;
+    String host;
+    Logger logger;
+    String token = ""; // Representa o token, inicialmente vazio
 
-	public Peer(String hostname) {
-		host = hostname;
-		logger = Logger.getLogger("logfile");
-		try {
-			FileHandler handler = new FileHandler("./" + hostname + "_peer.log", true);
-			logger.addHandler(handler);
-			SimpleFormatter formatter = new SimpleFormatter();
-			handler.setFormatter(formatter);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * @param args
-	 *             args[0] -> hostname do Peer
-	 *             args[1] -> Porta do Peer atual
-	 *             args[2] -> Porta do peer a que vamos conectar
-	 *             args[3] -> token de iniciacao ("" -> Peer nao comeca com token,
-	 *             "Token" -> Peer comeca com token)
-	 * @throws Exception
-	 */
-	public static void main(String[] args) throws Exception {
-		Peer peer = new Peer(args[0]);
-		System.out.printf("new peer @ host=%s\n", args[0]);
-
-		new Thread(new Server(args[0], Integer.parseInt(args[1]), peer.logger)).start();
-
-		String token = args[3];
-		new Thread(new Client(args[0], args[1], peer.logger, args[2], token)).start();
-	}
+    public Peer(String hostname, boolean hasToken) {
+        host = hostname;
+        logger = Logger.getLogger("logfile");
+        token = hasToken ? "Token" : ""; // O peer inicializa com o token, ou não
+        try {
+            FileHandler handler = new FileHandler("./" + hostname + "_peer.log", true);
+            logger.addHandler(handler);
+            SimpleFormatter formatter = new SimpleFormatter();
+            handler.setFormatter(formatter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 
+     * @param args
+     * args[0] -> this Peer hostname
+     * args[1] -> this Peer port
+     * args[2] -> true/false of this starting with token
+     * args[3] -> hostname of Peer we want to connect
+     * args[4] -> port of Peer we want to connect
+     * e.g 
+     *  t1$ java Peer localhost 5000 true localhost 6000
+     *  t2$ java Peer localhost 6000 false localhost 5000
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        boolean hasToken = args[2].equals("true"); // Define se o peer inicia com o token
+        Peer peer = new Peer(args[0], hasToken);
+        System.out.printf("new peer @ host=%s, hasToken=%s\n", args[0], hasToken);
+        new Thread(new Server(args[0], Integer.parseInt(args[1]), peer)).start();
+        new Thread(new Client(args[0], peer, args[3], Integer.parseInt(args[4]))).start(); // Passa a porta e o host do
+                                                                                           // outro peer
+    }
 }
 
 class Server implements Runnable {
-	String host;
-	int port;
-	ServerSocket server;
-	Logger logger;
-	Boolean printServerConectionLog = false; // colocar a true para disponbilizar Log
+    String host;
+    int port;
+    ServerSocket server;
+    Peer peer; // Referência ao peer principal para controlar o token
+    Logger logger;
 
-	public Server(String host, int port, Logger logger) throws Exception {
-		this.host = host;
-		this.port = port;
-		this.logger = logger;
-		server = new ServerSocket(port, 1, InetAddress.getByName(host));
-	}
+    public Server(String host, int port, Peer peer) throws Exception {
+        this.host = host;
+        this.port = port;
+        this.peer = peer;
+        this.logger = peer.logger;
+        server = new ServerSocket(port, 1, InetAddress.getByName(host));
+    }
 
-	@Override
-	public void run() {
-		try {
-			logger.info("server: endpoint running at port " + port + " ...");
-			while (true) {
-				try {
-					Socket client = server.accept();
-					String clientAddress = client.getInetAddress().getHostAddress();
-
-					if (printServerConectionLog)
-						logger.info("server: new connection from " + clientAddress);
-
-					new Thread(new Connection(clientAddress, client, logger)).start();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @Override
+    public void run() {
+        try {
+            logger.info("server: endpoint running at port " + port + " ...");
+            while (true) {
+                try {
+                    Socket client = server.accept();
+                    BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                    String receivedToken = in.readLine(); // Recebe o token
+                    if ("Token".equals(receivedToken)) {
+                        logger.info("server: received token from client");
+                        peer.token = "Token"; // Atualiza o token no peer
+                    }
+                    client.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
-
-/**
- * Basically receives a message from a client (token), if that
- * message is equal to :
- * -> "" (Connection send's "Token" to client)
- * -> "Token" (Connection send's "" to client)
- * 
- */
-class Connection implements Runnable {
-	String clientAddress;
-	Socket clientSocket;
-	Logger logger;
-
-	public Connection(String clientAddress, Socket clientSocket, Logger logger) {
-		this.clientAddress = clientAddress;
-		this.clientSocket = clientSocket;
-		this.logger = logger;
-	}
-
-	@Override
-	public void run() {
-		/*
-		 * prepare socket I/O channels
-		 */
-		try {
-			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-
-			/**
-			 * checks if user sent "Token" meaning he has the token
-			 */
-			String token = in.readLine();
-			//logger.info("Server: received this cmd = [" + token + "]");
-
-			/*
-			 * send token if only if client did not
-			 * send "Token"
-			 */
-			if (token.equals("Token"))
-				out.println("");
-			else
-				out.println("Token");
-			out.flush();
-
-			/*
-			 * close connection
-			 */
-			clientSocket.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-}
-
-/**
- * Peer client que basicamente realiza a conexao
- * com o outro Peer server e "recebe" um token
- * 
- * No inicio, esse token deve ser injetado num dos peers
- * (pelo que eu percebi, temos de criar um programa a parte
- * que injeta o token nos peers)
- */
 
 class Client implements Runnable {
-	String host;
-	String port;
-	String otherPeerPort;
-	String otherPeerHost = "localhost";
-	String token; // "" -> no token; "token" ->client has token
-	Logger logger;
-	Scanner scanner;
-	Boolean errorFlag = false;
+    String host;
+    Peer peer;
+    String otherPeerHost;
+    int otherPeerPort;
+    Logger logger;
 
-	// Basicamente permite atualizar automaticamente etse valor em
-	// outras threads do Client
-	AtomicBoolean firstConnection = new AtomicBoolean(true);
+    Boolean peerNotConnectedWarning = false;
 
-	public Client(String host, String port, Logger logger, String otherPeerPort, String token) throws Exception {
-		this.host = host;
-		this.port = port;
-		this.logger = logger;
-		this.otherPeerPort = otherPeerPort;
-		this.scanner = new Scanner(System.in);
-		this.token = token;
-	}
+    public Client(String host, Peer peer, String otherPeerHost, int otherPeerPort) {
+        this.host = host;
+        this.peer = peer;
+        this.otherPeerHost = otherPeerHost;
+        this.otherPeerPort = otherPeerPort;
+        this.logger = peer.logger;
+    }
 
-	@Override
-	public void run() {
-		Object lock = new Object(); // for debugging
+    @Override
+    public void run() {
+        try {
+            logger.info("client: endpoint running ...\n");
+            while (true) {
+                if ("Token".equals(peer.token)) {
+                    // O peer tem o token, realiza a operação
+                    logger.info("client @" + host + " has the token. Performing operation.");
 
-		try {
-			logger.info("client: endpoint running ...\n");
-			int numberOfIterations = 5;
-			while (true && numberOfIterations != 0) {
+                    // Simula alguma operação
+                    Thread.sleep(5000); // Tempo da operação
+                    logger.info("client @" + host + " completed operation. Sending token to peer.\n");
 
-				synchronized (lock) {
-					lock.wait(8000);	// wait 8 secconds for each token switch
-					logger.info(System.lineSeparator());
-					try {
+                    // Envia o token para o outro peer
+                    try {
+                        Socket socket = new Socket(InetAddress.getByName(otherPeerHost), otherPeerPort);
+                        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                        out.println("Token"); // Envia o token
+                        out.flush();
+                        socket.close();
 
-						// Verificar se e a primeira conexao e se o Peer comecou com o token
-						if (firstConnection.compareAndSet(true, false) && token.equals("Token")) {
-							logger.info("First connection of client with TOKEN at @" + port);
-						}
-
-						/*
-						 * make connection
-						 */
-						Socket socket = new Socket(InetAddress.getByName(otherPeerHost),
-								Integer.parseInt(otherPeerPort));
-
-						/*
-						 * prepare socket I/O channels
-						 */
-
-						PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-						BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-						/*
-						 * send command
-						 */
-						out.println(token);
-						out.flush();
-
-						/*
-						 * receive result
-						 */
-						token = in.readLine();
-
-						/*
-						 * close connection
-						 */
-						socket.close();
-
-						if (token.equals("Token"))
-							logger.info("client at @" + port + " IS holding the " + token);
-						else
-							logger.info("client at @" + port + " NOT holding the token ");
-
-						errorFlag = false;
-
-						numberOfIterations--;
-
-					} catch (Exception e) {
-						if (!errorFlag) {
-							errorFlag = true;
-							System.out.println("Peer @" + otherPeerHost + " " + otherPeerPort + " is OFF-LINE");
-						}
-						// e.printStackTrace();
-					}
-				}
-			}
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Method that decides ,based on a coin toss if a
-	 * Peer client is going to send a command to the
-	 * server
-	 * 
-	 * @return true
-	 */
-	static Boolean interactWithServer() {
-		return coinToss() == 1;
-	}
-
-	/**
-	 * 
-	 * @return 0 or 1 (simulating a coin toss)
-	 */
-	static int coinToss() {
-		return (int) Math.round(Math.random());
-	}
+                        // Após enviar, remove o token deste peer
+                        peer.token = "";
+                        logger.info("client @" + host + " sent the token to peer at port " + otherPeerPort);
+                    } catch (IOException e) {
+                        if (!peerNotConnectedWarning)
+                            System.out.println("client [" + otherPeerHost + "] @" + otherPeerPort + " is OFFLINE");
+                        peerNotConnectedWarning = true;
+                    }
+                } else {
+                    // O peer não tem o token, espera pelo token
+                    logger.info("client @" + host + " waiting for token...");
+                    Thread.sleep(3000); // Espera antes de tentar verificar novamente
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

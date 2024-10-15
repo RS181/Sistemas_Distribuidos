@@ -35,10 +35,10 @@ public class Start {
         }
         
         // Iniciar o Peer 1
-        startPeer(hostPeer1,portPeer1,portPeer2,tokenPeer1);
+        startPeer(hostPeer1,portPeer1,hostPeer2,portPeer2,tokenPeer1);
 
         //Iniciar o Peer 2
-        startPeer(hostPeer2, portPeer2, portPeer1, tokenPeer2);
+        startPeer(hostPeer2, portPeer2,hostPeer1, portPeer1, tokenPeer2);
 
         
     }
@@ -46,17 +46,18 @@ public class Start {
     /**
      * @param host      -> representa o host do Peer que vamos criar
      * @param port      -> Porta que o nosso Peer vai estar a funcionar
+     * @param otherHost -> representa o host do Peer que vamos conectar
      * @param otherPort -> Porta do Peer que vamos conectar-nos
      * @param token     -> indica se o Peer vai comecar como token
      */
-    private static void startPeer(String host,String port,String otherPort,String token) {
+    private static void startPeer(String host,String port,String otherHost,String otherPort,String token) {
         // Cria um ProcessBuilder para executar o comando
         ProcessBuilder processBuilder = new ProcessBuilder();
         
         // Usando o gnome-terminal para executar o comando
         processBuilder.command("gnome-terminal", "--", "bash", "-c", 
         "cd /home/rui/Desktop/Sistemas_Distribuidos/Aula1/jsockets && java ds.examples.sockets.ex_8.Peer "
-        + host + " " + port + " " + otherPort + " " + token);
+        + host + " " + port + " " + token.equals("Token") + " " + otherHost + " " + otherPort);
 
         try {
             // Inicia o processo
