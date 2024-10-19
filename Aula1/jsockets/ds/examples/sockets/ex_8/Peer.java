@@ -126,23 +126,24 @@ class Client implements Runnable {
                     
                     if(sendCommandToCalculator()){
                         // O peer tem o token, realiza a operação
-                        logger.info("client @" + port + " SENT OP TO SERVER");
+                        // logger.info("client @" + port + " SENT OP TO SERVER");
                         
                         // Envia o comando para o calculatorServer
                         String result = connectToCalculatorMultiServer("localhost", 44444, generateRandomRequest());
                         logger.info("client @" + port + " RECEIVED result from server: " + result);
 
                         // Após receber o resultado, continua com a troca de token
-                        logger.info("client @" + host + " COMPLETED OP,  Sending token to peer.\n");
+                        // logger.info("client @" + host + " COMPLETED OP,  Sending token to peer.\n");
                     
                         // Simula Tempo da operação (facilita na visualizacao dos logs)
-                        Thread.sleep(5000); 
+                         
                         
                     }
                     
+                    // Comentar no fim (so server para ser mais facil de ver troca de token)
+                    Thread.sleep(5000);
                     
                     
-
                     // Envia o token para o outro peer
                     try {
                         Socket socket = new Socket(InetAddress.getByName(otherPeerHost), otherPeerPort);
@@ -180,7 +181,7 @@ class Client implements Runnable {
              * create comunication Socket 
              */
             Socket socket = new Socket(InetAddress.getByName(serverHost),serverPort);
-            logger.info("client @" + port + " connected to calculator server at " + serverHost + ":" + serverPort);
+            //logger.info("client @" + port + " connected to calculator server at " + serverHost + ":" + serverPort);
             
             /*
             * prepare socket I/O channels

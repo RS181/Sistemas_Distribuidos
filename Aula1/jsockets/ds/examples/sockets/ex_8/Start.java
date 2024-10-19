@@ -11,8 +11,6 @@ public class Start {
     private static  String hostPeer1 = "localhost";
     private static  String portPeer1 = "22222";
     
-    
-
     //Campos de incializacao Peer2
     private static String  hostPeer2 = "localhost";
     private static String  portPeer2 = "33333";
@@ -40,7 +38,21 @@ public class Start {
         //Iniciar o Peer 2
         startPeer(hostPeer2, portPeer2,hostPeer1, portPeer1, tokenPeer2);
 
-        
+
+
+        /**
+         * Para fazer com n peers apenas tinha de configurar o esta classe
+         * para fazer algo deste genero
+         * 
+         * java Peer host_Peer host_Peer_Port token? next_Peer next_Peer_Port
+         * 
+         * terminal_1$ java Peer localhost 5000 true localhost 6000
+         * terminal_2$ java Peer localhost 6000 false localhost 7000
+         * ......
+         * terminal_n$ java Peer localhost .... false localhost 5000 
+         * 
+         * (simulando anel logico)
+         */
     }
 
     /**
@@ -54,7 +66,7 @@ public class Start {
         // Cria um ProcessBuilder para executar o comando
         ProcessBuilder processBuilder = new ProcessBuilder();
         
-        // Usando o gnome-terminal para executar o comando
+        // Usamos gnome-terminal para executar o comando
         processBuilder.command("gnome-terminal", "--", "bash", "-c", 
         "cd /home/rui/Desktop/Sistemas_Distribuidos/Aula1/jsockets && java ds.examples.sockets.ex_8.Peer "
         + host + " " + port + " " + token.equals("Token") + " " + otherHost + " " + otherPort);
