@@ -2,14 +2,20 @@
 
 + No diretorio  (...)/Sistemas_Distribuidos, compilar
 
+****
+
     $ javac ds/assign/ring/*.java
 
 + Executar o CalculatorMultiServer (porta default e 44444)
 
+**** 
+
     $ java ds.assign.ring.CalculatorMultiServer localhost
 
 + Executar os Peer's 
-                                                                
+                
+****   
+
     Peer_1 $ java ds.assign.ring.Peer localhost 10000 localhost 20000
 
     Peer_2 $ java ds.assign.ring.Peer localhost 20000 localhost 30000
@@ -22,9 +28,11 @@
 
 + Injetar o Token num dos peers 
 
+**** 
+
     $ java ds.assign.ring.Token localhost 10000 
 
-## Versao com script (so funciona se \ todos os peer estao a correr na mesma maquina)
+## Versao com script (so funciona se  todos os peer estao a correr na mesma maquina)
     terminal_1$ pwd 
     (...)/Sistemas_Distribuidos
 
