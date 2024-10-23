@@ -77,9 +77,11 @@ class ConnectionHandler implements Runnable {
 				String command;
 				if ((command = in.readLine()) == null)
 					break;
-				else
-					System.out.printf("message from %s : %s\n", clientAddress, command); 
-					
+				else {
+					//getPeerPortFromComand(command);
+					//System.out.printf("message from @%s : %s\n", clientAddress, command); 
+					System.out.printf("Message [%s] from %s @%s\n", getCommand(command),clientAddress,getPeerPortFromComand(command));
+				}
 				/*
 				* process command
 				*/
@@ -96,6 +98,37 @@ class ConnectionHandler implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * 
+	 * @param command = op:x:y:port_of_connected_peer
+	 * @return command in a single string 
+	 */
+	private String getCommand(String command) {
+		Scanner sc = new Scanner(command).useDelimiter(":");
+
+		String ans = sc.next() + " " + sc.next() + " " + sc.next();
+
+		return ans;
+	}
+
+	/**
+	 * 
+	 * @param command = op:x:y:port_of_connected_peer
+	 * @return port_of_connected_peer
+	 */
+	private String getPeerPortFromComand(String command) {
+		Scanner sc = new Scanner(command).useDelimiter(":");
+		
+		//Consumes usele
+		sc.next();
+		sc.next();
+		sc.next();
+
+
+		String port = sc.next();
+		return port;
 	}
 
 	/**

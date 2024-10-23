@@ -13,10 +13,6 @@ import java.util.logging.SimpleFormatter;
 import java.util.Random;
 
 
-
-/**
- * 
- */
 public class Peer {
     String host;
     String port;
@@ -83,10 +79,12 @@ class Server implements Runnable {
                     Socket client = server.accept();
                     BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                     String receivedToken = in.readLine(); // Recebe o token
+
                     if ("Token".equals(receivedToken)) {
                         logger.info("server: received token from client");
                         peer.token = "Token"; // Atualiza o token no peer
                     }
+
                     client.close();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -172,7 +170,12 @@ class Client implements Runnable {
     }
 
 
-
+    /**
+     * @param serverHost
+     * @param serverPort
+     * @param command
+     * @return
+     */
     public String connectToCalculatorMultiServer(String serverHost,int serverPort, String command){
         String result ="";
 
@@ -190,9 +193,9 @@ class Client implements Runnable {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
          
             /*
-            * send command
+            * send command and port of this client
             */
-            out.println(command);
+            out.println(command + ":" +port);
             out.flush();
 
             /*
@@ -222,8 +225,8 @@ class Client implements Runnable {
         Random random = new Random();
         String operation = operations[random.nextInt(operations.length)];
 
-        double x = random.nextDouble() * 100;
-        double y = random.nextDouble() * 100;
+        double x = Math.floor(random.nextDouble() * 100);
+        double y = Math.floor(random.nextDouble() * 100);
 
         return operation + ":" + x + ":" + y;
     }

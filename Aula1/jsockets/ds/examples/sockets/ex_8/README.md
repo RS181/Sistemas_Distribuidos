@@ -15,5 +15,10 @@
     $ java ds.examples.sockets.ex_8.Start
 
 
-TODO: Melhorar os Logs (tornar mais percetiveis e colocar apenas logs necessarios)
-TODO: How would you generalize the solution for a ring with n peers?
+## Como generalizar uma solucao para n peers
+
+    Basicamente podemos mudar o start 
+
+# Para o trabalho 
+
++ Preparar os comandos (via script ou ficheiro de texto) para na apresentacao facilitar a inicializacao dos peers
