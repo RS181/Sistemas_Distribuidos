@@ -82,7 +82,7 @@ class Server implements Runnable {
                     String receivedToken = in.readLine(); // Recebe o token
 
                     if ("Token".equals(receivedToken)) {
-                        logger.info("server: received token from client");
+                        logger.info("server: received token");
                         peer.token = "Token"; // Atualiza o token no peer
                     }
 

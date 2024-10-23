@@ -1,4 +1,4 @@
-# Como correr o progama
+# Como correr o progama (exemplo)
 
 + No diretorio  (...)/Sistemas_Distribuidos, compilar
 
@@ -20,10 +20,16 @@
 
     Peer_5 $ java ds.assign.ring.Peer localhost 50000 localhost 10000
 
-## Versao com script
-    $ pwd 
++ Injetar o Token num dos peers 
+
+    $ java ds.assign.ring.Token localhost 10000 
+
+## Versao com script (so funciona se \ todos os peer estao a correr na mesma maquina)
+    terminal_1$ pwd 
     (...)/Sistemas_Distribuidos
 
-    $ javac ds/assign/ring/*.java  
-      
-    $ ./ds/assign/ring/run.sh 
+    terminal_1$ javac ds/assign/ring/*.java  
+
+    terminal_1$ ./ds/assign/ring/run.sh 
+
+    terminal_1$ java ds.assign.ring.Token localhost 10000
