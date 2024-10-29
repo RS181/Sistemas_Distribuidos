@@ -10,6 +10,11 @@ import java.net.Socket;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
+
+import ds.assign.ring.RequestGenerator;
+
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 
 public class Peer {
@@ -49,12 +54,13 @@ public class Peer {
         System.out.printf("new peer @ host=%s, Port =%s\n", args[0], args[1]);
 
         // Start this Peer as a Server
-        new Thread(new Server(args[0], Integer.parseInt(args[1]), args[2], Integer.parseInt(args[3]), peer.logger))
-                .start();
+        Server server = new Server(args[0], Integer.parseInt(args[1]), args[2], Integer.parseInt(args[3]), peer.logger);
+        new Thread(server).start();
 
-        // Estabilishes connection from neighbour Peer (and send the current Peer as
-        // input)
-        //new Thread(new Client(peer, args[2], Integer.parseInt(args[3]))).start();
+        // Start the RequestGenarator that genartes a request for the server
+        // with an average frequency of 4 events per minute
+        RequestGenerator requestGenerator = new RequestGenerator(args[0],Integer.parseInt(args[1]),peer.logger,server);
+        new Thread(requestGenerator).start();
     }
 }
 
@@ -69,10 +75,13 @@ class Server implements Runnable {
     int port;
     Logger logger;
     String receivedToken;
+    Queue<String> operations = new LinkedList<>();
 
     // Atributes of Peer we are going to connect
     String nextHost;
     int nextPort;
+
+
 
     public Server(String host, int port, String nextHost, int nextPort, Logger logger) throws Exception {
         this.host = host;
@@ -81,6 +90,14 @@ class Server implements Runnable {
         this.nextHost = nextHost;
         this.nextPort = nextPort;
         server = new ServerSocket(port, 1, InetAddress.getByName(host));
+    }
+
+    /**
+     * Add's operation to local server Queue
+     * @param operation
+     */
+    public void addOperations(String operation) {
+        operations.add(operation);
     }
 
     @Override
@@ -109,13 +126,22 @@ class Server implements Runnable {
                 //2. Checks if current peer has token
                 if (receivedToken.equals("Token")) {
                     
+                    //Use the synchronized modifier to prevent race conditions between threads
+                    synchronized(operations){
 
-                    //2.1 Send command to CalculatorMultiServer
-                    String result = connectToCalculatorMultiServer("localhost", 44444, generateRandomRequest());
-                    logger.info("client @" + port + " RECEIVED result from server: " + result);
+                        //2.1 Send all command's in operation to CalculatorMultiServer
+                        while (!operations.isEmpty()){
+                            String request = operations.poll();
+                            String result = connectToCalculatorMultiServer("localhost", 44444, request);
+                            logger.info("client @" + port + " RECEIVED result from server: " + result);
+                        }
 
-                    // Comentar no fim (so serve para ser mais facil de ver a troca de token)
-                    Thread.sleep(5000);
+                        // Comentar no fim (so serve para facilitar a  visualizacao do funcionamento)
+                        Thread.sleep(5000);
+                    }
+
+                    
+                    
 
                     // 2.2 Send token to neighbour peer
                     try {

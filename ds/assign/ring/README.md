@@ -33,11 +33,35 @@
     $ java ds.assign.ring.Token localhost 10000 
 
 ## Versao com script (so funciona se  todos os peer estao a correr na mesma maquina)
+
     terminal_1$ pwd 
     (...)/Sistemas_Distribuidos
 
     terminal_1$ javac ds/assign/ring/*.java  
 
-    terminal_1$ ./ds/assign/ring/run.sh 
+    terminal_1$ ./ds/assign/ring/scripts/run.sh 
 
     terminal_1$ java ds.assign.ring.Token localhost 10000
+
+
+## Verificar logs de CalculatorMultiServer 
+
+    Ver ficheiro /logs/CalculatorServer.txt
+
+### Para obter logs de CalculatorMultiServer de um Peer especifico (dado a @Port do mesmo)
+
+    terminal_1$ pwd 
+    (...)/Sistemas_Distribuidos
+
+    terminal_1$ ./ds/assign/ring/scripts/extract_messages.sh nr_porta
+
+
+    ver ficheiro /out/nr_porta
+
+### Para verificar se existem pedidos repetidos nos ficheiros /out/nr_porta
+
+    terminal_1$ pwd 
+    (...)/Sistemas_Distribuidos
+
+    # A opção -c prefixa cada linha com o número de ocorrências na entrada:
+    terminal_1$ uniq -c ds/assign/ring/out/nr_porta.txt 
