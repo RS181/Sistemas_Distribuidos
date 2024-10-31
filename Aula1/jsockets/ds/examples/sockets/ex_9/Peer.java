@@ -7,8 +7,10 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -42,12 +44,14 @@ public class Peer {
 		Server server = new Server(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), peer.logger);
 		new Thread(server).start();
 
-		// Start SyncronizedRequest
+		// Start SyncronizedRequest thread
 		SyncronizedRequest syncronizedRequest = new SyncronizedRequest(peer.host, peer.port, Integer.parseInt(args[2]),
 				peer.logger);
 		new Thread(syncronizedRequest).start();
 
-		// S
+		// Start NumberGenerator thread
+		NumberGenerator numberGenerator = new NumberGenerator(peer.host, peer.port, peer.logger, server);
+		new Thread(numberGenerator).start();
 
 	}
 }
@@ -74,12 +78,6 @@ class Server implements Runnable {
 		this.logger = logger;
 		server = new ServerSocket(port, 1, InetAddress.getByName(host));
 
-		// Comentar depois (so usei para testar)
-		if (port == 22222) {
-			data.addAll(Arrays.asList(new Integer[] { 1, 3, 5, 7, 9 }));
-		} else {
-			data.addAll(Arrays.asList(new Integer[] { 0, 2, 4, 6, 8 }));
-		}
 	}
 
 	public void addNumberToData(int n) {
@@ -115,8 +113,9 @@ class Server implements Runnable {
 							int n = Integer.parseInt(request);
 
 							if (!data.contains(n)) {
-								logger.info("Server: Adding [" + n + "] to local data Set");
+								// logger.info("Server: Adding [" + n + "] to local data Set");
 								addNumberToData(Integer.parseInt(request));
+								logger.info("Server: local data = " + data);
 							} 
 							// else {
 							// logger.info("Server: The number [" + n + "] already exists in local data Set");
@@ -135,6 +134,7 @@ class Server implements Runnable {
 	}
 
 	private void sendData() {
+		List<Integer> sentNumbers = new ArrayList<>();
 		try {
 
 			for (int n : data) {
@@ -150,19 +150,25 @@ class Server implements Runnable {
 				/*
 				 * Send number n
 				 */
-				logger.info("Server: sending number [" + n + "] to @" + nextPort);
 				out.println(n);
 				out.flush();
 				/*
 				 * close connection
 				 */
 				socket.close();
+				
+
+				sentNumbers.add(n); // for better log messages
 			}
 
 		} catch (Exception e) {
 			logger.info("Server: error ocurred while triing to send info to Peer " + nextHost + " @" + nextPort);
 			e.printStackTrace();
 		}
+
+		if (!sentNumbers.isEmpty())
+			logger.info("Server: sent  " + sentNumbers + " to @" + nextPort);
+
 	}
 
 	/**
