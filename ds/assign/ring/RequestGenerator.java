@@ -52,7 +52,12 @@ public class RequestGenerator implements Runnable{
                 Thread.sleep((long)intervalTime);
                 String request = generateRandomRequest();
                 
-                //Use the synchronized modifier to prevent race conditions between threads
+                //Use the synchronized modifier to prevent race conditions between threads.
+                //Notice that we passed a parameter request to the synchronized block. 
+                //This is the monitor object. The code inside the block gets synchronized 
+                //on the monitor object. Simply put, only one thread 
+                //per monitor object can execute inside that code block (to avoid adding the same request
+                //to the queue of the peer's server)
                 synchronized(request){
                     server.addOperations(request);
 

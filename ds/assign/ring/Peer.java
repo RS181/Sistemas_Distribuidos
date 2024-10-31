@@ -127,6 +127,11 @@ class Server implements Runnable {
                 if (receivedToken.equals("Token")) {
                     
                     //Use the synchronized modifier to prevent race conditions between threads
+                    //Notice that we passed a parameter operations to the synchronized block. 
+                    //This is the monitor object. The code inside the block gets synchronized 
+                    //on the monitor object. Simply put, only one thread 
+                    //per monitor object can execute inside that code block (to avoid diferences of
+                    //the content in operations queue)
                     synchronized(operations){
 
                         //2.1 Send all command's in operation to CalculatorMultiServer
