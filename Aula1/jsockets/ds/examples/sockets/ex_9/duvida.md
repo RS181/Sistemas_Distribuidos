@@ -6,6 +6,8 @@
 
 + Neste momento eu apenas consigo atualizar o set do peer que pediu a sincronizacao, mas nao estou a conseguir atualizar o peer que responde ao pedido de sincronizacao (PEDIR AJUDA NESTE PASSO)
 
+    + UPDATE: penso que cheguei a uma solucao, mas mostrar ao professor o funcionamento e pedir para dar uma vista de olhos
+
 
 # Nota
 Para verificar se a troca de informacao esta a ser bem feita, cada 

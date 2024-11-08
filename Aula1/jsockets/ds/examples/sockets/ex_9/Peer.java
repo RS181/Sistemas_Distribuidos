@@ -101,7 +101,10 @@ class Server implements Runnable {
 					BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 					String request = in.readLine(); // Recebe o pedido
 
+					Boolean updateSenderPeer = false;
+
 					synchronized (data) {
+
 
 						if (isSyncronizationRequest(request)) {
 							int senderPort = getOriginPort(request);
@@ -115,32 +118,29 @@ class Server implements Runnable {
 							//Send the local Set to neigbour peer
 							sendData();
 
-							//Ask for neigbour peer for its Set
-							//askData("SYNC-DATA", nextPort, port);
-
-							logger.info("Server: @" + port + " local set: " + data.toString());
-
-						} 
-						else { // Rereate the Set sent has a String
 
 							
+						} 
+						else { // Recreate the Set sent has a String
 							if (!request.equals("[]")) {
-								// 1.) Remove "[" and "]"
-								String content = request.substring(1, request.length() - 1).trim();
-
-								// Divide the String in elements and the convert them into Integer
-								// and finaly put them in a Set
-								Set<Integer> resultSet = Arrays.stream(content.split("\\s*,\\s*"))
-										.map(Integer::parseInt) // Converte cada elemento para Integer
-										.collect(Collectors.toSet()); // Coleta os resultados em um Set
-
-								data = mergeSet(resultSet, data);
-								logger.info("Server: @" + port + " local set: " + data.toString());
-								
+								Set<Integer> resultSet = parseSetFromString(request);
+								if (!resultSet.equals(data)){
+									data = mergeSet(resultSet, data);
+									logger.info("Server: @" + port + " local set after MERGE : " + data.toString());
+									updateSenderPeer = true;
+								}
 							}
 						}
-
 					}
+
+					// to achieve the same Set after a syncronization betwen peer's
+					if (updateSenderPeer){
+						synchronized(data){
+							sendData();
+						}
+						
+					}
+
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -181,30 +181,14 @@ class Server implements Runnable {
 
 	}
 
-	/**
-     * We are using the localhost as server in all this exercises
-     * @param request
-     * @param serverport
-     */
-	private void askData(String request, int serverport,int localport){
-		String serverAddress = "localhost";
+	private Set<Integer> parseSetFromString(String input) {
+		// Remove os colchetes "[" e "]"
+		String content = input.substring(1, input.length() - 1).trim();
+		return Arrays.stream(content.split("\\s*,\\s*"))
+					 .map(Integer::parseInt)
+					 .collect(Collectors.toSet());
+	}
 
-        try{
-            Socket socket = new Socket(InetAddress.getByName(serverAddress), serverport);
-
-            PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
-            
-
-            out.println(request + ":" + localport);
-            out.flush();
-
-            socket.close();
-
-        } catch (Exception e){
-            //e.printStackTrace();
-            logger.info("Server: error ocured while sending request to localhost " + nextPort);
-        }
-    }
 
 	// Method 1
 	// To merge two sets
