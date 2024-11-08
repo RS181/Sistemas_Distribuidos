@@ -16,6 +16,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
+import java.util.stream.Collectors;
 
 public class Peer {
 	String host;
@@ -60,6 +61,9 @@ public class Peer {
  * Deals with Syncronization requests
  */
 class Server implements Runnable {
+	
+
+
 	// Atributes of current peer
 	String host;
 	int port;
@@ -107,21 +111,35 @@ class Server implements Runnable {
 											+ senderPort);
 
 							// do the merge of sets (todo:Verificar se esta e a forma pretendida)
+							
+							//Send the local Set to neigbour peer
 							sendData();
 
-						} else { // Receive numbers and put them in data Set
-							int n = Integer.parseInt(request);
+							//Ask for neigbour peer for its Set
+							//askData("SYNC-DATA", nextPort, port);
 
-							if (!data.contains(n)) {
-								// logger.info("Server: Adding [" + n + "] to local data Set");
-								addNumberToData(Integer.parseInt(request));
-								logger.info("Server: local data = " + data);
-							} 
-							// else {
-							// logger.info("Server: The number [" + n + "] already exists in local data Set");
-							// }
+							logger.info("Server: @" + port + " local set: " + data.toString());
 
+						} 
+						else { // Rereate the Set sent has a String
+
+							
+							if (!request.equals("[]")) {
+								// 1.) Remove "[" and "]"
+								String content = request.substring(1, request.length() - 1).trim();
+
+								// Divide the String in elements and the convert them into Integer
+								// and finaly put them in a Set
+								Set<Integer> resultSet = Arrays.stream(content.split("\\s*,\\s*"))
+										.map(Integer::parseInt) // Converte cada elemento para Integer
+										.collect(Collectors.toSet()); // Coleta os resultados em um Set
+
+								data = mergeSet(resultSet, data);
+								logger.info("Server: @" + port + " local set: " + data.toString());
+								
+							}
 						}
+
 					}
 
 				} catch (Exception e) {
@@ -134,42 +152,75 @@ class Server implements Runnable {
 	}
 
 	private void sendData() {
-		List<Integer> sentNumbers = new ArrayList<>();
 		try {
+			/*
+			 * make connection
+			 */
+			Socket socket = new Socket(nextHost, nextPort);
 
-			for (int n : data) {
-				/*
-				 * make connection
-				 */
-				Socket socket = new Socket(nextHost, nextPort);
-
-				/*
-				 * prepare socket output channel
-				 */
-				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-				/*
-				 * Send number n
-				 */
-				out.println(n);
-				out.flush();
-				/*
-				 * close connection
-				 */
-				socket.close();
-				
-
-				sentNumbers.add(n); // for better log messages
-			}
+			/*
+			 * prepare socket output channel
+			 */
+			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+			/*
+			 * Sends the local set (the set will be wrapped in to a String)
+			 */
+			out.print(data);
+			out.flush();
+			/*
+			 * close connection
+			 */
+			socket.close();
 
 		} catch (Exception e) {
-			logger.info("Server: error ocurred while triing to send info to Peer " + nextHost + " @" + nextPort);
+			logger.info("Server: error ocurred while trying to send info to Peer " + nextHost + " @" + nextPort);
 			e.printStackTrace();
 		}
 
-		if (!sentNumbers.isEmpty())
-			logger.info("Server: sent  " + sentNumbers + " to @" + nextPort);
+		// sendEndSyncronization();
 
 	}
+
+	/**
+     * We are using the localhost as server in all this exercises
+     * @param request
+     * @param serverport
+     */
+	private void askData(String request, int serverport,int localport){
+		String serverAddress = "localhost";
+
+        try{
+            Socket socket = new Socket(InetAddress.getByName(serverAddress), serverport);
+
+            PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+            
+
+            out.println(request + ":" + localport);
+            out.flush();
+
+            socket.close();
+
+        } catch (Exception e){
+            //e.printStackTrace();
+            logger.info("Server: error ocured while sending request to localhost " + nextPort);
+        }
+    }
+
+	// Method 1
+	// To merge two sets
+	// using DoubleBrace Initialisation
+	public static <T> Set<T> mergeSet(Set<T> a, Set<T> b) {
+
+		// Adding all elements of respective Sets
+		// using addAll() method
+		return new HashSet<T>() {
+			{
+				addAll(a);
+				addAll(b);
+			}
+		};
+	}
+
 
 	/**
 	 * Checks if a string is a Syncronization Request

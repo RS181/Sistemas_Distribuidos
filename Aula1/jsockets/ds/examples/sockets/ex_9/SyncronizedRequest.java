@@ -45,7 +45,7 @@ public class SyncronizedRequest implements Runnable{
                 Thread.sleep((long)intervalTime);
 
                 //send sincronization request to Peer at destinationPort
-                sendRequestToServer("SYNC-DATA", destinationPort);
+                sendRequestToServer("SYNC-DATA", destinationPort,localPort);
 
             }catch (Exception e){
                 e.printStackTrace(); 
@@ -60,7 +60,7 @@ public class SyncronizedRequest implements Runnable{
      * @param request
      * @param serverport
      */
-    private void sendRequestToServer(String request, int serverport) {
+    public void sendRequestToServer(String request, int serverport,int localport) {
         String serverAddress = "localhost";
 
         try{
@@ -78,7 +78,7 @@ public class SyncronizedRequest implements Runnable{
              * send syncronization request
              */
 
-            out.println(request + ":" + localPort);
+            out.println(request + ":" + localport);
             out.flush();
 
             /*

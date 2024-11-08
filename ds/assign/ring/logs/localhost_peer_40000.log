@@ -1,110 +1,34 @@
-Oct 29, 2024 12:34:26 PM ds.assign.ring.Server run
+Nov 04, 2024 12:44:03 PM ds.assign.ring.Server run
 INFO: server: endpoint running at port 40000 ...
-Oct 29, 2024 12:34:26 PM ds.assign.ring.Server run
+Nov 04, 2024 12:44:03 PM ds.assign.ring.Server run
 INFO: client @localhost waiting for token...
-Oct 29, 2024 12:34:56 PM ds.assign.ring.Server run
+Nov 04, 2024 12:44:53 PM ds.assign.ring.Server run
 INFO: server: received token
-Oct 29, 2024 12:34:56 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 18.4
-Oct 29, 2024 12:34:56 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 3696.0
-Oct 29, 2024 12:34:56 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 161.0
-Oct 29, 2024 12:35:02 PM ds.assign.ring.Server run
+Nov 04, 2024 12:44:53 PM ds.assign.ring.Server run
+INFO: client @40000 RECEIVED result from server: 57.0
+Nov 04, 2024 12:44:53 PM ds.assign.ring.Server run
+INFO: client @40000 RECEIVED result from server: -47.0
+Nov 04, 2024 12:44:59 PM ds.assign.ring.Server run
 INFO: client @localhost sent the token to peer at port 50000
-Oct 29, 2024 12:35:02 PM ds.assign.ring.Server run
+Nov 04, 2024 12:44:59 PM ds.assign.ring.Server run
 INFO: client @localhost waiting for token...
-Oct 29, 2024 12:35:22 PM ds.assign.ring.Server run
+Nov 04, 2024 12:45:19 PM ds.assign.ring.Server run
 INFO: server: received token
-Oct 29, 2024 12:35:22 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: -8.0
-Oct 29, 2024 12:35:22 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 50.0
-Oct 29, 2024 12:35:27 PM ds.assign.ring.Server run
+Nov 04, 2024 12:45:19 PM ds.assign.ring.Server run
+INFO: client @40000 RECEIVED result from server: -30.0
+Nov 04, 2024 12:45:19 PM ds.assign.ring.Server run
+INFO: client @40000 RECEIVED result from server: -10.0
+Nov 04, 2024 12:45:24 PM ds.assign.ring.Server run
 INFO: client @localhost sent the token to peer at port 50000
-Oct 29, 2024 12:35:27 PM ds.assign.ring.Server run
+Nov 04, 2024 12:45:24 PM ds.assign.ring.Server run
 INFO: client @localhost waiting for token...
-Oct 29, 2024 12:35:47 PM ds.assign.ring.Server run
+Nov 04, 2024 12:45:44 PM ds.assign.ring.Server run
 INFO: server: received token
-Oct 29, 2024 12:35:47 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 4230.0
-Oct 29, 2024 12:35:47 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 0.1896551724137931
-Oct 29, 2024 12:35:52 PM ds.assign.ring.Server run
+Nov 04, 2024 12:45:44 PM ds.assign.ring.Server run
+INFO: client @40000 RECEIVED result from server: 150.0
+Nov 04, 2024 12:45:44 PM ds.assign.ring.Server run
+INFO: client @40000 RECEIVED result from server: 2470.0
+Nov 04, 2024 12:45:49 PM ds.assign.ring.Server run
 INFO: client @localhost sent the token to peer at port 50000
-Oct 29, 2024 12:35:52 PM ds.assign.ring.Server run
-INFO: client @localhost waiting for token...
-Oct 29, 2024 12:36:13 PM ds.assign.ring.Server run
-INFO: server: received token
-Oct 29, 2024 12:36:13 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 13.0
-Oct 29, 2024 12:36:13 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 0.6666666666666666
-Oct 29, 2024 12:36:18 PM ds.assign.ring.Server run
-INFO: client @localhost sent the token to peer at port 50000
-Oct 29, 2024 12:36:18 PM ds.assign.ring.Server run
-INFO: client @localhost waiting for token...
-Oct 29, 2024 12:36:38 PM ds.assign.ring.Server run
-INFO: server: received token
-Oct 29, 2024 12:36:38 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 4128.0
-Oct 29, 2024 12:36:43 PM ds.assign.ring.Server run
-INFO: client @localhost sent the token to peer at port 50000
-Oct 29, 2024 12:36:43 PM ds.assign.ring.Server run
-INFO: client @localhost waiting for token...
-Oct 29, 2024 12:37:03 PM ds.assign.ring.Server run
-INFO: server: received token
-Oct 29, 2024 12:37:08 PM ds.assign.ring.Server run
-INFO: client @localhost sent the token to peer at port 50000
-Oct 29, 2024 12:37:08 PM ds.assign.ring.Server run
-INFO: client @localhost waiting for token...
-Oct 29, 2024 12:37:29 PM ds.assign.ring.Server run
-INFO: server: received token
-Oct 29, 2024 12:37:29 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 0.0
-Oct 29, 2024 12:37:29 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 1.4310344827586208
-Oct 29, 2024 12:37:34 PM ds.assign.ring.Server run
-INFO: client @localhost sent the token to peer at port 50000
-Oct 29, 2024 12:37:34 PM ds.assign.ring.Server run
-INFO: client @localhost waiting for token...
-Oct 29, 2024 12:37:54 PM ds.assign.ring.Server run
-INFO: server: received token
-Oct 29, 2024 12:37:54 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 108.0
-Oct 29, 2024 12:37:59 PM ds.assign.ring.Server run
-INFO: client @localhost sent the token to peer at port 50000
-Oct 29, 2024 12:37:59 PM ds.assign.ring.Server run
-INFO: client @localhost waiting for token...
-Oct 29, 2024 12:38:19 PM ds.assign.ring.Server run
-INFO: server: received token
-Oct 29, 2024 12:38:24 PM ds.assign.ring.Server run
-INFO: client @localhost sent the token to peer at port 50000
-Oct 29, 2024 12:38:24 PM ds.assign.ring.Server run
-INFO: client @localhost waiting for token...
-Oct 29, 2024 12:38:44 PM ds.assign.ring.Server run
-INFO: server: received token
-Oct 29, 2024 12:38:44 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 2640.0
-Oct 29, 2024 12:38:44 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 94.0
-Oct 29, 2024 12:38:44 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 52.0
-Oct 29, 2024 12:38:49 PM ds.assign.ring.Server run
-INFO: client @localhost sent the token to peer at port 50000
-Oct 29, 2024 12:38:49 PM ds.assign.ring.Server run
-INFO: client @localhost waiting for token...
-Oct 29, 2024 12:39:10 PM ds.assign.ring.Server run
-INFO: server: received token
-Oct 29, 2024 12:39:15 PM ds.assign.ring.Server run
-INFO: client @localhost sent the token to peer at port 50000
-Oct 29, 2024 12:39:15 PM ds.assign.ring.Server run
-INFO: client @localhost waiting for token...
-Oct 29, 2024 12:39:35 PM ds.assign.ring.Server run
-INFO: server: received token
-Oct 29, 2024 12:39:35 PM ds.assign.ring.Server run
-INFO: client @40000 RECEIVED result from server: 176.0
-Oct 29, 2024 12:39:40 PM ds.assign.ring.Server run
-INFO: client @localhost sent the token to peer at port 50000
-Oct 29, 2024 12:39:40 PM ds.assign.ring.Server run
+Nov 04, 2024 12:45:49 PM ds.assign.ring.Server run
 INFO: client @localhost waiting for token...
