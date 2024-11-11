@@ -70,6 +70,7 @@ class Server implements Runnable {
 	ServerSocket server;
 	Logger logger;
 	Set<Integer> data = new HashSet<>(); // Local Set of data that we want to syncronize
+	Set<Integer> dataBeforeMerge = new HashSet<>();
 
 	// Atributes of Peer we are going to connect
 	String nextHost = "localhost"; // assuming we are using localhost
@@ -105,7 +106,6 @@ class Server implements Runnable {
 
 					synchronized (data) {
 
-
 						if (isSyncronizationRequest(request)) {
 							int senderPort = getOriginPort(request);
 
@@ -115,16 +115,17 @@ class Server implements Runnable {
 
 							// do the merge of sets (todo:Verificar se esta e a forma pretendida)
 							
-							//Send the local Set to neigbour peer
-							sendData();
-
-
-							
+							//Send the local Set to neigbour peer (before merge)
+							sendData(data);
 						} 
 						else { // Recreate the Set sent has a String
 							if (!request.equals("[]")) {
 								Set<Integer> resultSet = parseSetFromString(request);
 								if (!resultSet.equals(data)){
+
+									//saves data set before merge
+									dataBeforeMerge = new HashSet<>(data);
+
 									data = mergeSet(resultSet, data);
 									logger.info("Server: @" + port + " local set after MERGE : " + data.toString());
 									updateSenderPeer = true;
@@ -136,7 +137,8 @@ class Server implements Runnable {
 					// to achieve the same Set after a syncronization betwen peer's
 					if (updateSenderPeer){
 						synchronized(data){
-							sendData();
+							//send data before merge to save bandwith
+							sendData(dataBeforeMerge);
 						}
 						
 					}
@@ -151,7 +153,7 @@ class Server implements Runnable {
 		}
 	}
 
-	private void sendData() {
+	private void sendData(Set aSet) {
 		try {
 			/*
 			 * make connection
@@ -165,7 +167,7 @@ class Server implements Runnable {
 			/*
 			 * Sends the local set (the set will be wrapped in to a String)
 			 */
-			out.print(data);
+			out.print(aSet);
 			out.flush();
 			/*
 			 * close connection

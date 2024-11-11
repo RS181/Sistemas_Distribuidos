@@ -37,6 +37,15 @@ public class Peer {
 		}
 	}
 
+	/**
+	 * args[0]   -> Address of current peer
+	 * args[1]   -> Port of local peer
+	 * args[i] 	 -> Address of neighbour peer
+	 * args[i+1] -> Port of neighbour peer
+	 * e.g java Peer localhost 22222 localhost 33333 localhost 44444 localhost 55555
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {
 		Peer peer = new Peer(args[0], args[1]);
 		System.out.printf("new peer @ host=%s\n", args[0]);
@@ -45,14 +54,16 @@ public class Peer {
 		Server server = new Server(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), peer.logger);
 		new Thread(server).start();
 
+		//TODO - fazer alteracoes para aceitar multiplos Peer's
 		// Start SyncronizedRequest thread
-		SyncronizedRequest syncronizedRequest = new SyncronizedRequest(peer.host, peer.port, Integer.parseInt(args[2]),
-				peer.logger);
-		new Thread(syncronizedRequest).start();
+		//SyncronizedRequest syncronizedRequest = new SyncronizedRequest(peer.host, peer.port, Integer.parseInt(args[2]),
+		//		peer.logger);
+		//new Thread(syncronizedRequest).start();
 
+		//TODO - fazer alteracoes para aceitar multiplos Peer's
 		// Start NumberGenerator thread
-		NumberGenerator numberGenerator = new NumberGenerator(peer.host, peer.port, peer.logger, server);
-		new Thread(numberGenerator).start();
+		//NumberGenerator numberGenerator = new NumberGenerator(peer.host, peer.port, peer.logger, server);
+		//new Thread(numberGenerator).start();
 
 	}
 }
@@ -70,7 +81,7 @@ class Server implements Runnable {
 	ServerSocket server;
 	Logger logger;
 	Set<Integer> data = new HashSet<>(); // Local Set of data that we want to syncronize
-
+	
 	// Atributes of Peer we are going to connect
 	String nextHost = "localhost"; // assuming we are using localhost
 	int nextPort;
