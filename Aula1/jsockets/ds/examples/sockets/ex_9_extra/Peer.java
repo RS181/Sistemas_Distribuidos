@@ -50,9 +50,20 @@ public class Peer {
 		Peer peer = new Peer(args[0], args[1]);
 		System.out.printf("new peer @ host=%s\n", args[0]);
 
+		//Create PeerConection 
+		PeerConnection neighPeerConnection = new PeerConnection();
+		for (int i = 2 ; i < args.length;i+=2){
+			peer.logger.info("new neighbour "+ args[i] + " @"+args[i+1]);
+			neighPeerConnection.addNeighbour(Integer.parseInt(args[i+1]), args[i]);
+		}
+
 		// Start server thread
-		Server server = new Server(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), peer.logger);
+		Server server = new Server(args[0], Integer.parseInt(args[1]), peer.logger);
 		new Thread(server).start();
+
+
+		
+
 
 		//TODO - fazer alteracoes para aceitar multiplos Peer's
 		// Start SyncronizedRequest thread
@@ -82,14 +93,14 @@ class Server implements Runnable {
 	Logger logger;
 	Set<Integer> data = new HashSet<>(); // Local Set of data that we want to syncronize
 	
-	// Atributes of Peer we are going to connect
-	String nextHost = "localhost"; // assuming we are using localhost
-	int nextPort;
+	// Atributes of Peer we are going to connect (given by PeerConection)
+	//TODO: fazer ajustes para PeerConection fazer esta parte
+	String nextHost; 
+	int nextPort; 
 
-	public Server(String host, int port, int nextPort, Logger logger) throws Exception {
+	public Server(String host, int port,  Logger logger) throws Exception {
 		this.host = host;
 		this.port = port;
-		this.nextPort = nextPort;
 		this.logger = logger;
 		server = new ServerSocket(port, 1, InetAddress.getByName(host));
 
