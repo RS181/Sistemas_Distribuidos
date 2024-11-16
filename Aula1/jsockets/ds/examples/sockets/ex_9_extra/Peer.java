@@ -9,10 +9,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
@@ -70,8 +72,8 @@ public class Peer {
 
 		//TODO - fazer alteracoes para aceitar multiplos Peer's
 		// Start NumberGenerator thread
-		//NumberGenerator numberGenerator = new NumberGenerator(peer.host, peer.port, peer.logger, server);
-		//new Thread(numberGenerator).start();
+		NumberGenerator numberGenerator = new NumberGenerator(peer.host, peer.port, peer.logger, server);
+		new Thread(numberGenerator).start();
 
 	}
 }
@@ -89,9 +91,9 @@ class Server implements Runnable {
 	ServerSocket server;
 	Logger logger;
 	Set<Integer> data = new HashSet<>(); // Local Set of data that we want to syncronize
+	Set<Integer> dataBeforeMerge = new HashSet<>();
 	
 	// Atributes of Peer we are going to connect (given by PeerConection)
-	//TODO: fazer ajustes para PeerConection fazer esta parte
 	PeerConnection neighbourInfo;
 	String nextHost; 
 	int nextPort; 
@@ -103,9 +105,6 @@ class Server implements Runnable {
 		this.logger = logger;
 		server = new ServerSocket(port, 1, InetAddress.getByName(host));
 
-		//REMOVER (SO UTILIZEI PARA TESTAR)
-		addNumberToData(1);
-		addNumberToData(2);
 
 	}
 
@@ -130,9 +129,10 @@ class Server implements Runnable {
 
 					synchronized (data) {
 
-						logger.info("Server: "+host+" @" + port + " received = "+ request);
-						logger.info("Origin host= " + getOriginHost(request) + " @" + getOriginPort(request));
-
+						// logger.info("Server: "+host+" @" + port + " received = "+ request);
+						// logger.info("Origin host= " + getOriginHost(request) + " @" + getOriginPort(request));
+						
+						// If this peer is the one that received syncronization request
 						if (isSyncronizationRequest(request)) {
 							int senderPort = getOriginPort(request);
 
@@ -140,43 +140,61 @@ class Server implements Runnable {
 									"Server: received SYNCRONIZATION request from " + clientAddress + " @"
 											+ senderPort);
 
-							// do the merge of sets (todo:Verificar se esta e a forma pretendida)
-							
-							//Send the local Set to neigbour peer who asked for syncronization
+							// Updates the Info of peer that we are going to send data set
+							// for syncronization
 							nextHost = getOriginHost(request);
 							nextPort = getOriginPort(request);
-							sendData();
+							
+							//Send the local Set to neigbour peer who asked for syncronization
+							sendData(data);
 							
 						} 
-						// If this peer is the one receiving the message Recreate the Set sent has a String
+						// If this peer is the one receiving the syncronization response 
+						// that includes the sender's Set 
 						else if (isMessageForThisPeer(request)){  
 
-							logger.info("DEBUG = " + request);
-							Set<Integer> resultSet = parseSetFromString(request);
-							logger.info("Server: @" + port + " :" + resultSet.toString());
+							//logger.info("DEBUG = " + request);
+							// Set<Integer> resultSet = parseSetFromString(request);
+							// logger.info("Server: @" + port + " :" + resultSet.toString());
 
-							/*
-							if (!request.equals("[]")) {
+							if (!request.contains("[]")) {
 								Set<Integer> resultSet = parseSetFromString(request);
 								if (!resultSet.equals(data)){
+									
+									//saves data set before merge
+									dataBeforeMerge = new HashSet<>(data);
+
+									//Updates nextPort and nexthost of receving peer, to 
+									// send its set to sender peer 
+									nextHost = getOriginHost(request);
+									nextPort = getOriginPort(request);
+
+
 									data = mergeSet(resultSet, data);
-									logger.info("Server: @" + port + " local set after MERGE : " + data.toString());
+									
+
+									// Sort data set (it helps with visualization)
+									List<Integer> sortedData = new ArrayList<>(data);
+									Collections.sort(sortedData);
+									logger.info("Server: @" + port + " local set after MERGE : " + sortedData);
+									
+									//Indicates that the receving peer has to sends it's
+									// data set to sender peer (to complete syncronization)
 									updateSenderPeer = true;
 								}
 							}
-							*/
 						}
 					}
 
-					// to achieve the same Set after a syncronization betwen peer's
-					/*
+					// To achieve the same Set after a syncronization betwen peer's
+					// the receiving peer must send it's set to sender peer
 					if (updateSenderPeer){
 						synchronized(data){
-							sendData();
+							//send data before merge to save bandwith
+							sendData(dataBeforeMerge);
 						}
 						
 					}
-					*/
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -187,7 +205,7 @@ class Server implements Runnable {
 		}
 	}
 
-	private void sendData() {
+	private void sendData(Set aSet) {
 		try {
 			/*
 			 * make connection
@@ -204,7 +222,7 @@ class Server implements Runnable {
 			 
 			   data:this_peer_port:this_peer_host:receiving_peer_port:receiving_peer_host
 			 */
-			out.print(data+":" + port + ":" + host + ":" + nextPort + ":" + nextHost);
+			out.print(aSet+":" + port + ":" + host + ":" + nextPort + ":" + nextHost);
 			out.flush();
 			/*
 			 * close connection
@@ -225,7 +243,7 @@ class Server implements Runnable {
 
 		String set = sc.next();
 
-		// Remove os colchetes "[" e "]"
+		// Remove  "[" e "]"
 		String content = set.substring(1, set.length() - 1).trim();
 		return Arrays.stream(content.split("\\s*,\\s*"))
 					 .map(Integer::parseInt)
@@ -259,7 +277,6 @@ class Server implements Runnable {
 	private Boolean isSyncronizationRequest(String request) {
 		return request.contains("SYNC-DATA");
 	}
-
 	/**
 	 * Check if the message received is for this current peer
 	 * (check if message contains the same @host and @port has 
@@ -283,7 +300,11 @@ class Server implements Runnable {
 
 	/**
 	 * 
-	 * @param request SYNC-DATA:port_of_sender:hostname_of_sender
+	 * @param request 
+	 * if (request is a syn request)
+	 * 		request = SYNC-DATA:port_of_sender:hostname_of_sender
+	 * if (request came from senddata())
+	 * 		request data:sender_peer_port:sender_peer_host:receiving_peer_port:receiving_peer_host
 	 * @return port that originated this request
 	 */
 	private int getOriginPort(String request) {
@@ -297,7 +318,11 @@ class Server implements Runnable {
 
 	/**
 	 * 
-	 * @param request SYNC-DATA:port_of_sender:hostname_of_sender
+	 * @param request 
+	 * if (request is a syn request)
+	 * 		request = SYNC-DATA:port_of_sender:hostname_of_sender
+	 * if (request came from senddata())
+	 * 		request data:sender_peer_port:sender_peer_host:receiving_peer_port:receiving_peer_host
 	 * @return hostname that originated this request
 	 */
 	private String getOriginHost(String request){

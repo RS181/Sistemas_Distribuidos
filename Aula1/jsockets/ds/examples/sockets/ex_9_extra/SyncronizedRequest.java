@@ -49,8 +49,10 @@ public class SyncronizedRequest implements Runnable{
 
                 
                 //format: "hostname:port"
+                // choose a random neighbour peer to do Syncronization
                 String n = neighbourInfo.chooseRandomNeighbour();
-
+                
+            
                 Scanner sc = new Scanner(n).useDelimiter(":");
                 destinationHost = sc.next();
                 destinationPort = Integer.parseInt(sc.next());
@@ -98,7 +100,7 @@ public class SyncronizedRequest implements Runnable{
 
         } catch (Exception e){
             //e.printStackTrace();
-            logger.info("Server: error ocured while sending request to localhost " + destinationPort);
+            logger.info("Server: error ocured while sending SYNC request to "+destinationHost+" " + destinationPort);
         }
     }
     

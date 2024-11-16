@@ -9,9 +9,9 @@ gnome-terminal -- bash -c "java ds.examples.sockets.ex_9_extra.Peer localhost 20
 gnome-terminal -- bash -c "java ds.examples.sockets.ex_9_extra.Peer localhost 3000 localhost 2000 ; " &
 
 # Peer 3 
-##gnome-terminal -- bash -c "java ds.examples.sockets.ex_9_extra.Peer localhost 4000 localhost 2000 localhost 5000 ; " &
+gnome-terminal -- bash -c "java ds.examples.sockets.ex_9_extra.Peer localhost 4000 localhost 2000 localhost 5000 ; " &
 
 
 # Peer 4
-##gnome-terminal -- bash -c "java ds.examples.sockets.ex_9_extra.Peer localhost 5000 localhost 4000 ; " &
+gnome-terminal -- bash -c "java ds.examples.sockets.ex_9_extra.Peer localhost 5000 localhost 4000 ; " &
 

@@ -44,8 +44,11 @@ public class NumberGenerator implements Runnable {
                 //on the monitor object. Simply put, only one thread 
                 //per monitor object can execute inside that code block (to avoid adding the same request
                 //to the queue of the peer's server)
-                synchronized(number){
-                    server.addNumberToData(number);
+                
+                if (server.data.size() <= 5){ //REMOVER, APENAS COLOQUEI PARA FACILITAR TESTES
+                    synchronized(number){
+                        server.addNumberToData(number);
+                    }
                 }
 
 
