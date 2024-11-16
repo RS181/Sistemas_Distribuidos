@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class SyncronizedRequest implements Runnable{
@@ -18,13 +19,15 @@ public class SyncronizedRequest implements Runnable{
     private final Logger logger;
 
     //Destination Peer info
-    private final int destinationPort;
+    private  int destinationPort;
+    private String destinationHost;
+    private PeerConnection neighbourInfo;
     
 
-    public SyncronizedRequest(String host,int localPort, int destinationPort, Logger logger){
+    public SyncronizedRequest(String host,int localPort,PeerConnection neighbourInfo , Logger logger){
         this.host = host;
         this.localPort = localPort;
-        this.destinationPort = destinationPort;
+        this.neighbourInfo = neighbourInfo;
         this.logger = logger;
 
         //Intialize PoissonProcess
@@ -44,8 +47,16 @@ public class SyncronizedRequest implements Runnable{
             try {
                 Thread.sleep((long)intervalTime);
 
-                //send sincronization request to Peer at destinationPort
-                sendRequestToServer("SYNC-DATA", destinationPort,localPort);
+                
+                //format: "hostname:port"
+                String n = neighbourInfo.chooseRandomNeighbour();
+
+                Scanner sc = new Scanner(n).useDelimiter(":");
+                destinationHost = sc.next();
+                destinationPort = Integer.parseInt(sc.next());
+                
+                //send sincronization request to Peer at destinationHost @destinationPort
+                sendRequestToServer("SYNC-DATA");
 
             }catch (Exception e){
                 e.printStackTrace(); 
@@ -60,14 +71,13 @@ public class SyncronizedRequest implements Runnable{
      * @param request
      * @param serverport
      */
-    public void sendRequestToServer(String request, int serverport,int localport) {
-        String serverAddress = "localhost";
+    public void sendRequestToServer(String request) {
 
         try{
             /*
              * make connection
              */
-            Socket socket = new Socket(InetAddress.getByName(serverAddress), serverport);
+            Socket socket = new Socket(InetAddress.getByName(destinationHost), destinationPort);
 
 			/*
 			 * prepare socket output channel
@@ -78,7 +88,7 @@ public class SyncronizedRequest implements Runnable{
              * send syncronization request
              */
 
-            out.println(request + ":" + localport);
+            out.println(request + ":" + localPort + ":" + host);
             out.flush();
 
             /*

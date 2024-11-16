@@ -48,28 +48,25 @@ public class Peer {
 	 */
 	public static void main(String[] args) throws Exception {
 		Peer peer = new Peer(args[0], args[1]);
-		System.out.printf("new peer @ host=%s\n", args[0]);
+		System.out.printf("new peer host=%s @ %s\n", args[0],args[1]);
 
 		//Create PeerConection 
-		PeerConnection neighPeerConnection = new PeerConnection();
+		PeerConnection neighbourInfo = new PeerConnection();
 		for (int i = 2 ; i < args.length;i+=2){
 			peer.logger.info("new neighbour "+ args[i] + " @"+args[i+1]);
-			neighPeerConnection.addNeighbour(Integer.parseInt(args[i+1]), args[i]);
+			neighbourInfo.addNeighbour(Integer.parseInt(args[i+1]), args[i]);
 		}
 
 		// Start server thread
-		Server server = new Server(args[0], Integer.parseInt(args[1]), peer.logger);
+		Server server = new Server(args[0], Integer.parseInt(args[1]),neighbourInfo, peer.logger);
 		new Thread(server).start();
 
 
-		
 
-
-		//TODO - fazer alteracoes para aceitar multiplos Peer's
 		// Start SyncronizedRequest thread
-		//SyncronizedRequest syncronizedRequest = new SyncronizedRequest(peer.host, peer.port, Integer.parseInt(args[2]),
-		//		peer.logger);
-		//new Thread(syncronizedRequest).start();
+		SyncronizedRequest syncronizedRequest = 
+		new SyncronizedRequest(peer.host, peer.port,neighbourInfo,peer.logger);
+		new Thread(syncronizedRequest).start();
 
 		//TODO - fazer alteracoes para aceitar multiplos Peer's
 		// Start NumberGenerator thread
@@ -95,12 +92,14 @@ class Server implements Runnable {
 	
 	// Atributes of Peer we are going to connect (given by PeerConection)
 	//TODO: fazer ajustes para PeerConection fazer esta parte
+	PeerConnection neighbourInfo;
 	String nextHost; 
 	int nextPort; 
 
-	public Server(String host, int port,  Logger logger) throws Exception {
+	public Server(String host, int port,PeerConnection neighbourInfo , Logger logger) throws Exception {
 		this.host = host;
 		this.port = port;
+		this.neighbourInfo = neighbourInfo;
 		this.logger = logger;
 		server = new ServerSocket(port, 1, InetAddress.getByName(host));
 
@@ -127,7 +126,10 @@ class Server implements Runnable {
 
 					synchronized (data) {
 
+						logger.info("Server: "+host+" @" + port + " received = "+ request);
+						logger.info("Origin host= " + getOriginHost(request) + " @" + getOriginPort(request));
 
+						/* 
 						if (isSyncronizationRequest(request)) {
 							int senderPort = getOriginPort(request);
 
@@ -151,16 +153,18 @@ class Server implements Runnable {
 								}
 							}
 						}
+						*/
 					}
 
 					// to achieve the same Set after a syncronization betwen peer's
+					/*
 					if (updateSenderPeer){
 						synchronized(data){
 							sendData();
 						}
 						
 					}
-
+					*/
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -239,7 +243,7 @@ class Server implements Runnable {
 
 	/**
 	 * 
-	 * @param request SYNC-DATA:port_of_sender
+	 * @param request SYNC-DATA:port_of_sender:hostname_of_sender
 	 * @return port that originated this request
 	 */
 	private int getOriginPort(String request) {
@@ -250,4 +254,18 @@ class Server implements Runnable {
 		return Integer.parseInt(ans);
 
 	}
+
+	/**
+	 * 
+	 * @param request SYNC-DATA:port_of_sender:hostname_of_sender
+	 * @return hostname that originated this request
+	 */
+	private String getOriginHost(String request){
+		Scanner sc = new Scanner(request).useDelimiter(":");
+		sc.next();
+		sc.next();
+		return sc.next();
+	}
+
+
 }
