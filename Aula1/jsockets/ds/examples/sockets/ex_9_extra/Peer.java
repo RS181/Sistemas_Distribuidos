@@ -103,6 +103,10 @@ class Server implements Runnable {
 		this.logger = logger;
 		server = new ServerSocket(port, 1, InetAddress.getByName(host));
 
+		//REMOVER (SO UTILIZEI PARA TESTAR)
+		addNumberToData(1);
+		addNumberToData(2);
+
 	}
 
 	public void addNumberToData(int n) {
@@ -129,7 +133,6 @@ class Server implements Runnable {
 						logger.info("Server: "+host+" @" + port + " received = "+ request);
 						logger.info("Origin host= " + getOriginHost(request) + " @" + getOriginPort(request));
 
-						/* 
 						if (isSyncronizationRequest(request)) {
 							int senderPort = getOriginPort(request);
 
@@ -139,11 +142,20 @@ class Server implements Runnable {
 
 							// do the merge of sets (todo:Verificar se esta e a forma pretendida)
 							
-							//Send the local Set to neigbour peer
+							//Send the local Set to neigbour peer who asked for syncronization
+							nextHost = getOriginHost(request);
+							nextPort = getOriginPort(request);
 							sendData();
 							
 						} 
-						else { // Recreate the Set sent has a String
+						// If this peer is the one receiving the message Recreate the Set sent has a String
+						else if (isMessageForThisPeer(request)){  
+
+							logger.info("DEBUG = " + request);
+							Set<Integer> resultSet = parseSetFromString(request);
+							logger.info("Server: @" + port + " :" + resultSet.toString());
+
+							/*
 							if (!request.equals("[]")) {
 								Set<Integer> resultSet = parseSetFromString(request);
 								if (!resultSet.equals(data)){
@@ -152,8 +164,8 @@ class Server implements Runnable {
 									updateSenderPeer = true;
 								}
 							}
+							*/
 						}
-						*/
 					}
 
 					// to achieve the same Set after a syncronization betwen peer's
@@ -188,8 +200,11 @@ class Server implements Runnable {
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			/*
 			 * Sends the local set (the set will be wrapped in to a String)
+			 * also send's information of peer who sent it and the peer who will receive it 
+			 
+			   data:this_peer_port:this_peer_host:receiving_peer_port:receiving_peer_host
 			 */
-			out.print(data);
+			out.print(data+":" + port + ":" + host + ":" + nextPort + ":" + nextHost);
 			out.flush();
 			/*
 			 * close connection
@@ -206,8 +221,12 @@ class Server implements Runnable {
 	}
 
 	private Set<Integer> parseSetFromString(String input) {
+		Scanner sc = new Scanner(input).useDelimiter(":");
+
+		String set = sc.next();
+
 		// Remove os colchetes "[" e "]"
-		String content = input.substring(1, input.length() - 1).trim();
+		String content = set.substring(1, set.length() - 1).trim();
 		return Arrays.stream(content.split("\\s*,\\s*"))
 					 .map(Integer::parseInt)
 					 .collect(Collectors.toSet());
@@ -239,6 +258,27 @@ class Server implements Runnable {
 	 */
 	private Boolean isSyncronizationRequest(String request) {
 		return request.contains("SYNC-DATA");
+	}
+
+	/**
+	 * Check if the message received is for this current peer
+	 * (check if message contains the same @host and @port has 
+	 * this peer)
+	 * 
+	 * request= 
+	 * data:sender_peer_port:sender_peer_host:receiving_peer_port:receiving_peer_host
+	 * @return
+	 */
+	private Boolean isMessageForThisPeer(String request){
+		Scanner sc = new Scanner(request).useDelimiter(":");
+		sc.next();
+		sc.next();
+		sc.next();
+
+		int requestPort = Integer.parseInt(sc.next());
+		String requestHost = sc.next();
+		
+		return requestPort == port && requestHost.equals(host);
 	}
 
 	/**
