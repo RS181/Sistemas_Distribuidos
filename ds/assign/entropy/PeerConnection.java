@@ -1,4 +1,5 @@
 package ds.assign.entropy;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,16 +22,27 @@ public class PeerConnection {
     // value -> hostname 
     private Map <Integer,String> neighbours = new HashMap<>();
 
-
+    // key -> hostname:hostport
+    // value -> timestamp in UTC seconds
+    private Map <String,Integer> neighbourTimestamp = new HashMap<>();
 
     public Map<Integer, String> getNeighbours() {
         return neighbours;
     }
 
+    public int getNeighbourTimestamp(int port,String address){
+        int ans = neighbourTimestamp.get(address + ":" + port);
+        return ans;
+    }
+
+    public void updateNeighbourTimestamp(int port,String address){
+        neighbourTimestamp.put(address + ":" + port, Instant.now().getEpochSecond());
+    }
 
 
     public void addNeighbour(int port,String address) {
         neighbours.put(port, address);
+        neighbourTimestamp.put(address + ":" + port, Instant.now().getEpochSecond());
     }    
 
     /**
