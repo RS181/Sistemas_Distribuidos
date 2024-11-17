@@ -13,6 +13,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.TreeSet;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
@@ -52,11 +54,12 @@ public class Peer {
 		System.out.printf("new peer host=%s @ %s\n", args[0],args[1]);
 
 		//Create PeerConection 
-		PeerConnection neighbourInfo = new PeerConnection();
-		for (int i = 2 ; i < args.length;i+=2){
+		PeerConnection neighbourInfo = new PeerConnection(peer.host,peer.port);
+		for (int i = 0 ; i < args.length;i+=2){
 			peer.logger.info("new neighbour "+ args[i] + " @"+args[i+1]);
 			neighbourInfo.addNeighbour(Integer.parseInt(args[i+1]), args[i]);
 		}
+
 
 		// Start server thread
 		Server server = new Server(args[0], Integer.parseInt(args[1]),neighbourInfo, peer.logger);
@@ -81,8 +84,11 @@ class Server implements Runnable {
 	int port;
 	ServerSocket server;
 	Logger logger;
-	Set<Integer> data = new HashSet<>(); // Local Set of data that we want to syncronize
-	Set<Integer> dataBeforeMerge = new HashSet<>();
+	
+	// key -> hostname:hostport
+    // value -> timestamp in UTC seconds (that the peer last registered itself)
+	Map <String,Long> data ; 
+	Map <String,Long> dataBeforeMerge ;
 	
 	// Atributes of Peer we are going to connect (given by PeerConection)
 	PeerConnection neighbourInfo;
@@ -96,12 +102,10 @@ class Server implements Runnable {
 		this.logger = logger;
 		server = new ServerSocket(port, 1, InetAddress.getByName(host));
 
-
+		data = neighbourInfo.getNeighbourTimestampMap();
+		System.out.println(data.toString());
 	}
 
-	public void addNumberToData(int n) {
-		data.add(n);
-	}
 
 	@Override
 	public void run() {
@@ -118,7 +122,9 @@ class Server implements Runnable {
 
 					Boolean updateSenderPeer = false;
 
-					synchronized (data) {
+
+					//Syncronized on PeerConnection neighbourInfo
+					synchronized (neighbourInfo) {
 
 						// logger.info("Server: "+host+" @" + port + " received = "+ request);
 						// logger.info("Origin host= " + getOriginHost(request) + " @" + getOriginPort(request));
@@ -148,10 +154,13 @@ class Server implements Runnable {
 							// Set<Integer> resultSet = parseSetFromString(request);
 							// logger.info("Server: @" + port + " :" + resultSet.toString());
 
-							if (!request.contains("[]")) {
-								Set<Integer> resultSet = parseSetFromString(request);
-								if (!resultSet.equals(data)){
+							if (!request.contains("{}")) {
+								Map<String,Long> resultMap = parseMapFromString(request);
+								logger.info("DEBUG = " + resultMap);
+
+								if (!resultMap.equals(data)){
 									
+									/* TODO modificar para ter em conta alteracoes
 									//saves data set before merge
 									dataBeforeMerge = new HashSet<>(data);
 
@@ -171,6 +180,7 @@ class Server implements Runnable {
 									
 									//Indicates that the receving peer has to sends it's
 									// data set to sender peer (to complete syncronization)
+									*/
 									updateSenderPeer = true;
 								}
 							}
@@ -180,10 +190,13 @@ class Server implements Runnable {
 					// To achieve the same Set after a syncronization betwen peer's
 					// the receiving peer must send it's set to sender peer
 					if (updateSenderPeer){
+						/* 
+						// verificar se e precisso mudar o data para neighbourInfo
 						synchronized(data){
 							//send data before merge to save bandwith
 							sendData(dataBeforeMerge);
 						}
+						*/
 						
 					}
 
@@ -196,7 +209,7 @@ class Server implements Runnable {
 		}
 	}
 
-	private void sendData(Set aSet) {
+	private void sendData(Map aMap) {
 		try {
 			/*
 			 * make connection
@@ -213,7 +226,7 @@ class Server implements Runnable {
 			 
 			   data:this_peer_port:this_peer_host:receiving_peer_port:receiving_peer_host
 			 */
-			out.print(aSet+":" + port + ":" + host + ":" + nextPort + ":" + nextHost);
+			out.print(aMap+":" + port + ":" + host + ":" + nextPort + ":" + nextHost);
 			out.flush();
 			/*
 			 * close connection
@@ -229,34 +242,48 @@ class Server implements Runnable {
 
 	}
 
-	private Set<Integer> parseSetFromString(String input) {
+	private Map<String, Long> parseMapFromString(String input) {
 		Scanner sc = new Scanner(input).useDelimiter(":");
 
 		String set = sc.next();
 
-		// Remove  "[" e "]"
+		// Remove  "{" e "}"
 		String content = set.substring(1, set.length() - 1).trim();
-		return Arrays.stream(content.split("\\s*,\\s*"))
-					 .map(Integer::parseInt)
-					 .collect(Collectors.toSet());
+
+        Map<String, Long> result = new HashMap<>();
+
+
+        // Dividir a string pelos pares (separador é a vírgula)
+        String[] pairs = content.split(", ");
+
+		for (String pair : pairs) {
+            String[] keyValue = pair.split("="); // Dividir chave e valor
+            String key = keyValue[0].trim();
+            Long value = Long.parseLong(keyValue[1].trim());
+            result.put(key, value);
+        }
+
+		return result;
+
 	}
 
 
-	// Method 1
-	// To merge two sets
-	// using DoubleBrace Initialisation
-	public static <T> Set<T> mergeSet(Set<T> a, Set<T> b) {
+	public static Map<String, Long> mergeMapWithMaxValue(Map<String, Long> a, Map<String, Long> b) {
+        // Cria um novo mapa para armazenar o resultado
+        Map<String, Long> mergedMap = new HashMap<>();
 
-		// Adding all elements of respective Sets
-		// using addAll() method
-		return new HashSet<T>() {
-			{
-				addAll(a);
-				addAll(b);
-			}
-		};
-	}
+        // Adiciona todas as chaves do mapa 'a'
+        for (Map.Entry<String, Long> entry : a.entrySet()) {
+            mergedMap.put(entry.getKey(), entry.getValue());
+        }
 
+        // Itera sobre o mapa 'b' e ajusta os valores no mergedMap
+        for (Map.Entry<String, Long> entry : b.entrySet()) {
+            mergedMap.merge(entry.getKey(), entry.getValue(), Long::max);
+        }
+
+        return mergedMap;
+    }
 
 	/**
 	 * Checks if a string is a Syncronization Request

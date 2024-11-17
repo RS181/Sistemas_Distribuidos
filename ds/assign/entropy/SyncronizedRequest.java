@@ -21,6 +21,7 @@ public class SyncronizedRequest implements Runnable{
     private  int destinationPort;
     private String destinationHost;
     private PeerConnection neighbourInfo;
+
     
 
     public SyncronizedRequest(String host,int localPort,PeerConnection neighbourInfo , Logger logger){
@@ -47,14 +48,17 @@ public class SyncronizedRequest implements Runnable{
                 Thread.sleep((long)intervalTime);
 
                 
-                //format: "hostname:port"
-                // choose a random neighbour peer to do Syncronization
-                String n = neighbourInfo.chooseRandomNeighbour();
-                
+                synchronized (neighbourInfo){
+                    //format: "hostname:port"
+                    // choose a random neighbour peer to do Syncronization
+                    String n = neighbourInfo.chooseRandomNeighbour();
+                    
+                    Scanner sc = new Scanner(n).useDelimiter(":");
+                    destinationHost = sc.next();
+                    destinationPort = Integer.parseInt(sc.next());
+                }
             
-                Scanner sc = new Scanner(n).useDelimiter(":");
-                destinationHost = sc.next();
-                destinationPort = Integer.parseInt(sc.next());
+                
                 
                 //send sincronization request to Peer at destinationHost @destinationPort
                 sendRequestToServer("SYNC-DATA");
