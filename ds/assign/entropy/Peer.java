@@ -88,7 +88,6 @@ class Server implements Runnable {
 	// key -> hostname:hostport
     // value -> timestamp in UTC seconds (that the peer last registered itself)
 	Map <String,Long> data ; 
-	Map <String,Long> dataBeforeMerge ;
 	
 	// Atributes of Peer we are going to connect (given by PeerConection)
 	PeerConnection neighbourInfo;
@@ -124,7 +123,7 @@ class Server implements Runnable {
 
 
 					//Syncronized on PeerConnection neighbourInfo
-					synchronized (neighbourInfo) {
+					synchronized (data) {
 
 						// logger.info("Server: "+host+" @" + port + " received = "+ request);
 						// logger.info("Origin host= " + getOriginHost(request) + " @" + getOriginPort(request));
@@ -142,6 +141,9 @@ class Server implements Runnable {
 							nextHost = getOriginHost(request);
 							nextPort = getOriginPort(request);
 							
+							//update timestamp of itself (each Peer naturaly has the most recent timestamp of itself)
+							data= neighbourInfo.updateTimestampMap(data, port, host);
+
 							//Send the local Set to neigbour peer who asked for syncronization
 							sendData(data);
 							
@@ -156,31 +158,21 @@ class Server implements Runnable {
 
 							if (!request.contains("{}")) {
 								Map<String,Long> resultMap = parseMapFromString(request);
-								logger.info("DEBUG = " + resultMap);
+								//logger.info("DEBUG = " + resultMap);
+								data= neighbourInfo.updateTimestampMap(data, port, host);
 
 								if (!resultMap.equals(data)){
+									//Merges current map and received map (to get the most recent timestamps)
+									data = mergeMapWithMaxValue(resultMap,data);
 									
-									/* TODO modificar para ter em conta alteracoes
-									//saves data set before merge
-									dataBeforeMerge = new HashSet<>(data);
-
 									//Updates nextPort and nexthost of receving peer, to 
 									// send its set to sender peer 
 									nextHost = getOriginHost(request);
 									nextPort = getOriginPort(request);
+									logger.info("Server: @" + port + " local set after MERGE : " + data);
 
-
-									data = mergeSet(resultSet, data);
-									
-
-									// Sort data set (it helps with visualization)
-									List<Integer> sortedData = new ArrayList<>(data);
-									Collections.sort(sortedData);
-									logger.info("Server: @" + port + " local set after MERGE : " + sortedData);
-									
 									//Indicates that the receving peer has to sends it's
 									// data set to sender peer (to complete syncronization)
-									*/
 									updateSenderPeer = true;
 								}
 							}
@@ -190,13 +182,12 @@ class Server implements Runnable {
 					// To achieve the same Set after a syncronization betwen peer's
 					// the receiving peer must send it's set to sender peer
 					if (updateSenderPeer){
-						/* 
 						// verificar se e precisso mudar o data para neighbourInfo
 						synchronized(data){
-							//send data before merge to save bandwith
-							sendData(dataBeforeMerge);
+							//update timestamp of itself (each Peer naturaly has the most recent timestamp of itself)
+
+							sendData(data);
 						}
-						*/
 						
 					}
 
@@ -211,6 +202,7 @@ class Server implements Runnable {
 
 	private void sendData(Map aMap) {
 		try {
+			
 			/*
 			 * make connection
 			 */
@@ -267,8 +259,15 @@ class Server implements Runnable {
 
 	}
 
-
-	public static Map<String, Long> mergeMapWithMaxValue(Map<String, Long> a, Map<String, Long> b) {
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 * @return the result of merging map a and b 
+	 * (NOTE: we choose the peer wich has the highest timestamp, when doing the merge, 
+	 * to ensure we have the most recent information)
+	 */
+	public  Map<String, Long> mergeMapWithMaxValue(Map<String, Long> a, Map<String, Long> b) {
         // Cria um novo mapa para armazenar o resultado
         Map<String, Long> mergedMap = new HashMap<>();
 
@@ -284,6 +283,8 @@ class Server implements Runnable {
 
         return mergedMap;
     }
+
+
 
 	/**
 	 * Checks if a string is a Syncronization Request

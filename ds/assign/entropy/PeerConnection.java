@@ -39,6 +39,7 @@ public class PeerConnection {
         return neighbourTimestamp;
     }
 
+    /*
     public long getNeighbourTimestamp(int port, String address) {
         long ans = neighbourTimestamp.get(address + "-" + port);
         return ans;
@@ -47,6 +48,21 @@ public class PeerConnection {
     public void updateNeighbourTimestamp(int port, String address) {
         neighbourTimestamp.put(address + "-" + port, Instant.now().getEpochSecond());
     }
+    */
+    
+    /**
+	 * 
+	 * @param map
+	 * @param port
+	 * @param address
+	 * @return the map with updated timestamp on a certain peer
+	 */
+
+	public  Map<String,Long> updateTimestampMap(Map <String,Long> map,int port, String address){
+        map.put(address + "-" + port, Instant.now().getEpochSecond());
+        return map;
+    }
+
 
     public void addNeighbour(int port, String address) {
         neighbours.put(port, address);
