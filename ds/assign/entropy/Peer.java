@@ -122,7 +122,7 @@ class Server implements Runnable {
 					Boolean updateSenderPeer = false;
 
 
-					//Syncronized on PeerConnection neighbourInfo
+					//Syncronized on data
 					synchronized (data) {
 
 						// logger.info("Server: "+host+" @" + port + " received = "+ request);
@@ -133,8 +133,8 @@ class Server implements Runnable {
 							int senderPort = getOriginPort(request);
 
 							logger.info(
-									"Server: received SYNCRONIZATION request from " + clientAddress + " @"
-											+ senderPort);
+									"Received SYNC request = [" + getOriginHost(request) + ",@"
+											+ senderPort + "]");
 
 							// Updates the Info of peer that we are going to send data set
 							// for syncronization
@@ -153,15 +153,18 @@ class Server implements Runnable {
 						else if (isMessageForThisPeer(request)){  
 
 							//logger.info("DEBUG = " + request);
-							// Set<Integer> resultSet = parseSetFromString(request);
-							// logger.info("Server: @" + port + " :" + resultSet.toString());
 
 							if (!request.contains("{}")) {
 								Map<String,Long> resultMap = parseMapFromString(request);
-								//logger.info("DEBUG = " + resultMap);
+								;
+								//update timestamp of itself (each Peer naturaly has the most recent timestamp of itself)
 								data= neighbourInfo.updateTimestampMap(data, port, host);
 
 								if (!resultMap.equals(data)){
+									logger.info("Received SYNC response = [" + getOriginHost(request) + ",@"
+											+ getOriginPort(request) + "]");
+
+								
 									//Merges current map and received map (to get the most recent timestamps)
 									data = mergeMapWithMaxValue(resultMap,data);
 									
@@ -169,7 +172,7 @@ class Server implements Runnable {
 									// send its set to sender peer 
 									nextHost = getOriginHost(request);
 									nextPort = getOriginPort(request);
-									logger.info("Server: @" + port + " local set after MERGE : " + data);
+									logger.info("Server: @" + port + " local map after MERGE : " + data);
 
 									//Indicates that the receving peer has to sends it's
 									// data set to sender peer (to complete syncronization)
@@ -182,7 +185,6 @@ class Server implements Runnable {
 					// To achieve the same Set after a syncronization betwen peer's
 					// the receiving peer must send it's set to sender peer
 					if (updateSenderPeer){
-						// verificar se e precisso mudar o data para neighbourInfo
 						synchronized(data){
 							//update timestamp of itself (each Peer naturaly has the most recent timestamp of itself)
 
