@@ -1,3 +1,6 @@
+# TODO
++ Testar com maquinas do laboratorio
+
 # Como correr o progama (exemplo)
 
 + No diretorio  (...)/Sistemas_Distribuidos, compilar
@@ -12,19 +15,19 @@
 
     $ java ds.assign.ring.CalculatorMultiServer localhost
 
-+ Executar os Peer's 
++ Executar os Peer's (o utimo parametro representa o host calculator server)
                 
 ****   
 
-    Peer_1 $ java ds.assign.ring.Peer localhost 10000 localhost 20000
+    Peer_1 $ java ds.assign.ring.Peer localhost 10000 localhost 20000 localhost
 
-    Peer_2 $ java ds.assign.ring.Peer localhost 20000 localhost 30000
+    Peer_2 $ java ds.assign.ring.Peer localhost 20000 localhost 30000 localhost
 
-    Peer_3 $ java ds.assign.ring.Peer localhost 30000 localhost 40000
+    Peer_3 $ java ds.assign.ring.Peer localhost 30000 localhost 40000 localhost
 
-    Peer_4 $ java ds.assign.ring.Peer localhost 40000 localhost 50000
+    Peer_4 $ java ds.assign.ring.Peer localhost 40000 localhost 50000 localhost
 
-    Peer_5 $ java ds.assign.ring.Peer localhost 50000 localhost 10000
+    Peer_5 $ java ds.assign.ring.Peer localhost 50000 localhost 10000 localhost
 
 + Injetar o Token num dos peers 
 

@@ -44,6 +44,7 @@ public class Peer {
      *             args[1] -> this Peer port
      *             args[2] -> hostname of Peer we want to connect
      *             args[3] -> port of Peer we want to connect
+     *             args[4] -> hostname of calculator server
      *             e.g
      *             t1$ java Peer localhost 5000 localhost 6000
      *             t2$ java Peer localhost 6000 localhost 5000
@@ -53,8 +54,13 @@ public class Peer {
         Peer peer = new Peer(args[0], args[1]);
         System.out.printf("new peer @ host=%s, Port =%s\n", args[0], args[1]);
 
+        if (args.length < 5){
+            System.out.println("Uncorrect format, use format: java Peer  <hostname_peer> <port_peer> <hostname_next_peer> <port_next_peer> <hostname_calculator_server>");
+            return;
+        }
+
         // Start this Peer as a Server
-        Server server = new Server(args[0], Integer.parseInt(args[1]), args[2], Integer.parseInt(args[3]), peer.logger);
+        Server server = new Server(args[0], Integer.parseInt(args[1]), args[2], Integer.parseInt(args[3]),args[4] ,peer.logger);
         new Thread(server).start();
 
         // Start the RequestGenarator that genartes a request for the server
@@ -81,14 +87,18 @@ class Server implements Runnable {
     String nextHost;
     int nextPort;
 
+    //hostname of Calculator server (the port is always 44444)
+    String calculatorServerAddress;
+    
 
 
-    public Server(String host, int port, String nextHost, int nextPort, Logger logger) throws Exception {
+    public Server(String host, int port, String nextHost, int nextPort,String calculatorServerAddress ,Logger logger) throws Exception {
         this.host = host;
         this.port = port;
         this.logger = logger;
         this.nextHost = nextHost;
         this.nextPort = nextPort;
+        this.calculatorServerAddress=calculatorServerAddress;
         server = new ServerSocket(port, 1, InetAddress.getByName(host));
     }
 
@@ -137,7 +147,7 @@ class Server implements Runnable {
                         //2.1 Send all command's in operation to CalculatorMultiServer
                         while (!operations.isEmpty()){
                             String request = operations.poll();
-                            String result = connectToCalculatorMultiServer("localhost", 44444, request);
+                            String result = connectToCalculatorMultiServer(calculatorServerAddress, 44444, request);
                             logger.info("client @" + port + " RECEIVED result from server: " + result);
                         }
 
@@ -221,18 +231,5 @@ class Server implements Runnable {
         return result;
     }
 
-
-    private String generateRandomRequest() {
-
-        String[] operations = { "add", "sub", "mul", "div" };
-
-        Random random = new Random();
-        String operation = operations[random.nextInt(operations.length)];
-
-        double x = Math.floor(random.nextDouble() * 100);
-        double y = Math.floor(random.nextDouble() * 100);
-
-        return operation + ":" + x + ":" + y;
-    }
 
 }
