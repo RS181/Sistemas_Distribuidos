@@ -36,10 +36,21 @@ afterwards
 
 1. Mostrar ao professor o funcionamento com o exemplo de 3 Peer's (para ser mais simples).Eu fiz alguns testes e parecia bem, mas pedir para dar uma vista de olhos nos logs (apos deixar o script a correr durante um pouco)
 
+2. Fazer alteracoes ao codigo e verificar se o funcionamento e o esperado (localmente e nas maquinas do lab)
+
+    + remover parte de updateSenderPeer e sendData(data) (para dentro do if (!resultMap.equals(data)))
+
+    + Verificar se o data= neighbourInfo.updateTimestampMap(data, port, host) esta no sitio certo (eu acho que tenho de colocar dentro do if (!resultMap.equals(data)))
+
 2. Adicionar a remocao de um peer apos um certo threshold ser verificado
 
 
 3. Testar nas maquinas do laboratorio
+
+    + Eu testei com exemplo de 3 peer's e parece estar perto do funcionamento pretendido, 
+    mas as vezes apos uma sincronizacao o peer que envia o pedido de sincronizacao e depois recebe o do respetivo vizinho (esta a receber duplicado, mas no final fica com o mesmo mapa aparentemente)
+
+    + Testar novamente e ver a acontecer (penso que nao e um erro por assim dizer, mas e necessario fazer umas alteracoes ao coidigo apenas para garantir que funciona em condicoes)
 
 4. Perguntar se o terceiro trabalho se tem algum " exercicio exemplo"  para o terceiro trabalho, ou se algum dos exercicios que fizemos se assemelha.
 
