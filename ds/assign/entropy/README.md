@@ -12,6 +12,8 @@
 
 > R:sim
 
++ Quando inicializamos um Peer e respetivos vizinhos  podemos colocar os vizinhos automaticamente no seu mapa de vizinho com respetivo timestamp atual? ( mesmo nao ter  feito qualquer conexao previa a esse vizinho)
+
 + Quando um peer recebe outro peer que nao e seu vizinho direto, ele pode enviar pedidos de sincronizacao, certo?
 
 + Qual seria um threshold valido para remover um peer? (tem de ser um alto o suficiente para nao remover um peer por engano)
