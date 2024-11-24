@@ -12,7 +12,11 @@
 
 + Executar o CalculatorMultiServer (porta default e 44444)
 
+        SEM GUARDAR LOGS NUM FICHEIRO
         $ java ds.assign.ring.CalculatorMultiServer l1215
+
+        COM GUARDAR LOGS NUM FICHEIRO
+        $ java ds.assign.ring.CalculatorMultiServer l1215 > ds/assign/ring/logs/CalculatorServer.txt
 
 + Executar os Peer's (o utimo parametro representa o host calculator server)
         
