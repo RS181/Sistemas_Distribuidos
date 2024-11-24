@@ -1,6 +1,32 @@
 # TODO
 + Testar com maquinas do laboratorio
 
+# Comandos para testar no laboratorio
+
+>**Nota**: segui o seguinte esquema para simular o toke ring
+![alt text](ring_lab_example.jpeg)
+
++ No diretorio  (...)/Sistemas_Distribuidos, compilar 
+
+         $ javac ds/assign/ring/*.java
+
++ Executar o CalculatorMultiServer (porta default e 44444)
+
+        $ java ds.assign.ring.CalculatorMultiServer l1215
+
++ Executar os Peer's (o utimo parametro representa o host calculator server)
+        
+        Peer_1 $ java ds.assign.ring.Peer l1216 10000 l1214 20000 l1215
+
+        Peer_2 $ java ds.assign.ring.Peer l1214 20000 l1216 30000 l1215
+
+        Peer_3 $ java ds.assign.ring.Peer l1216 30000 l1214 40000 l1215
+
+        Peer_4 $ java ds.assign.ring.Peer l1214 40000 l1216 50000 l1215
+
+        Peer_5 $ java ds.assign.ring.Peer l1216 50000 l1216 10000 l1215
+
+
 # Como correr o progama (exemplo)
 
 + No diretorio  (...)/Sistemas_Distribuidos, compilar
