@@ -23,10 +23,16 @@
 
 
 
-# Two peer version (for easy testing of some stuff)
+# fewer peer version (for easy testing of some stuff)
 
 # Peer 1
 gnome-terminal -- bash -c "java ds.assign.entropy.Peer localhost 10000 localhost 20000 ; " &  
 
 # Peer 2
-gnome-terminal -- bash -c "java ds.assign.entropy.Peer localhost 20000 localhost 10000 ; " &  
+gnome-terminal -- bash -c "java ds.assign.entropy.Peer localhost 20000 localhost 10000 ; " &
+
+# Peer 3
+gnome-terminal -- bash -c "java ds.assign.entropy.Peer localhost 30000 localhost 20000  ;" &
+
+# Peer 4 
+#gnome-terminal -- bash -c "java ds.assign.entropy.Peer localhost 40000 localhost 20000  ;" &

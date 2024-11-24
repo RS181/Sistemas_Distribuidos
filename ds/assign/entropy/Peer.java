@@ -133,7 +133,7 @@ class Server implements Runnable {
 							int senderPort = getOriginPort(request);
 
 							logger.info(
-									"Received SYNC request = [" + getOriginHost(request) + ",@"
+									"Received SYNC request from = [" + getOriginHost(request) + ",@"
 											+ senderPort + "]");
 
 							// Updates the Info of peer that we are going to send data set
@@ -161,7 +161,7 @@ class Server implements Runnable {
 								data= neighbourInfo.updateTimestampMap(data, port, host);
 
 								if (!resultMap.equals(data)){
-									logger.info("Received SYNC response = [" + getOriginHost(request) + ",@"
+									logger.info("Received SYNC response from = [" + getOriginHost(request) + ",@"
 											+ getOriginPort(request) + "]");
 
 								
