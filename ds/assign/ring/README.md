@@ -1,5 +1,5 @@
 # TODO
-+ Testar com maquinas do laboratorio
++ Testar com maquinas do laboratorio (um peer em cada maquina)
 
 # Comandos para testar no laboratorio
 
