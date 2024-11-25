@@ -12,14 +12,22 @@
 
 > R:sim
 
-+ Quando inicializamos um Peer e respetivos vizinhos  podemos colocar os vizinhos automaticamente no seu mapa de vizinho com respetivo timestamp atual? ( mesmo nao ter  feito qualquer conexao previa a esse vizinho)
++ Quando inicializamos um Peer e respetivos vizinhos  podemos colocar os vizinhos automaticamente no seu mapa de vizinho
+com respetivo timestamp atual? ( mesmo nao ter  feito qualquer conexao previa a esse vizinho)
+
+> R: SIm 
 
 + Quando um peer recebe outro peer que nao e seu vizinho direto, ele pode enviar pedidos de sincronizacao, certo?
 
+> R: Nao, apenas pode fazer pedidos de sincronizacao a vizinhos diretos 
+
 + Qual seria um threshold valido para remover um peer? (tem de ser um alto o suficiente para nao remover um peer por engano)
 
+> R: (5 min , ou seja em media 10 tentativas)
 
 + Apos a remocao de um peer da rede, e suposto que o mesmo se possa conectar novamente a rede certo? (precisso verificar se isto acontece, mas penso que da maneira como tenho a aplicao a fazer as coisas isto ja deve acontecer sem ser precisso fazer nada, mas e necessario testa isto!!)
+
+> R: Sim
 
 # Observacoes
 > Anti-entropy: Each replica regularly chooses another replica at random,
@@ -34,7 +42,7 @@ afterwards
 
 # Todo
 
-1. Mostrar ao professor o funcionamento com o exemplo de 3 Peer's (para ser mais simples).Eu fiz alguns testes e parecia bem, mas pedir para dar uma vista de olhos nos logs (apos deixar o script a correr durante um pouco)
+1. Modificar PeerConnection para apenas enviar pedidos de Sincronizacao para vizinhos diretos 
 
 2. Fazer alteracoes ao codigo e verificar se o funcionamento e o esperado (localmente e nas maquinas do lab)
 
