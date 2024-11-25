@@ -49,6 +49,7 @@ public class SyncronizedRequest implements Runnable{
 
                 
                 synchronized (neighbourInfo){
+                    logger.info("DEBUG -> @" + localPort + " neighours= " + neighbourInfo.getNeighbours() );
                     //format: "hostname:port"
                     // choose a random neighbour peer to do Syncronization
                     String n = neighbourInfo.chooseRandomNeighbour();

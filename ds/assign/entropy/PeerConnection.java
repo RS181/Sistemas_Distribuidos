@@ -23,6 +23,7 @@ public class PeerConnection {
         this.port = port;
     }
 
+    // List of direct neighbours
     // Key-> port
     // value -> hostname
     private Map<Integer, String> neighbours = new HashMap<>();
@@ -72,7 +73,7 @@ public class PeerConnection {
     /**
      * 
      * @return a string in the format: "hostname:port" of
-     *         available neighbours (excluding itself)
+     *         available direct neighbours  (excluding itself)
      */
     public String chooseRandomNeighbour() {
         List<Integer> ports = new ArrayList<>(neighbours.keySet());

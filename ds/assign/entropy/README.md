@@ -44,13 +44,19 @@ afterwards
 
 1. Modificar PeerConnection para apenas enviar pedidos de Sincronizacao para vizinhos diretos 
 
-2. Fazer alteracoes ao codigo e verificar se o funcionamento e o esperado (localmente e nas maquinas do lab)
+> FEITO
+
+2. Corrigir localizacao de logs (colocar a pasta de logs no git, nao sei porque mas nao esta a por no git)
+
+3. Tentar descobrir com debug com prints, o pq de estar a fazer dois merge's (quando teste nas maquina de laboratorio)
+
+2. Fazer alteracoes ao codigo e verificar se o funcionamento e o esperado (localmente e nas maquinas do lab) (ver se vale a penas fazer isto)
 
     + remover parte de updateSenderPeer e sendData(data) (para dentro do if (!resultMap.equals(data)))
 
     + Verificar se o data= neighbourInfo.updateTimestampMap(data, port, host) esta no sitio certo (eu acho que tenho de colocar dentro do if (!resultMap.equals(data)))
 
-2. Adicionar a remocao de um peer apos um certo threshold ser verificado
+2. Adicionar a remocao de um peer apos um certo threshold ser verificado (ver tempo que professor sugeriu)
 
 
 3. Testar nas maquinas do laboratorio
@@ -61,5 +67,7 @@ afterwards
     + Testar novamente e ver a acontecer (penso que nao e um erro por assim dizer, mas e necessario fazer umas alteracoes ao coidigo apenas para garantir que funciona em condicoes)
 
 4. Perguntar se o terceiro trabalho se tem algum " exercicio exemplo"  para o terceiro trabalho, ou se algum dos exercicios que fizemos se assemelha.
+
+> Professor vai disponiblizar no moodle 
 
 5. Restrutar o README para indicar como e que se corre o programa
