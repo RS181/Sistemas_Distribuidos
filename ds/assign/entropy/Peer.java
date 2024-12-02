@@ -164,7 +164,7 @@ class Server implements Runnable {
 									logger.info("Received SYNC response from = [" + getOriginHost(request) + ",@"
 											+ getOriginPort(request) + "]");
 
-								
+
 									//Merges current map and received map (to get the most recent timestamps)
 									data = mergeMapWithMaxValue(resultMap,data);
 									
@@ -172,11 +172,17 @@ class Server implements Runnable {
 									// send its set to sender peer 
 									nextHost = getOriginHost(request);
 									nextPort = getOriginPort(request);
+
+									// logger.info("DEBUG nextHost = " + nextHost);
+									// logger.info("DEBUG nextPOrt = " + nextPort);
+
 									logger.info("Server: @" + port + " local map after MERGE : " + data);
 
 									//Indicates that the receving peer has to sends it's
 									// data set to sender peer (to complete syncronization)
 									updateSenderPeer = true;
+								
+									
 								}
 							}
 						}
@@ -187,7 +193,7 @@ class Server implements Runnable {
 					if (updateSenderPeer){
 						synchronized(data){
 							//update timestamp of itself (each Peer naturaly has the most recent timestamp of itself)
-
+							//logger.info("SENDING INFO TO " + nextPort + " FROM " + port);
 							sendData(data);
 						}
 						
