@@ -2,12 +2,9 @@
 
 + Testar com maquinas do laboratorio (um peer em cada maquina)
 
-+ Cada peer deve ter associado um TIMEOUT em que se o timeout for atingido (nao recebeu
-um Token num certo intervalo de tempo) deve desligar-se
++ Tratar das excessoes (como peer nao ligado ou desligou-se, e por uma mensagem e dizer que nao esta ligado, invez de aparece excessao).TRATAR DA EXCESSAO QUE APARECE NOS LABORITORIOS RELATIVAMENTE AOS LOGS
 
-+ Tratar das excessoes (como peer nao ligado ou desligou-se, e por uma mensagem e dizer que nao esta ligado, invez de aparece excessao)
 
-+ Testar se a rede funciona caso um peer se deligue e depois volte se a ligar
 
 
 # Comandos para testar no laboratorio

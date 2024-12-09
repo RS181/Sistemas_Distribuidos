@@ -114,12 +114,17 @@ class Server implements Runnable {
     public void run() {
         try {
             logger.info("server: endpoint running at port " + port + " ...");
+            final long TIMEOUT_MILLIS = 2 * 60 * 1000; // Time limit to wait (2 minutes) (I decided that 2 minutes was suficient)
+            long startTime = System.currentTimeMillis();
+
             while (true) {
                 // O peer não tem o token, espera pelo token
                 logger.info("client @" + host + " waiting for token...");
-                
-                //1. Waits for connection
+
+
                 try {
+                    // 1. Waits for connection (with time limit) 
+                    server.setSoTimeout((int) (TIMEOUT_MILLIS - (System.currentTimeMillis() - startTime)));
                     Socket client = server.accept();
                     BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                     receivedToken = in.readLine(); // Recebe o token
@@ -130,11 +135,14 @@ class Server implements Runnable {
 
                     client.close();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.warning("Timeout: Token was not received in given time limit.\nPeer will Shutdown ...");
+                    Thread.sleep(5000);
+                    System.exit(0); // Encerrar o programa ou tomar outra ação
                 }
 
                 //2. Checks if current peer has token
                 if (receivedToken.equals("Token")) {
+                    startTime = System.currentTimeMillis(); // Resetar o tempo porque o token foi recebido
                     
                     //Use the synchronized modifier to prevent race conditions between threads
                     //Notice that we passed a parameter operations to the synchronized block. 
