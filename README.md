@@ -18,7 +18,13 @@ vez que e feita sincronizacao podemos fazer print em ambos os peers
 
 1. ter 6 peer a trocar mensagens em multicast 
 
-    + Garantir que faz a distribuicao das mensagens esta ser feita como esta demonstrado e explicado acima
+    + Garantir que faz a distribuicao das mensagens esta ser feita como esta demonstrado e explicado acima 
+
+        + Com exemplo acima, sempre que enviamos uma mensagem:
+
+            + enviamos a mensagem x para todos os peer's (incluindo o proprio peer que envia a mensagem).
+
+            + cada peer responde com ack para todos os peer's.
 
     + nesta primeira fase podemos so enviar o timestamp invez de ter relogios de lampart
 
