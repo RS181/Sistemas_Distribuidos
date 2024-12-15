@@ -1,0 +1,32 @@
+Dec 15, 2024 11:26:28 AM ds.assign.entropy.Peer main
+INFO: new neighbour localhost @10000
+Dec 15, 2024 11:26:29 AM ds.assign.entropy.Peer main
+INFO: new neighbour localhost @20000
+Dec 15, 2024 11:26:29 AM ds.assign.entropy.SyncronizedRequest run
+INFO: Started SyncronizedRequest on @10000
+Dec 15, 2024 11:26:29 AM ds.assign.entropy.Server run
+INFO: server: endpoint running at port 10000 ...
+Dec 15, 2024 11:26:52 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @10000 neighours= {10000=localhost, 20000=localhost}
+Dec 15, 2024 11:26:53 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@20000]
+Dec 15, 2024 11:26:53 AM ds.assign.entropy.Server run
+INFO: Server: @10000 local map after MERGE : {localhost-30000=1734261989, localhost-10000=1734262013, localhost-20000=1734262013}
+Dec 15, 2024 11:27:09 AM ds.assign.entropy.Server run
+INFO: Received SYNC request from = [localhost,@20000]
+Dec 15, 2024 11:27:09 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@20000]
+Dec 15, 2024 11:27:09 AM ds.assign.entropy.Server run
+INFO: Server: @10000 local map after MERGE : {localhost-30000=1734261989, localhost-10000=1734262029, localhost-20000=1734262029}
+Dec 15, 2024 11:27:19 AM ds.assign.entropy.Server run
+INFO: Received SYNC request from = [localhost,@20000]
+Dec 15, 2024 11:27:19 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@20000]
+Dec 15, 2024 11:27:19 AM ds.assign.entropy.Server run
+INFO: Server: @10000 local map after MERGE : {localhost-30000=1734261989, localhost-10000=1734262039, localhost-20000=1734262039}
+Dec 15, 2024 11:27:26 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @10000 neighours= {10000=localhost, 20000=localhost}
+Dec 15, 2024 11:27:26 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@20000]
+Dec 15, 2024 11:27:26 AM ds.assign.entropy.Server run
+INFO: Server: @10000 local map after MERGE : {localhost-30000=1734261989, localhost-10000=1734262046, localhost-20000=1734262046}

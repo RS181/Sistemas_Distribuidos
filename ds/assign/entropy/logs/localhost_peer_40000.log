@@ -1,0 +1,12 @@
+Nov 25, 2024 12:34:16 PM ds.assign.entropy.Peer main
+INFO: new neighbour localhost @40000
+Nov 25, 2024 12:34:17 PM ds.assign.entropy.Peer main
+INFO: new neighbour localhost @20000
+Nov 25, 2024 12:34:17 PM ds.assign.entropy.Peer main
+INFO: new neighbour localhost @50000
+Nov 25, 2024 12:34:17 PM ds.assign.entropy.Peer main
+INFO: new neighbour localhost @60000
+Nov 25, 2024 12:34:17 PM ds.assign.entropy.SyncronizedRequest run
+INFO: Started SyncronizedRequest on @40000
+Nov 25, 2024 12:34:17 PM ds.assign.entropy.Server run
+INFO: server: endpoint running at port 40000 ...

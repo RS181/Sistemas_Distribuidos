@@ -1,0 +1,146 @@
+Dec 15, 2024 11:26:29 AM ds.assign.entropy.Peer main
+INFO: new neighbour localhost @20000
+Dec 15, 2024 11:26:29 AM ds.assign.entropy.Peer main
+INFO: new neighbour localhost @10000
+Dec 15, 2024 11:26:29 AM ds.assign.entropy.Peer main
+INFO: new neighbour localhost @30000
+Dec 15, 2024 11:26:29 AM ds.assign.entropy.SyncronizedRequest run
+INFO: Started SyncronizedRequest on @20000
+Dec 15, 2024 11:26:29 AM ds.assign.entropy.Server run
+INFO: server: endpoint running at port 20000 ...
+Dec 15, 2024 11:26:53 AM ds.assign.entropy.Server run
+INFO: Received SYNC request from = [localhost,@10000]
+Dec 15, 2024 11:26:53 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@10000]
+Dec 15, 2024 11:26:53 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734261989, localhost-10000=1734262013, localhost-20000=1734262013}
+Dec 15, 2024 11:27:09 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:27:09 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@10000]
+Dec 15, 2024 11:27:09 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734261989, localhost-10000=1734262029, localhost-20000=1734262029}
+Dec 15, 2024 11:27:19 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:27:19 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@10000]
+Dec 15, 2024 11:27:19 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734261989, localhost-10000=1734262039, localhost-20000=1734262039}
+Dec 15, 2024 11:27:26 AM ds.assign.entropy.Server run
+INFO: Received SYNC request from = [localhost,@10000]
+Dec 15, 2024 11:27:26 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@10000]
+Dec 15, 2024 11:27:26 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734261989, localhost-10000=1734262046, localhost-20000=1734262046}
+Dec 15, 2024 11:27:33 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:27:33 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:27:33 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262053, localhost-10000=1734262046, localhost-20000=1734262053}
+Dec 15, 2024 11:27:45 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:27:45 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:27:45 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262065, localhost-10000=1734262046, localhost-20000=1734262065}
+Dec 15, 2024 11:28:43 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:28:43 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:28:43 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262123, localhost-10000=1734262046, localhost-20000=1734262123}
+Dec 15, 2024 11:29:03 AM ds.assign.entropy.Server run
+INFO: Received SYNC request from = [localhost,@30000]
+Dec 15, 2024 11:29:03 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:29:03 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262143, localhost-10000=1734262046, localhost-20000=1734262143}
+Dec 15, 2024 11:29:21 AM ds.assign.entropy.Server run
+INFO: Received SYNC request from = [localhost,@30000]
+Dec 15, 2024 11:29:21 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:29:21 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262161, localhost-10000=1734262046, localhost-20000=1734262161}
+Dec 15, 2024 11:29:43 AM ds.assign.entropy.Server run
+INFO: Received SYNC request from = [localhost,@30000]
+Dec 15, 2024 11:29:43 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:29:43 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262183, localhost-10000=1734262046, localhost-20000=1734262183}
+Dec 15, 2024 11:30:02 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:30:02 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:30:02 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262202, localhost-10000=1734262046, localhost-20000=1734262202}
+Dec 15, 2024 11:30:21 AM ds.assign.entropy.Server run
+INFO: Received SYNC request from = [localhost,@30000]
+Dec 15, 2024 11:30:21 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:30:21 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262221, localhost-10000=1734262046, localhost-20000=1734262221}
+Dec 15, 2024 11:30:53 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:30:53 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:30:53 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262253, localhost-10000=1734262046, localhost-20000=1734262253}
+Dec 15, 2024 11:31:14 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:31:14 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:31:14 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262274, localhost-10000=1734262046, localhost-20000=1734262274}
+Dec 15, 2024 11:32:36 AM ds.assign.entropy.Server run
+INFO: Received SYNC request from = [localhost,@30000]
+Dec 15, 2024 11:32:36 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:32:36 AM ds.assign.entropy.Server mergeMapWithMaxValue
+INFO: localhost-10000 is outdated in map 'b'. Removing...
+Dec 15, 2024 11:32:36 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262356, localhost-20000=1734262356}
+Dec 15, 2024 11:32:50 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:32:50 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:32:50 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262370, localhost-20000=1734262370}
+Dec 15, 2024 11:33:05 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:33:05 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:33:05 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262385, localhost-20000=1734262385}
+Dec 15, 2024 11:34:31 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:34:31 AM ds.assign.entropy.SyncronizedRequest sendRequestToServer
+WARNING: Server: error ocured while sending SYNC request to localhost 10000
+Dec 15, 2024 11:34:50 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:34:50 AM ds.assign.entropy.SyncronizedRequest sendRequestToServer
+WARNING: Server: error ocured while sending SYNC request to localhost 10000
+Dec 15, 2024 11:35:22 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:35:22 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:35:22 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262522, localhost-20000=1734262522}
+Dec 15, 2024 11:35:56 AM ds.assign.entropy.Server run
+INFO: Received SYNC request from = [localhost,@30000]
+Dec 15, 2024 11:35:56 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:35:56 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262556, localhost-20000=1734262556}
+Dec 15, 2024 11:36:07 AM ds.assign.entropy.Server run
+INFO: Received SYNC request from = [localhost,@30000]
+Dec 15, 2024 11:36:07 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:36:07 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262567, localhost-20000=1734262567}
+Dec 15, 2024 11:36:57 AM ds.assign.entropy.SyncronizedRequest run
+INFO: DEBUG -> @20000 neighours= {20000=localhost, 10000=localhost, 30000=localhost}
+Dec 15, 2024 11:36:57 AM ds.assign.entropy.Server run
+INFO: Received SYNC response from = [localhost,@30000]
+Dec 15, 2024 11:36:57 AM ds.assign.entropy.Server run
+INFO: Server: @20000 local map after MERGE : {localhost-30000=1734262617, localhost-20000=1734262617}
