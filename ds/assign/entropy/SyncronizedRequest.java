@@ -32,7 +32,7 @@ public class SyncronizedRequest implements Runnable{
 
         //Intialize PoissonProcess
         Random rng = new Random();
-        double lambda = 1.0;    //1 event per minute
+        double lambda = 2.0;    //2 event's per minute
         poissonProcess = new PoissonProcess(lambda, rng);
 
     }
@@ -65,7 +65,7 @@ public class SyncronizedRequest implements Runnable{
                 sendRequestToServer("SYNC-DATA");
 
                 // REMOVER SO ESTA AQUI PARA FACILTIAR VISUALIZACAO
-                Thread.sleep(3000);
+                //Thread.sleep(3000);
 
             }catch (Exception e){
                 e.printStackTrace(); 
