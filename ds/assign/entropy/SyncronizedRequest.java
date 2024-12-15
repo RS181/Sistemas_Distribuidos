@@ -49,7 +49,7 @@ public class SyncronizedRequest implements Runnable{
 
                 
                 synchronized (neighbourInfo){
-                    logger.info("DEBUG -> @" + localPort + " neighours= " + neighbourInfo.getNeighbours() );
+                    //logger.info("DEBUG -> @" + localPort + " neighours= " + neighbourInfo.getNeighbours() );
                     //format: "hostname:port"
                     // choose a random neighbour peer to do Syncronization
                     String n = neighbourInfo.chooseRandomNeighbour();
@@ -64,6 +64,9 @@ public class SyncronizedRequest implements Runnable{
                 //send sincronization request to Peer at destinationHost @destinationPort
                 sendRequestToServer("SYNC-DATA");
 
+                // REMOVER SO ESTA AQUI PARA FACILTIAR VISUALIZACAO
+                Thread.sleep(3000);
+
             }catch (Exception e){
                 e.printStackTrace(); 
             }
@@ -73,7 +76,6 @@ public class SyncronizedRequest implements Runnable{
     
     
     /**
-     * We are using the localhost as server in all this exercises
      * @param request
      * @param serverport
      */
@@ -104,7 +106,7 @@ public class SyncronizedRequest implements Runnable{
 
         } catch (Exception e){
             //e.printStackTrace();
-            logger.info("Server: error ocured while sending SYNC request to "+destinationHost+" " + destinationPort);
+            logger.warning("Server: error ocured while sending SYNC request to "+destinationHost+" " + destinationPort);
         }
     }
     
