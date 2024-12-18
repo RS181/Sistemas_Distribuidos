@@ -124,9 +124,11 @@ class Server implements Runnable {
 						// To avoid responding to an ACK with a ACK 
 						if (!request.split(":")[3].equals(String.valueOf(port))){
 							synchronized(request){
-								multiCast.sendAck();
+								String word = request.split(":")[0];
+								multiCast.sendAck(word);
 							}
 						}
+						// else
 						// logger.warning("ACK PARA MIM PROPRIO");
 					}
 
@@ -135,7 +137,8 @@ class Server implements Runnable {
 
 
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.warning("server: Error ocurred in Peer Server");
+					//e.printStackTrace();
 				}
 			}
 		} catch (Exception e) {

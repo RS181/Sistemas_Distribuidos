@@ -1,7 +1,11 @@
 package ds.assign.tom;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
@@ -13,8 +17,12 @@ import java.util.logging.Logger;
 public class MultiCast implements Runnable{
 
     // Peer that is going to send message
-    Peer currentPeer;
-    Logger logger;
+    private Peer currentPeer;
+    private Logger logger;
+
+    
+    private ArrayList<String> wordsList;
+
 
     int counter = 0;
 
@@ -32,9 +40,15 @@ public class MultiCast implements Runnable{
         // TODO frequency of 1 per second
         double lambda = 4.0;   // 4 events per minute
         poissonProcess = new PoissonProcess(lambda, rng);
-        
+
+        wordsList = new ArrayList<>();
+        loadWordsFromFile("ds/assign/tom/dictionary.txt");
     }
 
+    /**
+     * Send's a message to all neighbour peer's (including itself)
+     * @param msg
+     */
     private void sendData(String msg){
         List <PeerConnection> neighbours = currentPeer.neighbours;
         String senderTag = ":" + currentPeer.host + ":" + currentPeer.port;
@@ -50,7 +64,11 @@ public class MultiCast implements Runnable{
     }
 
 
-    public void sendAck(){
+    /**
+     * Send Acknowledge's regarding to a certain message to all neighbour peer's (including itself).
+     * @param msg
+     */
+    public void sendAck(String msg){
         List <PeerConnection> neighbours = currentPeer.neighbours;
         String senderTag = ":" + currentPeer.host + ":" + currentPeer.port;
         for (PeerConnection p : neighbours){
@@ -58,12 +76,12 @@ public class MultiCast implements Runnable{
             String host = p.getHost();
             int port = p.getPort();
             // logger.info("DEBUG: sending ACK to " + host + " " + port);
-            sendRequestToServer("ACK:"+ counter + senderTag, host, port);
+            sendRequestToServer("ACK:"+ msg + ":" + counter + senderTag, host, port);
         }
 
         // logger.info("DEBUG: sending ACK to " +currentPeer.host +" " + currentPeer.port);
         // Send a message to itself
-        sendRequestToServer("ACK:"+ counter + senderTag, currentPeer.host,Integer.parseInt(currentPeer.port));
+        sendRequestToServer("ACK:"+ msg + ":" +counter + senderTag, currentPeer.host,Integer.parseInt(currentPeer.port));
 
     }
 
@@ -97,12 +115,12 @@ public class MultiCast implements Runnable{
                 Thread.sleep((long)intervalTime);
 
                 // FOR EASY TESTING (REMOVE LATER)
-                //  Thread.sleep(10000);
+                Thread.sleep(10000);
 
-                String request = "TESTE";
+                String request = generateRandomRequest();
 
-                //just to test send of  one message 
-                if (counter < 1 && !currentPeer.port.equals("20000") && !currentPeer.port.equals("30000") && !currentPeer.port.equals("40000") && !currentPeer.port.equals("50000") && !currentPeer.port.equals("60000")){
+                //just to test send of  one message (by each Peer)
+                if (counter < 1 ){
                     synchronized (request){
                         sendData(request + ":" +counter);
                         counter++;
@@ -112,12 +130,35 @@ public class MultiCast implements Runnable{
 
 
             } catch (Exception e) {
-                // TODO: handle exception
-                e.printStackTrace();
+                //e.printStackTrace();
+                logger.warning("Muticast: Error ocurred in "+ currentPeer.host + " " + currentPeer.port);
             }
 
         }
 
+    }
+
+
+    private void loadWordsFromFile(String filePath) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) 
+                wordsList.add(line.trim());
+            
+            //logger.info("FINISHED LOADING DICTIONARY OF WORD'S");
+        } catch (Exception e) {
+            logger.warning("ERROR ocured while loading word's from dictionary");
+            // e.printStackTrace();
+        }
+    }
+
+    private String generateRandomRequest() {
+        Random random = new Random();
+        String newWord = wordsList.get(random.nextInt(wordsList.size()));
+
+        String request = String.format("%s", newWord);
+
+        return request;
     }
     
 }
