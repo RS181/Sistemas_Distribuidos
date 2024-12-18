@@ -1,0 +1,150 @@
+Dec 18, 2024 11:56:55 AM ds.assign.tom.MultiCast loadWordsFromFile
+INFO: FINISHED LOADING DICTIONARY OF WORD'S
+Dec 18, 2024 11:56:56 AM ds.assign.tom.MultiCast run
+INFO: Multicast : endpoint running at port 20000 ...
+Dec 18, 2024 11:56:56 AM ds.assign.tom.Server run
+INFO: server: endpoint running at port 20000 ...
+Dec 18, 2024 11:57:10 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:10 AM ds.assign.tom.Server run
+INFO: [MSG] Server received papey:0:localhost:40000
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: [MSG] Server received gearwheel:0:localhost:20000
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:gearwheel:1:localhost:40000
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:papey:0:localhost:60000
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:papey:1:localhost:20000
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:papey:0:localhost:30000
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:papey:0:localhost:50000
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:papey:0:localhost:10000
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:gearwheel:0:localhost:30000
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:gearwheel:0:localhost:60000
+Dec 18, 2024 11:57:11 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:12 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:gearwheel:0:localhost:50000
+Dec 18, 2024 11:57:12 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:12 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:gearwheel:0:localhost:10000
+Dec 18, 2024 11:57:14 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:14 AM ds.assign.tom.Server run
+INFO: [MSG] Server received preidentifying:0:localhost:50000
+Dec 18, 2024 11:57:14 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:14 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:preidentifying:0:localhost:10000
+Dec 18, 2024 11:57:14 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:14 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:preidentifying:0:localhost:30000
+Dec 18, 2024 11:57:14 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:14 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:preidentifying:1:localhost:20000
+Dec 18, 2024 11:57:14 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:14 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:preidentifying:0:localhost:60000
+Dec 18, 2024 11:57:14 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:14 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:preidentifying:1:localhost:40000
+Dec 18, 2024 11:57:21 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:21 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:torsades:0:localhost:10000
+Dec 18, 2024 11:57:21 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:21 AM ds.assign.tom.Server run
+INFO: [MSG] Server received torsades:0:localhost:30000
+Dec 18, 2024 11:57:21 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:21 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:torsades:1:localhost:40000
+Dec 18, 2024 11:57:21 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:21 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:torsades:1:localhost:20000
+Dec 18, 2024 11:57:21 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:21 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:torsades:0:localhost:60000
+Dec 18, 2024 11:57:21 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:21 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:torsades:1:localhost:50000
+Dec 18, 2024 11:57:24 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:24 AM ds.assign.tom.Server run
+INFO: [MSG] Server received centroacinar:0:localhost:10000
+Dec 18, 2024 11:57:24 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:24 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:centroacinar:1:localhost:20000
+Dec 18, 2024 11:57:24 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:24 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:centroacinar:1:localhost:30000
+Dec 18, 2024 11:57:24 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:24 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:centroacinar:1:localhost:50000
+Dec 18, 2024 11:57:25 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:25 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:centroacinar:1:localhost:40000
+Dec 18, 2024 11:57:25 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:25 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:centroacinar:0:localhost:60000
+Dec 18, 2024 11:57:47 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:47 AM ds.assign.tom.Server run
+INFO: [MSG] Server received fatuitous:0:localhost:60000
+Dec 18, 2024 11:57:47 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:47 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:fatuitous:1:localhost:40000
+Dec 18, 2024 11:57:47 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:47 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:fatuitous:1:localhost:50000
+Dec 18, 2024 11:57:47 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:47 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:fatuitous:1:localhost:10000
+Dec 18, 2024 11:57:47 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:47 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:fatuitous:1:localhost:30000
+Dec 18, 2024 11:57:47 AM ds.assign.tom.Server run
+INFO: server: new connection from 127.0.0.1
+Dec 18, 2024 11:57:47 AM ds.assign.tom.Server run
+INFO: [ACK] Server: received ACK:fatuitous:1:localhost:20000
