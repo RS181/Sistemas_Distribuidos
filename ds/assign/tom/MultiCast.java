@@ -40,7 +40,8 @@ public class MultiCast implements Runnable{
         //Intialize PoissonProcess
         Random rng = new Random();
         // TODO frequency of 1 per second
-        double lambda = 4.0;   // 4 events per minute
+        // double lambda = 4.0;   // 4 events per minute
+        double lambda = 60.0;   //60 events per minute
         poissonProcess = new PoissonProcess(lambda, rng);
 
         wordsList = new ArrayList<>();
@@ -126,12 +127,12 @@ public class MultiCast implements Runnable{
                 Thread.sleep((long)intervalTime);
 
                 // FOR EASY TESTING (REMOVE LATER)
-                Thread.sleep(10000);
+                //Thread.sleep(10000);
 
                 String request = generateRandomRequest();
 
                 //just to test send of  one message (by each Peer)
-                if (counter < 1 ){
+                // if (counter < 1 ){
                     synchronized (request){
                         // update local Lamport clock
                         lamportClock.increment();
@@ -146,7 +147,7 @@ public class MultiCast implements Runnable{
                         //REMOVER MAIS TARDE 
                         counter++;
                     }
-                }
+                // }
 
 
 

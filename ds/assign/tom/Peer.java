@@ -68,7 +68,6 @@ public class Peer {
 		Peer peer = new Peer(args[0],args[1],args);
 		System.out.printf("new peer @ host=%s\n", args[0]);
         
-
 		MultiCast multiCast = new MultiCast(peer);
 		new Thread(multiCast).start();
 
@@ -76,6 +75,8 @@ public class Peer {
 		Server server = new Server(args[0], Integer.parseInt(args[1]),multiCast, peer.logger);
 		new Thread(server).start();
 
+		QueueMonitor queueMonitor = new QueueMonitor(server.queue, args[0], Integer.parseInt(args[1]), peer.neighbours.size() + 1, peer.logger);
+		new Thread(queueMonitor).start();
 		
 	}
 }
@@ -127,34 +128,33 @@ class Server implements Runnable {
 					
 					String request = in.readLine();
 
-					//adjust local Lamport clock
-					int ts = getMessageTimestamp(request);
-					int Cj = Math.max(ts, multiCast.getLamportClock().getTime()) + 1;
-					multiCast.getLamportClock().setTime(Cj);
-
-
-
-					if (request.contains("ACK")){
-						logger.info("[ACK] Server: received " + request);
-					}
-					else {
-						logger.info("[MSG] Server received " + request);
-						// To avoid responding to an ACK with a ACK 
-						if (!request.split(":")[3].equals(String.valueOf(port))){
-							synchronized(request){
-								String word = request.split(":")[0];
-								multiCast.sendAck(word);
-							}
-						}
-						// else
-						// logger.warning("ACK PARA MIM PROPRIO");
-					}
-
-
-					
-					client.close();
-					
 					synchronized(queue){
+
+						//adjust local Lamport clock
+						int ts = getMessageTimestamp(request);
+						int Cj = Math.max(ts, multiCast.getLamportClock().getTime()) + 1;
+						multiCast.getLamportClock().setTime(Cj);
+
+
+
+						if (request.contains("ACK")){
+							logger.info("[ACK] Server: received " + request);
+						}
+						else {
+							logger.info("[MSG] Server received " + request);
+							// To avoid responding to an ACK with a ACK 
+							if (!request.split(":")[3].equals(String.valueOf(port))){
+								synchronized(request){
+									String word = request.split(":")[0];
+									multiCast.sendAck(word);
+								}
+							}
+							// else
+							// logger.warning("ACK PARA MIM PROPRIO");
+						}
+						
+						client.close();
+
 						// add message to priority queue
 						queue.add(request);
 					}
