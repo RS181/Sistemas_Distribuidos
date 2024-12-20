@@ -16,7 +16,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
-
+import java.util.Comparator;
 
 
 public class Peer {
@@ -87,7 +87,16 @@ class Server implements Runnable {
 	Logger logger;
 	MultiCast multiCast;
 
-	PriorityQueue <String> queue = new PriorityQueue<>(); 
+
+	// Custom comparator to sort strings based on the first integer in the format.
+	// In this case the first integer corresponds to LamportCLock
+	Comparator<String> comparator = (s1, s2) -> {
+		int num1 = extractFirstInteger(s1);
+		int num2 = extractFirstInteger(s2);
+		return Integer.compare(num1, num2);
+	};
+
+	PriorityQueue <String> queue = new PriorityQueue<>(comparator); 
 	
 
 	public Server(String host, int port,MultiCast multiCast ,Logger logger) throws Exception {
@@ -144,8 +153,15 @@ class Server implements Runnable {
 
 					
 					client.close();
+					
+					synchronized(queue){
+						// add message to priority queue
+						queue.add(request);
+					}
 
-					// TODO: add message to priority queue
+					
+					//NOTA:Imprimir diretamente uma PriorityQueue em Java usando System.out.println(priorityQueue) não garante que os elementos sejam exibidos em ordem 
+					//logger.info("LOCAL QUEUE = " + queue);
 
 
 				} catch (Exception e) {
@@ -170,5 +186,16 @@ class Server implements Runnable {
 		else 
 			return Integer.parseInt(msg.split(":")[1]);
 
+	}
+
+
+
+	// Method to extract the first integer  from the string.
+	private static int extractFirstInteger(String str) {
+		String[] parts = str.split(":");
+		if (parts[0].equals("ACK"))
+			return Integer.parseInt(parts[2]);
+		else
+			return Integer.parseInt(parts[1]);
 	}
 }
