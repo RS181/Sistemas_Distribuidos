@@ -18,6 +18,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
 
 
+
 public class Peer {
 	String host;
     String port;
@@ -86,7 +87,8 @@ class Server implements Runnable {
 	Logger logger;
 	MultiCast multiCast;
 
-	PriorityQueue <String> q = new PriorityQueue<>(); 
+	PriorityQueue <String> queue = new PriorityQueue<>(); 
+	
 
 	public Server(String host, int port,MultiCast multiCast ,Logger logger) throws Exception {
 		this.host = host;
@@ -116,6 +118,13 @@ class Server implements Runnable {
 					
 					String request = in.readLine();
 
+					//adjust local Lamport clock
+					int ts = getMessageTimestamp(request);
+					int Cj = Math.max(ts, multiCast.getLamportClock().getTime()) + 1;
+					multiCast.getLamportClock().setTime(Cj);
+
+
+
 					if (request.contains("ACK")){
 						logger.info("[ACK] Server: received " + request);
 					}
@@ -132,8 +141,11 @@ class Server implements Runnable {
 						// logger.warning("ACK PARA MIM PROPRIO");
 					}
 
-					client.close();
+
 					
+					client.close();
+
+					// TODO: add message to priority queue
 
 
 				} catch (Exception e) {
@@ -144,5 +156,19 @@ class Server implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+
+	/**
+	 * 
+	 * @param msg
+	 * @return the timestamp associated with a message (Ack or regular Msg)
+	 */
+	int getMessageTimestamp(String msg){
+		if(msg.contains("ACK"))
+			return Integer.parseInt(msg.split(":")[2]);
+		else 
+			return Integer.parseInt(msg.split(":")[1]);
+
 	}
 }

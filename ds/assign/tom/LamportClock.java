@@ -24,5 +24,4 @@ public class LamportClock {
         this.time++;
     }
 
-    
 }

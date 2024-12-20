@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 
+
 /**
  * Class that is reponsable for sending a message (data or ack) to every peer (including itself)
  */
@@ -19,6 +20,7 @@ public class MultiCast implements Runnable{
     // Peer that is going to send message
     private Peer currentPeer;
     private Logger logger;
+    private LamportClock lamportClock;
 
     
     private ArrayList<String> wordsList;
@@ -43,7 +45,16 @@ public class MultiCast implements Runnable{
 
         wordsList = new ArrayList<>();
         loadWordsFromFile("ds/assign/tom/dictionary.txt");
+
+        lamportClock = new LamportClock(0);
     }
+
+
+
+    public LamportClock getLamportClock() {
+        return lamportClock;
+    }
+
 
     /**
      * Send's a message to all neighbour peer's (including itself)
@@ -76,12 +87,12 @@ public class MultiCast implements Runnable{
             String host = p.getHost();
             int port = p.getPort();
             // logger.info("DEBUG: sending ACK to " + host + " " + port);
-            sendRequestToServer("ACK:"+ msg + ":" + counter + senderTag, host, port);
+            sendRequestToServer("ACK:"+ msg + ":" + lamportClock.getTime() + senderTag, host, port);
         }
 
         // logger.info("DEBUG: sending ACK to " +currentPeer.host +" " + currentPeer.port);
         // Send a message to itself
-        sendRequestToServer("ACK:"+ msg + ":" +counter + senderTag, currentPeer.host,Integer.parseInt(currentPeer.port));
+        sendRequestToServer("ACK:"+ msg + ":" + lamportClock.getTime() + senderTag, currentPeer.host,Integer.parseInt(currentPeer.port));
 
     }
 
@@ -122,7 +133,17 @@ public class MultiCast implements Runnable{
                 //just to test send of  one message (by each Peer)
                 if (counter < 1 ){
                     synchronized (request){
-                        sendData(request + ":" +counter);
+                        // update local Lamport clock
+                        lamportClock.increment();
+                        
+                        // build message with timestamp
+                        String msg = request + ":" + lamportClock.getTime();
+
+                        // send to all neighour peers
+                        sendData(msg);
+
+
+                        //REMOVER MAIS TARDE 
                         counter++;
                     }
                 }
