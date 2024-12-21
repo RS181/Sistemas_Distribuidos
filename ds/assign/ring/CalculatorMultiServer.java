@@ -35,6 +35,10 @@ public class CalculatorMultiServer {
 				// Waits for connection (with time limit) 
 				server.setSoTimeout((int) (TIMEOUT_MILLIS - (System.currentTimeMillis() - startTime)));
 				Socket client = this.server.accept();
+
+				//restart timer 
+				startTime = System.currentTimeMillis();
+
 				String clientAddress = client.getInetAddress().getHostAddress();
 				System.out.printf("\r\nnew connection from %s\n", clientAddress);
 				new Thread(new ConnectionHandler(clientAddress, client)).start();
@@ -42,7 +46,7 @@ public class CalculatorMultiServer {
 			catch(Exception e){
 				System.out.println("Timeout: Calculator server did not receive request in given time limit.\nCalculator server will Shutdown ....");
 				Thread.sleep(5000);
-				System.exit(0); // Encerrar o programa ou tomar outra ação
+				System.exit(0);
 			}
 		}
 	}
