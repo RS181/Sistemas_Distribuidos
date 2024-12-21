@@ -9,36 +9,33 @@
 
 # Comandos para testar no laboratorio
 
->**Nota**: segui o seguinte esquema para simular o toke ring
-![alt text](ring_lab_example.jpeg)
-
-+ No diretorio  (...)/Sistemas_Distribuidos, compilar 
++ No diretorio  (...)/Sistemas_Distribuidos, compilar (IMPORTANTE)
 
          $ javac ds/assign/ring/*.java
 
 + Executar o CalculatorMultiServer (porta default e 44444)
 
         SEM GUARDAR LOGS NUM FICHEIRO
-        $ java ds.assign.ring.CalculatorMultiServer l1215
+        $ java ds.assign.ring.CalculatorMultiServer l826
 
         COM GUARDAR LOGS NUM FICHEIRO
-        $ java ds.assign.ring.CalculatorMultiServer l1215 > ds/assign/ring/logs/CalculatorServer.txt
+        $ java ds.assign.ring.CalculatorMultiServer l826 > ds/assign/ring/logs/CalculatorServer.txt
 
 + Executar os Peer's (o utimo parametro representa o host calculator server)
         
-        Peer_1 $ java ds.assign.ring.Peer l1216 10000 l1214 20000 l1215
+        Peer_1 $ java ds.assign.ring.Peer l820 10000 l821 20000 l826
 
-        Peer_2 $ java ds.assign.ring.Peer l1214 20000 l1216 30000 l1215
+        Peer_2 $ java ds.assign.ring.Peer l821 20000 l822 30000 l826
 
-        Peer_3 $ java ds.assign.ring.Peer l1216 30000 l1214 40000 l1215
+        Peer_3 $ java ds.assign.ring.Peer l822 30000 l823 40000 l826
 
-        Peer_4 $ java ds.assign.ring.Peer l1214 40000 l1216 50000 l1215
+        Peer_4 $ java ds.assign.ring.Peer l823 40000 l824 50000 l826
 
-        Peer_5 $ java ds.assign.ring.Peer l1216 50000 l1216 10000 l1215
+        Peer_5 $ java ds.assign.ring.Peer l824 50000 l820 10000 l826
 
 + Injetar o Token num dos peers 
 
-             $ java ds.assign.ring.Token l1216 10000
+             $ java ds.assign.ring.Token l820 10000
 
 
   
