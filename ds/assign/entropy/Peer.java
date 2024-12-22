@@ -23,11 +23,35 @@ import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
 import java.util.stream.Collectors;
 
+/**
+ * Represents a Peer in a distributed system that synchronizes data 
+ * with its neighbors using a timestamp-based mechanism.
+ * 
+ * Each Peer listens for synchronization requests, merges timestamped data,
+ * and ensures that outdated data is removed. The Peer communicates with
+ * neighbors defined at initialization.
+ * 
+ * Usage example:
+ * <pre>
+ * java Peer localhost 22222 localhost 33333 localhost 44444 localhost 55555
+ * </pre>
+ * 
+ * 
+ * @see <a href="https://github.com/RS181/">Repository</a>
+ * @author Rui Santos
+ */
 public class Peer {
 	String host;
 	int port;
 	Logger logger;
 
+	/**
+     * Constructs a new Peer with the given host and port.
+     * Initializes a logger to record events for the Peer.
+     * 
+     * @param hostname the hostname of this Peer
+     * @param port     the port number of this Peer
+    */
 	public Peer(String hostname, String port) {
 		host = hostname;
 		this.port = Integer.parseInt(port);
@@ -42,16 +66,20 @@ public class Peer {
 		}
 	}
 
-	/**
-	 * args[0] -> Address of current peer
-	 * args[1] -> Port of local peer
-	 * args[i] -> Address of neighbour peer
-	 * args[i+1] -> Port of neighbour peer
-	 * e.g java Peer localhost 22222 localhost 33333 localhost 44444 localhost 55555
-	 * 
-	 * @param args
-	 * @throws Exception
-	 */
+    /**
+     * Main method for starting the Peer application.
+     * 
+     * Command-line arguments:
+     * <ul>
+     * <li>args[0] - Address of the current Peer</li>
+     * <li>args[1] - Port of the current Peer</li>
+     * <li>args[i] - Address of a neighboring Peer</li>
+     * <li>args[i+1] - Port of a neighboring Peer</li>
+     * </ul>
+     * 
+     * @param args the command-line arguments specifying Peer and neighbors
+     * @throws Exception if an error occurs during execution
+    */
 	public static void main(String[] args) throws Exception {
 		Peer peer = new Peer(args[0], args[1]);
 		System.out.printf("new peer host=%s @ %s\n", args[0], args[1]);
@@ -76,7 +104,8 @@ public class Peer {
 }
 
 /**
- * Deals with Syncronization requests
+ * Represents the server component of a Peer.
+ * Handles synchronization requests and data exchanges between Peers.
  */
 class Server implements Runnable {
 
@@ -90,11 +119,21 @@ class Server implements Runnable {
 	// value -> timestamp in UTC seconds (that the peer last registered itself)
 	Map<String, Long> data;
 
-	// Atributes of Peer we are going to connect (given by PeerConection)
+	// Neighbor information
 	PeerConnection neighbourInfo;
 	String nextHost;
 	int nextPort;
 
+
+	/**
+     * Constructs a Server to handle synchronization requests and responses.
+     * 
+     * @param host          the hostname of the current Peer
+     * @param port          the port number of the current Peer
+     * @param neighbourInfo the information about neighboring Peers
+     * @param logger        the logger to record server events
+     * @throws Exception if an error occurs during initialization
+    */
 	public Server(String host, int port, PeerConnection neighbourInfo, Logger logger) throws Exception {
 		this.host = host;
 		this.port = port;
@@ -119,45 +158,31 @@ class Server implements Runnable {
 					BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 					String request = in.readLine(); // Recebe o pedido
 
-					// Syncronized on data
 					synchronized (data) {
-
-						// logger.info("Server: "+host+" @" + port + " received = "+ request);
-						// logger.info("Origin host= " + getOriginHost(request) + " @" +
-						// getOriginPort(request));
 
 						// If this peer is the one that received syncronization request
 						if (isSyncronizationRequest(request)) {
 							int senderPort = getOriginPort(request);
+							logger.info("Received SYNC request from = [" + getOriginHost(request) + ",@"+ senderPort + "]");
 
-							logger.info(
-									"Received SYNC request from = [" + getOriginHost(request) + ",@"
-											+ senderPort + "]");
-
-							// Updates the Info of peer that we are going to send data set
-							// for syncronization
+							// Updates the Info of peer that we are going to send data set for syncronization
 							nextHost = getOriginHost(request);
 							nextPort = getOriginPort(request);
 
-							// update timestamp of itself (each Peer naturaly has the most recent timestamp
-							// of itself)
+							// update timestamp of itself (each Peer naturaly has the most recent timestamp of itself)
 							data = neighbourInfo.updateTimestampMap(data, port, host);
 
 							// Send the local Set to neigbour peer who asked for syncronization
 							sendData(data);
 
 						}
-						// If this peer is the one receiving the syncronization response
-						// that includes the sender's Set
+						// If this peer is the one receiving the syncronization response that includes the sender's Set
 						else if (isMessageForThisPeer(request)) {
-
-							// logger.info("DEBUG = " + request);
 
 							if (!request.contains("{}")) {
 								Map<String, Long> resultMap = parseMapFromString(request);
 								;
-								// update timestamp of itself (each Peer naturaly has the most recent timestamp
-								// of itself)
+								// update timestamp of itself (each Peer naturaly has the most recent timestamp of itself)
 								data = neighbourInfo.updateTimestampMap(data, port, host);
 
 								if (!resultMap.equals(data)) {
@@ -167,25 +192,19 @@ class Server implements Runnable {
 									// Merges current map and received map (to get the most recent timestamps)
 									data = mergeMapWithMaxValue(resultMap, data);
 
-									// Updates nextPort and nexthost of receving peer, to
-									// send its set to sender peer
+									// Updates nextPort and nexthost of receving peer, to send its set to sender peer
 									nextHost = getOriginHost(request);
 									nextPort = getOriginPort(request);
-
-									// logger.info("DEBUG nextHost = " + nextHost);
-									// logger.info("DEBUG nextPOrt = " + nextPort);
 
 									logger.info("Server: @" + port + " local map after MERGE : " + data);
 
 									// To achieve the same Set after a syncronization betwen peer's
 									// the receiving peer must send it's set to sender peer
 									sendData(data);
-
 								}
 							}
 						}
 					}
-
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -195,7 +214,12 @@ class Server implements Runnable {
 		}
 	}
 
-	private void sendData(Map aMap) {
+	/**
+     * Sends the local data map to the next Peer in the synchronization chain.
+     * 
+     * @param aMap the map of timestamps and Peer data
+     */
+	private void sendData(Map<String, Long>  aMap) {
 		try {
 
 			/*
@@ -233,7 +257,7 @@ class Server implements Runnable {
 
 		String set = sc.next();
 
-		// Remove "{" e "}"
+		// Removes "{" and "}"
 		String content = set.substring(1, set.length() - 1).trim();
 
 		Map<String, Long> result = new HashMap<>();
@@ -258,19 +282,18 @@ class Server implements Runnable {
 	 * @param b
 	 * @return the result of merging map a and b
 	 *  NOTES:
-	 *  	-> We choose the peer wich has the highest timestamp, when doing 
-	 * 		the merge,to ensure we have the most recent information)
-	 * 
-	 * 		-> Also we check if any entry in map 'a' or 'b' has peer timestamp
-	 * 		that is outdated (in this cause we considered outdated a timestamp
-	 * 		that difer's 300s or 5 min from the current timestamo) and remove it
-	 * 		from map 
+	 *  -> We choose the peer wich has the highest timestamp, when doing 
+	 * 	the merge,to ensure we have the most recent information)
+	 *
+	 * 	-> Also we check if any entry in map 'a' or 'b' has peer timestamp
+	 * 	that is outdated (in this cause we considered outdated a timestamp
+	 * 	that difer's 300s or 5 min from the current timestamo) and remove it
+	 * 	from map 
 	 */
 	public Map<String, Long> mergeMapWithMaxValue(Map<String, Long> a, Map<String, Long> b) {
 
 		// Create a new map that is going to represent the merged map of 'a' and 'b'
 		Map<String, Long> mergedMap = new HashMap<>();
-
 
 		// For loop's that merge both maps (and check for outdated entries)
 		
@@ -330,10 +353,9 @@ class Server implements Runnable {
 	 * 
 	 * @param request
 	 *  if (request is a syn request)
-	 *  request = SYNC-DATA:port_of_sender:hostname_of_sender
+	 *  	request = SYNC-DATA:port_of_sender:hostname_of_sender
 	 *  if (request came from senddata())
-	 *  request
-	 *  data:sender_peer_port:sender_peer_host:receiving_peer_port:receiving_peer_host
+	 *  	request = data:sender_peer_port:sender_peer_host:receiving_peer_port:receiving_peer_host
 	 * @return port that originated this request
 	 */
 	private int getOriginPort(String request) {
@@ -349,10 +371,9 @@ class Server implements Runnable {
 	 * 
 	 * @param request
 	 *  if (request is a syn request)
-	 *  request = SYNC-DATA:port_of_sender:hostname_of_sender
+	 *  	request = SYNC-DATA:port_of_sender:hostname_of_sender
 	 *  if (request came from senddata())
-	 *  request
-	 *  data:sender_peer_port:sender_peer_host:receiving_peer_port:receiving_peer_host
+	 *  	request = data:sender_peer_port:sender_peer_host:receiving_peer_port:receiving_peer_host
 	 * @return hostname that originated this request
 	 */
 	private String getOriginHost(String request) {

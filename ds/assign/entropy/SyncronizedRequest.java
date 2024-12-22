@@ -8,6 +8,15 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+
+/**
+ * Handles synchronized requests in a peer-to-peer network using a Poisson process 
+ * to determine event intervals. This class implements the Runnable interface to 
+ * support concurrent execution.
+ * 
+ * @see <a href="https://github.com/RS181/">Repository</a>
+ * @author Rui Santos
+ */
 public class SyncronizedRequest implements Runnable{
 
     private  PoissonProcess poissonProcess = null;
@@ -23,7 +32,14 @@ public class SyncronizedRequest implements Runnable{
     private PeerConnection neighbourInfo;
 
     
-
+    /**
+     * Constructs a SyncronizedRequest instance with the specified parameters.
+     *
+     * @param host          the hostname of the local peer
+     * @param localPort     the port of the local peer
+     * @param neighbourInfo the PeerConnection object containing neighbor information
+     * @param logger        the Logger for logging activity
+     */
     public SyncronizedRequest(String host,int localPort,PeerConnection neighbourInfo , Logger logger){
         this.host = host;
         this.localPort = localPort;
@@ -37,6 +53,11 @@ public class SyncronizedRequest implements Runnable{
 
     }
 
+    /**
+     * Runs the synchronized request logic in a continuous loop. 
+     * A random neighbor is selected periodically based on the Poisson process, 
+     * and a synchronization request is sent to the selected peer.
+     */
     @Override
     public void run() {
         logger.info("Started SyncronizedRequest on @"+localPort);
@@ -47,25 +68,17 @@ public class SyncronizedRequest implements Runnable{
             try {
                 Thread.sleep((long)intervalTime);
 
-                
                 synchronized (neighbourInfo){
-                    //logger.info("DEBUG -> @" + localPort + " neighours= " + neighbourInfo.getNeighbours() );
-                    //format: "hostname:port"
-                    // choose a random neighbour peer to do Syncronization
+                    // Select a random neighbor for synchronization
                     String n = neighbourInfo.chooseRandomNeighbour();
                     
                     Scanner sc = new Scanner(n).useDelimiter(":");
                     destinationHost = sc.next();
                     destinationPort = Integer.parseInt(sc.next());
                 }
-            
                 
-                
-                //send sincronization request to Peer at destinationHost @destinationPort
+                // Send sincronization request to Peer at destinationHost @destinationPort
                 sendRequestToServer("SYNC-DATA");
-
-                // REMOVER SO ESTA AQUI PARA FACILTIAR VISUALIZACAO
-                //Thread.sleep(3000);
 
             }catch (Exception e){
                 e.printStackTrace(); 
@@ -74,40 +87,23 @@ public class SyncronizedRequest implements Runnable{
         }
     }
     
-    
     /**
-     * @param request
-     * @param serverport
+     * Sends a synchronization request to the destination peer.
+     *
+     * @param request the request message to send
      */
     public void sendRequestToServer(String request) {
 
         try{
-            /*
-             * make connection
-             */
+
             Socket socket = new Socket(InetAddress.getByName(destinationHost), destinationPort);
-
-			/*
-			 * prepare socket output channel
-			 */
             PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
-            
-            /*
-             * send syncronization request
-             */
-
             out.println(request + ":" + localPort + ":" + host);
             out.flush();
-
-            /*
-             * close connection
-             */
             socket.close();
 
         } catch (Exception e){
-            //e.printStackTrace();
             logger.warning("Server: error ocured while sending SYNC request to "+destinationHost+" " + destinationPort);
         }
     }
-    
 }
