@@ -1,12 +1,3 @@
-# TODO (o que falta para completar este trabalho)
-
-+ Testar com maquinas do laboratorio (um peer em cada maquina)
-
-+ Tratar das excessoes (como peer nao ligado ou desligou-se, e por uma mensagem e dizer que nao esta ligado, invez de aparece excessao).TRATAR DA EXCESSAO QUE APARECE NOS LABORITORIOS RELATIVAMENTE AOS LOGS
-
-
-
-
 # Comandos para testar no laboratorio
 
 + No diretorio  (...)/Sistemas_Distribuidos, compilar (IMPORTANTE)
