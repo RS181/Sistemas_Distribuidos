@@ -10,8 +10,15 @@ import java.io.InputStreamReader;
 
 
 /**
- * A thread that generates a random request and sends it 
- * to a given Peer (basicaly acts as a client)
+ * A thread that generates random requests based on a Poisson process
+ * and sends them to a given Peer. Acts as a client that generates operations
+ * for processing.
+ * 
+ * This class is responsible for periodically creating and queuing operations
+ * in the Peer server's queue.
+ * 
+ * @see <a href="https://github.com/RS181/">Repository</a>
+ * @author Rui Santos
  */
 public class RequestGenerator implements Runnable{
 
@@ -24,11 +31,12 @@ public class RequestGenerator implements Runnable{
 
    
     /**
-     * All atributes are realated to the Peer that started this RequesteGenarator
-     * @param host      --> Peer host name 
-     * @param localPort --> Peer local port
-     * @param logger    --> Peer loger
-     * @param server    --> Peer Server 
+     * Constructs a RequestGenerator instance for a Peer.
+     * 
+     * @param host      the hostname of the Peer that owns this RequestGenerator
+     * @param localPort the local port of the Peer
+     * @param logger    the logger instance used by the Peer for logging events
+     * @param server    the Peer server where requests will be queued
      */
     public RequestGenerator (String host,int localPort, Logger logger,Server server){
         this.host = host;
@@ -36,13 +44,17 @@ public class RequestGenerator implements Runnable{
         this.logger = logger;
         this.server = server;
 
-        //Intialize PoissonProcess
+        //Intialize PoissonProcess with an average of 4 events per minute
         Random rng = new Random();
         double lambda = 4.0;   // 4 events per minute
         poissonProcess = new PoissonProcess(lambda, rng);
     }
 
 
+    /**
+     * Continuously generates random requests at intervals determined by a Poisson process.
+     * Each request is added to the Peer server's operation queue.
+     */
     @Override
     public void run() {
         while (true) {
@@ -52,35 +64,22 @@ public class RequestGenerator implements Runnable{
                 Thread.sleep((long)intervalTime);
                 String request = generateRandomRequest();
                 
-                //Use the synchronized modifier to prevent race conditions between threads.
-                //Notice that we passed a parameter request to the synchronized block. 
-                //This is the monitor object. The code inside the block gets synchronized 
-                //on the monitor object. Simply put, only one thread 
-                //per monitor object can execute inside that code block (to avoid adding the same request
-                //to the queue of the peer's server)
+                // Synchronize the request addition to avoid race conditions
                 synchronized(request){
                     server.addOperations(request);
-
                 }
-
-
-
             }catch (Exception e){
                 e.printStackTrace(); 
             }
-
         }
     }
 
-
-
-
     /**
+     * Generates a random mathematical operation request.
      * 
-     * @return a String of a request in the format
-     * "operation:x:y"
-     * where x and y are double's
-     * 
+     * @return a request string in the format "operation:x:y", 
+     *         where `operation` is one of {"add", "sub", "mul", "div"} 
+     *         and `x` and `y` are randomly generated doubles.
      */
     private String generateRandomRequest() {
 
@@ -95,7 +94,4 @@ public class RequestGenerator implements Runnable{
 
         return  operation + ":" + x + ":" + y;
     }
-    
-
-
 }

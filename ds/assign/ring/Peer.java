@@ -17,12 +17,26 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
+/**
+ * Represents a single Peer in a token ring network.
+ * The Peer acts as both a client and a server, communicating with other peers
+ * and performing operations in case it has token.
+ *
+ * @see <a href="https://github.com/RS181/">Repository</a>
+ * @author Rui Santos
+ */
 public class Peer {
     String host;
     String port;
     Logger logger;
-    String token = ""; // Representa o token, inicialmente vazio
+    String token = ""; 
 
+    /**
+     * Constructs a Peer instance.
+     *
+     * @param host the hostname of this Peer
+     * @param port the port of this Peer
+    */
     public Peer(String host, String port) {
         this.host = host;
         this.port = port;
@@ -39,16 +53,17 @@ public class Peer {
 
     /**
      * 
-     * @param args
-     *             args[0] -> this Peer hostname
-     *             args[1] -> this Peer port
-     *             args[2] -> hostname of Peer we want to connect
-     *             args[3] -> port of Peer we want to connect
-     *             args[4] -> hostname of calculator server
-     *             e.g
-     *             t1$ java Peer localhost 5000 localhost 6000
-     *             t2$ java Peer localhost 6000 localhost 5000
-     * @throws Exception
+     * @param args  args Command-line arguments:
+     * args[0] -> this Peer hostname
+     * args[1] -> this Peer port
+     * args[2] -> hostname of Peer we want to connect
+     * args[3] -> port of Peer we want to connect
+     * args[4] -> hostname of calculator server
+     * 
+     * Example usage:
+     * java Peer localhost 5000 localhost 6000
+     * 
+     * @throws Exception if an error occurs during execution
      */
     public static void main(String[] args) throws Exception {
         Peer peer = new Peer(args[0], args[1]);
@@ -63,17 +78,17 @@ public class Peer {
         Server server = new Server(args[0], Integer.parseInt(args[1]), args[2], Integer.parseInt(args[3]),args[4] ,peer.logger);
         new Thread(server).start();
 
-        // Start the RequestGenarator that genartes a request for the server
-        // with an average frequency of 4 events per minute
+        // Start the RequestGenarator
         RequestGenerator requestGenerator = new RequestGenerator(args[0],Integer.parseInt(args[1]),peer.logger,server);
         new Thread(requestGenerator).start();
     }
 }
 
-/**
- * 
- */
 
+/**
+ * Server class representing the behavior of a Peer as a server.
+ * Handles communication with other peers and forwards operations to the calculator server.
+ */
 class Server implements Runnable {
     // Atributes of current Peer
     ServerSocket server;
@@ -91,7 +106,17 @@ class Server implements Runnable {
     String calculatorServerAddress;
     
 
-
+    /**
+     * Constructs a Server instance.
+     *
+     * @param host the hostname of this Peer
+     * @param port the port of this Peer
+     * @param nextHost the hostname of the next Peer
+     * @param nextPort the port of the next Peer
+     * @param calculatorServerAddress the hostname of the calculator server
+     * @param logger the logger instance for logging events
+     * @throws Exception if an error occurs during server initialization
+     */    
     public Server(String host, int port, String nextHost, int nextPort,String calculatorServerAddress ,Logger logger) throws Exception {
         this.host = host;
         this.port = port;
@@ -103,8 +128,9 @@ class Server implements Runnable {
     }
 
     /**
-     * Add's operation to local server Queue
-     * @param operation
+     * Add's operation to local server's Queue
+     * 
+     * @param operation operation the operation to be added
      */
     public void addOperations(String operation) {
         operations.add(operation);
@@ -118,9 +144,7 @@ class Server implements Runnable {
             long startTime = System.currentTimeMillis();
 
             while (true) {
-                // O peer não tem o token, espera pelo token
                 logger.info("client @" + host + " waiting for token...");
-
 
                 try {
                     // 1. Waits for connection (with time limit) 
@@ -142,14 +166,8 @@ class Server implements Runnable {
 
                 //2. Checks if current peer has token
                 if (receivedToken.equals("Token")) {
-                    startTime = System.currentTimeMillis(); // Resetar o tempo porque o token foi recebido
-                    
-                    //Use the synchronized modifier to prevent race conditions between threads
-                    //Notice that we passed a parameter operations to the synchronized block. 
-                    //This is the monitor object. The code inside the block gets synchronized 
-                    //on the monitor object. Simply put, only one thread 
-                    //per monitor object can execute inside that code block (to avoid diferences of
-                    //the content in operations queue)
+                    startTime = System.currentTimeMillis(); // Reset time because it received token
+           
                     synchronized(operations){
 
                         //2.1 Send all command's in operation to CalculatorMultiServer
@@ -159,85 +177,52 @@ class Server implements Runnable {
                             logger.info("client @" + port + " RECEIVED result from server: " + result);
                         }
 
-                        // Comentar no fim (so serve para facilitar a  visualizacao do funcionamento)
+                        // Just to make the visualization more easy
                         Thread.sleep(5000);
                     }
-
-                    
-                    
 
                     // 2.2 Send token to neighbour peer
                     try {
                         Socket socket = new Socket(nextHost, nextPort);
                         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-
                         out.println("Token");
                         out.flush();
-
                         socket.close();
-                        // reset token
-                        receivedToken = null;
-                       
-
+                        receivedToken = null; // reset token
                         logger.info("client @" + host + " sent the token to peer at port " + nextPort);
-
                     } catch (Exception e) {
                         System.out.printf("Connection between %s @%s and %s @%s FAILED\n", host, port, nextHost,
                                 nextPort);
                     }
-
                 } 
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     /**
-     * @param serverHost
-     * @param serverPort
-     * @param command
-     * @return
+     * Connects to the calculator server and sends a command.
+     *
+     * @param serverHost the hostname of the calculator server
+     * @param serverPort the port of the calculator server
+     * @param command the command to be executed
+     * @return the result of the command
      */
     public String connectToCalculatorMultiServer(String serverHost, int serverPort, String command) {
         String result = "";
-
         try {
-            /*
-             * create comunication Socket
-             */
             Socket socket = new Socket(InetAddress.getByName(serverHost), serverPort);
-
-            /*
-             * prepare socket I/O channels
-             */
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-            /*
-             * send command and port of this client
-             */
             out.println(command + ":" + port);
             out.flush();
-
-            /*
-             * receive result
-             */
             result = in.readLine();
-
-            /*
-             * close connection
-             */
             socket.close();
         } catch (Exception e) {
             logger.info("client @" + port + " failed to connect to calculator server.");
             e.printStackTrace();
-
         }
-
         return result;
     }
-
-
 }
