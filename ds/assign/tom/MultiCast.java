@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -29,6 +30,7 @@ public class MultiCast implements Runnable{
     private Peer currentPeer;
     private Logger logger;
     private LamportClock lamportClock;
+    private PriorityQueue <String> queue;
 
     // List of words loaded from a dictionary file
     private ArrayList<String> wordsList;
@@ -46,7 +48,7 @@ public class MultiCast implements Runnable{
 
         //Intialize PoissonProcess
         Random rng = new Random();
-        double lambda = 60.0;   //60 events per minute
+        double lambda = 4.0;   //60 events per minute (ESTE CAUSA ALGUNS PROBLEMAS)
         poissonProcess = new PoissonProcess(lambda, rng);
 
         // Load words from dictionary file
@@ -57,6 +59,9 @@ public class MultiCast implements Runnable{
         lamportClock = new LamportClock(0);
     }
 
+    public void setQueue(PriorityQueue<String> queue) {
+        this.queue = queue;
+    }
 
 
     public LamportClock getLamportClock() {
@@ -144,17 +149,15 @@ public class MultiCast implements Runnable{
 
                 String request = generateRandomRequest();
 
-                    synchronized (request){
-                        // Update local Lamport clock
-                        lamportClock.increment();
-                        
-                        // Build message with timestamp
-                        String msg = request + ":" + lamportClock.getTime();
-
-                        // Send to all neighour peers
-                        sendData(msg);
-
-                    }
+                synchronized (queue){
+                    // Update local Lamport clock
+                    lamportClock.increment();
+                    
+                    // Build message with timestamp
+                    String msg = request + ":" + lamportClock.getTime();
+                    // Send to all neighour peers
+                    sendData(msg);
+                }
 
             } catch (Exception e) {
                 logger.warning("Muticast: Error ocurred in "+ currentPeer.host + " " + currentPeer.port);

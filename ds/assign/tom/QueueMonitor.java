@@ -91,7 +91,7 @@ class QueueMonitor implements Runnable {
                         else{ 
                             // Deliver the message to Pj (in this case, write to a file)
                             try(BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true));){
-                                String word = m.split(":")[0];
+                                String word = m.split(":")[0] + ":" + m.split(":")[1];
                                 // writer.write(m);
                                 writer.write(word);
                                 writer.newLine();
@@ -103,7 +103,7 @@ class QueueMonitor implements Runnable {
                     }
 
                 }
-                Thread.sleep(100); //  Check every 100ms
+                Thread.sleep(300); //  Check every 300ms
             }
         } catch (Exception e) {
             logger.warning("QueueMonitor interrupted.");

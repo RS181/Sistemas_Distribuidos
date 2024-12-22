@@ -119,7 +119,18 @@ class Server implements Runnable {
 	Comparator<String> comparator = (s1, s2) -> {
 		int num1 = extractFirstInteger(s1);
 		int num2 = extractFirstInteger(s2);
-		return Integer.compare(num1, num2);
+
+		// Compares Lamport clock's
+		if (num1 != num2) {
+			return Integer.compare(num1, num2);
+		}
+
+		// Extract  PID (IP and  Port) of messages
+		String pid1 = extractPid(s1);
+		String pid2 = extractPid(s2);
+
+		// Compare in lexicographic order
+		return pid1.compareTo(pid2);
 	};
 
 	// Priority queue for managing received messages based on Lamport timestamps
@@ -142,7 +153,12 @@ class Server implements Runnable {
 		// Increased backlog to 50 to add length to the queue of incoming connections.
 		// I think 6 would be the minimum, because we have 6 peer's but i put a bigger number
 		// to guarante that we don't have problems
+
 		server = new ServerSocket(port, 50, InetAddress.getByName(host));
+
+
+
+		multiCast.setQueue(queue);
 	}
 
 	/**
@@ -222,11 +238,29 @@ class Server implements Runnable {
      * @param str the message string
      * @return the extracted integer
      */
-	private static int extractFirstInteger(String str) {
-		String[] parts = str.split(":");
+	private static int extractFirstInteger(String msg) {
+		String[] parts = msg.split(":");
 		if (parts[0].equals("ACK"))
 			return Integer.parseInt(parts[2]);
 		else
 			return Integer.parseInt(parts[1]);
+	}
+
+
+	/**
+	 * Extracts PID in a given msg
+	 * 
+	 * 
+	 * @param message
+	 * @return the extracted PID
+	 */
+	private String extractPid(String msg) {
+    	// Identifica se é um ACK ou mensagem direta e separa o PID
+    	String[] parts = msg.split(":");
+    	if (msg.startsWith("ACK")) {
+    	    return parts[3] + ":" + parts[4]; 
+    	} else {
+    	    return parts[2] + ":" + parts[3]; 
+    	}
 	}
 }
