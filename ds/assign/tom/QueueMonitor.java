@@ -39,10 +39,10 @@ class QueueMonitor implements Runnable {
 
     /**
      * Constructs a QueueMonitor to monitor a message queue, check for messages from all peers, 
+     * @param host the host of the peer this monitor is associated with
      * and deliver them by writing to an output file.
      * 
      * @param queue the priority queue containing the messages to be monitored
-     * @param host the host of the peer this monitor is associated with
      * @param port the port of the peer this monitor is associated with
      * @param numberOfPeers the total number of peers in the network
      * @param logger the logger to log important events, warnings, and errors

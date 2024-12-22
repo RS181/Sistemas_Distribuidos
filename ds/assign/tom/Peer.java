@@ -154,7 +154,9 @@ class Server implements Runnable {
 		// I think 6 would be the minimum, because we have 6 peer's but i put a bigger number
 		// to guarante that we don't have problems
 
-		server = new ServerSocket(port, 50, InetAddress.getByName(host));
+		// WHEN THE 2ND ARGUMENT BELLOW IS VERY HIGH, IT WORK'S
+
+		server = new ServerSocket(port, 10000, InetAddress.getByName(host));
 
 
 

@@ -48,7 +48,7 @@ public class MultiCast implements Runnable{
 
         //Intialize PoissonProcess
         Random rng = new Random();
-        double lambda = 4.0;   //60 events per minute (ESTE CAUSA ALGUNS PROBLEMAS)
+        double lambda = 60.0;   //60 events per minute (ESTE CAUSA ALGUNS PROBLEMAS)
         poissonProcess = new PoissonProcess(lambda, rng);
 
         // Load words from dictionary file
