@@ -13,7 +13,15 @@ import java.util.logging.Logger;
 
 
 /**
- * Class that is reponsable for sending a message (data or ack) to every peer (including itself)
+ * The MultiCast class is responsible for sending messages (both data and acknowledgments) to all peers 
+ * in a peer-to-peer network, including itself. It uses a Poisson process to determine the timing of 
+ * message transmissions, ensuring that messages are sent at a controlled rate.
+ * 
+ * <p>This class runs continuously in a separate thread and generates random requests to be sent to peers,
+ * while also managing the sending of acknowledgments in response to these messages.</p>
+ * 
+ * @see <a href="https://github.com/RS181/">Repository</a>
+ * @author Rui Santos
  */
 public class MultiCast implements Runnable{
 
@@ -22,31 +30,30 @@ public class MultiCast implements Runnable{
     private Logger logger;
     private LamportClock lamportClock;
 
-    
+    // List of words loaded from a dictionary file
     private ArrayList<String> wordsList;
-
-
-    int counter = 0;
-
-
     private  PoissonProcess poissonProcess = null;
 
-
-
+    /**
+     * Constructs a MultiCast instance for the given Peer. Initializes the Poisson process for event 
+     * generation, loads the dictionary of words, and initializes the Lamport clock.
+     *
+     * @param peer the Peer instance that will be responsible for sending messages
+     */
     public MultiCast (Peer peer ){
         this.currentPeer = peer;
         this.logger = peer.logger;
 
         //Intialize PoissonProcess
         Random rng = new Random();
-        // TODO frequency of 1 per second
-        // double lambda = 4.0;   // 4 events per minute
         double lambda = 60.0;   //60 events per minute
         poissonProcess = new PoissonProcess(lambda, rng);
 
+        // Load words from dictionary file
         wordsList = new ArrayList<>();
         loadWordsFromFile("ds/assign/tom/dictionary.txt");
 
+        // Initialize Lamport clock
         lamportClock = new LamportClock(0);
     }
 
@@ -58,8 +65,9 @@ public class MultiCast implements Runnable{
 
 
     /**
-     * Send's a message to all neighbour peer's (including itself)
-     * @param msg
+     * Sends a data message to all neighboring peers, including itself.
+     * 
+     * @param msg the message to be sent
      */
     private void sendData(String msg){
         List <PeerConnection> neighbours = currentPeer.neighbours;
@@ -75,10 +83,10 @@ public class MultiCast implements Runnable{
         sendRequestToServer(msg + senderTag,currentPeer.host, Integer.parseInt(currentPeer.port));
     }
 
-
     /**
-     * Send Acknowledge's regarding to a certain message to all neighbour peer's (including itself).
-     * @param msg
+     * Sends an acknowledgment message regarding a specific message to all neighboring peers, including itself.
+     * 
+     * @param msg the original message to acknowledge
      */
     public void sendAck(String msg){
         List <PeerConnection> neighbours = currentPeer.neighbours;
@@ -91,13 +99,18 @@ public class MultiCast implements Runnable{
             sendRequestToServer("ACK:"+ msg + ":" + lamportClock.getTime() + senderTag, host, port);
         }
 
-        // logger.info("DEBUG: sending ACK to " +currentPeer.host +" " + currentPeer.port);
         // Send a message to itself
         sendRequestToServer("ACK:"+ msg + ":" + lamportClock.getTime() + senderTag, currentPeer.host,Integer.parseInt(currentPeer.port));
 
     }
 
-
+    /**
+     * Sends a request message to Peer server located at the specified host and port.
+     * 
+     * @param request the message to be sent
+     * @param serverHost the host address of the server
+     * @param serverPort the port of the server
+     */
     private void sendRequestToServer(String request, String serverHost, int serverPort){
         try {
 
@@ -115,6 +128,9 @@ public class MultiCast implements Runnable{
         }
     }
 
+    /**
+     * The run method continuously generates messages using the Poisson process and sends them to all peers.
+     */
     @Override   
     public void run() {
         logger.info("Multicast : endpoint running at port " + currentPeer.port + " ...");
@@ -126,33 +142,21 @@ public class MultiCast implements Runnable{
             
                 Thread.sleep((long)intervalTime);
 
-                // FOR EASY TESTING (REMOVE LATER)
-                //Thread.sleep(10000);
-
                 String request = generateRandomRequest();
 
-                //just to test send of  one message (by each Peer)
-                // if (counter < 1 ){
                     synchronized (request){
-                        // update local Lamport clock
+                        // Update local Lamport clock
                         lamportClock.increment();
                         
-                        // build message with timestamp
+                        // Build message with timestamp
                         String msg = request + ":" + lamportClock.getTime();
 
-                        // send to all neighour peers
+                        // Send to all neighour peers
                         sendData(msg);
 
-
-                        //REMOVER MAIS TARDE 
-                        counter++;
                     }
-                // }
-
-
 
             } catch (Exception e) {
-                //e.printStackTrace();
                 logger.warning("Muticast: Error ocurred in "+ currentPeer.host + " " + currentPeer.port);
             }
 
@@ -160,7 +164,11 @@ public class MultiCast implements Runnable{
 
     }
 
-
+    /**
+     * Loads words from a dictionary file to be used for generating random messages.
+     * 
+     * @param filePath the path to the dictionary file
+     */
     private void loadWordsFromFile(String filePath) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -170,10 +178,14 @@ public class MultiCast implements Runnable{
             //logger.info("FINISHED LOADING DICTIONARY OF WORD'S");
         } catch (Exception e) {
             logger.warning("ERROR ocured while loading word's from dictionary");
-            // e.printStackTrace();
         }
     }
 
+    /**
+     * Generates a random request message from the dictionary of words.
+     * 
+     * @return a randomly selected word
+     */
     private String generateRandomRequest() {
         Random random = new Random();
         String newWord = wordsList.get(random.nextInt(wordsList.size()));
