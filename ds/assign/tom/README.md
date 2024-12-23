@@ -1,13 +1,3 @@
-# TODO
-
-
-1. Each peer sends a random word according to a Poisson distribution with a frequency of 1 per second
-
-2. Fazer ajustes para utilizar relogios de lampart no envio e rececao de mensagens (neste momento nao preocupar com priority queue)
-
-3. Implementar priorityqueue 
-
-
 # Notas
 1. cada vez que enviamos  incrementamos o relogio de lampart (na cabeca temos a mensagem mais antiga e na cauda temos a mensagem mais recente)
 
@@ -17,11 +7,6 @@
 3. professor nao esta disponivel no dia 23/24/25 mas ele disse para retirar duvidas basta envia email e deixar fazer zoom 
 
 > PARA MAIS DETALHES SOBRE TOTALY ORDERED MULTICAST COM RELOGIOS DE LAMPART VER A SECCAO Totaly Ordered Multicast no pdf LogicalClocks.pdf
-
-
-> Tentar fazer com que a troca de mensagens funcione corretamente antes de avancar mais (estou a ter problemas no ack)
-
-
 
 # Comandos para testar no laboritorio (TODO)
 
@@ -34,9 +19,24 @@
 + Executar os Peer's
 
 ```bash
-    # TODO
-```
+    # Peer 1
+    java ds.assign.tom.Peer L820 10000 L821 20000 L822 30000 L823 40000 L824 50000 L826 60000   
 
+    # Peer 2
+    java ds.assign.tom.Peer L821 20000 L820 10000 L822 30000 L823 40000 L824 50000 L826 60000   
+
+    # Peer 3
+    java ds.assign.tom.Peer L822 30000 L820 10000 L821 20000 L823 40000 L824 50000 L826 60000   
+
+    # Peer 4
+    java ds.assign.tom.Peer L823 40000 L820 10000 L821 20000 L822 30000 L824 50000 L826 60000   
+
+    # Peer 5
+    java ds.assign.tom.Peer L824 50000 L820 10000 L821 20000 L822 30000 L823 40000 L826 60000 
+
+    # Peer 6
+    java ds.assign.tom.Peer L826 60000 L820 10000 L821 20000 L822 30000 L823 40000 L824 50000 ```
+```
 
 # Comandos para testar localmente
 
