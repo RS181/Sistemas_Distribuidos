@@ -88,6 +88,10 @@ public class Peer {
 		Peer peer = new Peer(args[0],args[1],args);
 		System.out.printf("new peer @ host=%s\n", args[0]);
         
+		// Wait for READY injection (to guarante each Peer start's each Thread Aprox. at same time)
+		waitForInjectorReady(peer.host, Integer.parseInt(peer.port), peer.logger);
+
+
 		MultiCast multiCast = new MultiCast(peer);
 		new Thread(multiCast).start();
 
@@ -98,6 +102,32 @@ public class Peer {
 		QueueMonitor queueMonitor = new QueueMonitor(server.queue, args[0], Integer.parseInt(args[1]), peer.neighbours.size() + 1, peer.logger);
 		new Thread(queueMonitor).start();
 		
+	}
+
+	/**
+	 * Wait's for  READY signal from injetor .
+	 *
+	 * @param host   Host do peer.
+	 * @param port   Porta do peer.
+	 * @param logger Logger para registrar eventos.
+	 */
+	private static void waitForInjectorReady(String host, int port, Logger logger) {
+	    try (ServerSocket serverSocket = new ServerSocket(port + 1000)) { 	       //Wait's in a diferent port that the peer server 
+			logger.info("Peer waiting for READY signal on port " + (port + 1000)); 
+	        try (Socket socket = serverSocket.accept();
+	             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+
+	            String message = in.readLine();
+	            if ("READY".equals(message)) {
+	                logger.info("Peer received READY signal from injector.");
+	            } else {
+	                throw new IOException("Unexpected message from injector: " + message);
+	            }
+	        }
+	    } catch (IOException e) {
+	        logger.severe("Error while waiting for READY signal: " + e.getMessage());
+	        System.exit(1); 
+	    }
 	}
 }
 
@@ -150,12 +180,9 @@ class Server implements Runnable {
 		this.port = port;
 		this.logger = logger;
 		this.multiCast = multiCast;
-		// Increased backlog to 50 to add length to the queue of incoming connections.
-		// I think 6 would be the minimum, because we have 6 peer's but i put a bigger number
-		// to guarante that we don't have problems
+		
 
 		// WHEN THE 2ND ARGUMENT BELLOW IS VERY HIGH, IT WORK'S
-
 		server = new ServerSocket(port, 10000, InetAddress.getByName(host));
 
 

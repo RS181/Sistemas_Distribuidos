@@ -38,6 +38,12 @@
     java ds.assign.tom.Peer L826 60000 L820 10000 L821 20000 L822 30000 L823 40000 L824 50000 ```
 ```
 
++ Injetar READY para os peer's inicializem as Thread's todos ao mesmo tempo 
+
+```bash
+    java ds.assign.tom.Injector L820:10000 L821:20000 L822:30000 L823:40000 L824:50000 L826:60000
+```
+
 # Comandos para testar localmente
 
 + No diretorio (...)/Sistemas_Distribuidos, compilar (IMPORTANTE)
@@ -66,6 +72,12 @@
 
     # Peer 6
     java ds.assign.tom.Peer localhost 60000 localhost 10000 localhost 20000 localhost 30000 localhost 40000 localhost 50000 
+```
+
++ Injetar READY para os peer's inicializem as Thread's todos ao mesmo tempo 
+
+```bash
+    java ds.assign.tom.Injector localhost:10000 localhost:20000 localhost:30000 localhost:40000 localhost:50000 localhost:60000
 ```
 
 # Verificar diferencas entre ficheiros output
