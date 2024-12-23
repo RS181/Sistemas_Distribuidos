@@ -110,7 +110,8 @@ public class MultiCast implements Runnable{
     }
 
     /**
-     * Sends a request message to Peer server located at the specified host and port.
+     * Sends a request message to Peer server located at the specified host and port.If a peer's 
+     * has disconected we exit the program (this allows for easier 'stop' of every peer)
      * 
      * @param request the message to be sent
      * @param serverHost the host address of the server
@@ -129,7 +130,10 @@ public class MultiCast implements Runnable{
 
             
         } catch (Exception e) {
-            e.printStackTrace();
+
+            logger.severe("MultiCast: " + serverHost + " " + serverPort + "is OFFLINE. Shutting down...");
+            System.exit(0);
+            //e.printStackTrace();
         }
     }
 
