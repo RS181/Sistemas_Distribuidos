@@ -144,6 +144,13 @@ public class MultiCast implements Runnable{
     public void run() {
         logger.info("Multicast : endpoint running at port " + currentPeer.port + " ...");
 
+        //Wait's a few seconds to allow all peer's to initialize before starting sending messages
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            // e.printStackTrace();
+        }
+
         while (true) {
             double intervalTime = poissonProcess.timeForNextEvent() * 1000 * 60; // Converting to milliseconds
 
