@@ -1,14 +1,4 @@
-# Notas
-1. cada vez que enviamos  incrementamos o relogio de lampart (na cabeca temos a mensagem mais antiga e na cauda temos a mensagem mais recente)
-
-2. No ack temos de enviar um relogio lampart
-
-
-3. professor nao esta disponivel no dia 23/24/25 mas ele disse para retirar duvidas basta envia email e deixar fazer zoom 
-
-> PARA MAIS DETALHES SOBRE TOTALY ORDERED MULTICAST COM RELOGIOS DE LAMPART VER A SECCAO Totaly Ordered Multicast no pdf LogicalClocks.pdf
-
-# Comandos para testar no laboritorio (TODO)
+# Comandos para testar no laboritorio 
 
 + No diretorio (...)/Sistemas_Distribuidos, compilar (IMPORTANTE)
 
@@ -82,12 +72,15 @@
 
 # Verificar diferencas entre ficheiros output
 
-+ **Verificar se conteudo de ficheiros e diferente**
++ **Verificar se conteudo de ficheiros e diferente** 
 
 ```bash
     # Se os arquivos tiverem o mesmo conteúdo, o comando diff não retornará nada (ou seja, a saída será vazia). Caso contrário, ele exibirá as diferenças entre os arquivos.
 
     diff ds/assign/tom/out/localhost_X0000_dic.txt ds/assign/tom/out/localhost_Y0000_dic.txt
+
+    # Exemplo com maquinas lab.
+    diff ds/assign/tom/out/L820_10000_dic.txt ds/assign/tom/out/L821_20000_dic.txt
 ```
 
 
@@ -95,5 +88,9 @@
 ```bash
     # Mostra os arquivos lado a lado para facilitar a visualização das diferenças.
     diff --side-by-side ds/assign/tom/out/localhost_X0000_dic.txt ds/assign/tom/out/localhost_Y0000_dic.txt
+
+    # Exemplo com maquina lab.
+    diff --side-by-side ds/assign/tom/out/L820_10000_dic.txt ds/assign/tom/out/L821_20000_dic.txt
+
 
 ```
