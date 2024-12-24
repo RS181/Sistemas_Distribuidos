@@ -23,4 +23,4 @@ This Directory contains the implementation of application prototypes for various
 
 ## How to Run 
 
-For more detailed information of how to run please chech the **README.md** present in each package (Note that the **README.md** present in every package is in **Portuguese**)
+For more detailed information of how to run please checK the **README.md** present in each package (Note that the **README.md** present in every package is in **Portuguese**)
